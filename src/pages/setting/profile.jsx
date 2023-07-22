@@ -4,23 +4,21 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
-    let { NEXT_PUBLIC_API } = process.env
-    let config = {}
-    let { cookies } = ctx.req
-    // if (cookies?.token?.length > 20) {
-    let _id = "64996c99ec9e55b4ba0a4ac1"
-    let url = `${NEXT_PUBLIC_API}/users/${_id}`
-    let { data } = await axios.get(url, config);
-    return { props: { data, config } }
-    // } return { redirect: { permanent: false, destination: '/auth/login' } }
+    return await AuthServerSide(ctx, 'family', async () => {
+
+        let { NEXT_PUBLIC_API } = process.env
+        let { cookies } = ctx.req
+        let _id = "64996c99ec9e55b4ba0a4ac1"
+        let url = `${NEXT_PUBLIC_API}/users/${_id}`
+        let { data } = await axios.get(url, config);
+        return { props: { data, config } }
+    })
 }
 export default function ProfileEdit({ data: propsData }) {
     const { register, handleSubmit } = useForm();
     let route = useRouter()
     const onSubmit = data => {
-        let { NEXT_PUBLIC_API } = process.env
         let url = `/api/setting`
-        console.log(url);
         data["_id"] = "64996c99ec9e55b4ba0a4ac1"
 
         axios.put(url, data)

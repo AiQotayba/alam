@@ -10,7 +10,7 @@ export async function getServerSideProps(ctx) {
         let { cookies } = ctx.req
         let _id = "64996c99ec9e55b4ba0a4ac1"
         let url = `${NEXT_PUBLIC_API}/users/${_id}`
-        let { data } = await axios.get(url, config);
+        let { data } = await axios.get(url);
         return { props: { data, config } }
     })
 }

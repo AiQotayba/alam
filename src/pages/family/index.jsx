@@ -14,8 +14,7 @@ import { useState } from "react";
 // last 5 attendants
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, 'family', async ({ NEXT_PUBLIC_API, config }) => {
-        let config = {}
-        let url = `${process.env.NEXT_PUBLIC_API}/family`
+        let url = `${NEXT_PUBLIC_API}/family`
 
         let { data } = await axios.get(url, config);
         return { props: { data, config } }

@@ -51,7 +51,7 @@ export default function HomeFamily({ data: propsData }) {
                 <h1 className="m-20">{course?.title} </h1>
                 <b className="m-10">
                     {course?.teacher?.map(a => (
-                        <span>{a.fullname}</span>
+                        <span key={a._id}>{a.fullname}</span>
                     ))}
                 </b>
                 <p className="m-10">{course?.description} </p>

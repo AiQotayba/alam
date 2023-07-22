@@ -1,0 +1,23 @@
+@api = http://localhost:3000/api
+
+GET {{api}}/family
+###
+@api = http://localhost:3000/api
+
+GET {{api}}/family/649e1d58b32d5a42df1d5d6d
+ 
+ ###
+ @api = http://localhost:3000/api
+
+GET {{api}}/family/649e1d58b32d5a42df1d5d6d/64a1abab923f2f3e96302420
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

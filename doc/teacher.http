@@ -1,0 +1,31 @@
+@api = http://localhost:3000/api
+
+GET {{api}}/teacher
+    # ?types=courses
+    # ?types=course-one
+    ?types=sessions
+    &url=a-10
+###
+@api = http://localhost:3000/api
+GET {{api}}/teacher/64a1abab923f2f3e96302420
+###
+@api = http://localhost:3000/api
+POST  {{api}}/teacher/64a1abab923f2f3e96302420/add-session
+content-type: application/json
+
+{
+          "title":"test session 4",
+           "time_start":"16:30",
+           "date_start":"2023/7/20"
+}
+###
+@api = http://localhost:3000/api
+GET  {{api}}/teacher/64a1abab923f2f3e96302420/64acf9b68ffcb4489cf184ce
+###
+@api = http://localhost:3000/api
+GET  {{api}}/teacher/64a1abab923f2f3e96302420/64ac66b12f8792dcfe11ebd7
+###
+@api = http://localhost:3000/api
+DELETE   {{api}}/teacher/64a1abab923f2f3e96302420/64ac66b12f8792dcfe11ebd7
+###
+GET http://localhost:3000/api/courses/64a9a12aeca3fa0f2a8bf1d7/student?phone=77&name=

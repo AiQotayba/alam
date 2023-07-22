@@ -1,0 +1,26 @@
+@api = http://localhost:3000/api
+@userId = "64996c99ec9e55b4ba0a4ac1"
+
+GET {{api}}/users
+###
+@api = http://localhost:3000/api
+
+PUT   {{api}}/users/64996c99ec9e55b4ba0a4ac1
+{
+    "fullname": "Qotayba Mohammad",
+		"email": "ktsyr1@gmail.com",
+        "phone": 70723177
+}
+
+# add child
+###
+@api = http://localhost:3000/api
+
+PUT    {{api}}/setting
+content-type: application/json
+{
+    "_id": "64a824163a104aa061932fa1",
+		"fullname": "test teachers",
+		"email": "text@mail",
+		"phone": "03318913"
+}

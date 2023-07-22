@@ -5,6 +5,7 @@
 // info & avrage
 // list attendants 
 
+import { AuthServerSide } from "@/lib/app2";
 import CardAtt from "@/theme/card";
 import axios from "axios";
 import Image from "next/image";

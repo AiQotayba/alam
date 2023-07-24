@@ -10,8 +10,8 @@ import { useForm } from "react-hook-form";
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
         let url = `${NEXT_PUBLIC_API}/courses/${ctx.query._id}`
-        let { data } = await axios.get(url);
-        return { props: { data, config } }
+        let { data } = await axios.get(url, config);
+        return { data, config } 
     })
 }
 
@@ -72,7 +72,7 @@ export default function EditChild({ data: propsData, config }) {
             {/* <Input title="عدد الجلسات" name="session" object="count" style={{ width: "120px" }} defaultValue={data?.count?.session} /> */}
             {/* </div> */}
             <div className="mt-20 w-full box row">
-                <Link href={`/admin/courses/${query._id}`} className="p-10 w-full btn off"  >الغاء </Link>
+                <Link href={`/admin/courses/${query._id}`} className="p-10 w-full btn m-0 off"  >الغاء </Link>
                 <input type='submit' className="mr-10 w-full" />
             </div>
         </form>

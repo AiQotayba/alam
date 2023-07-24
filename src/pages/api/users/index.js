@@ -6,13 +6,14 @@ export default async function users(req, res, next) {
         let Auth = new APIAuth(req, res)
 
         GET(
-                //       await  Auth.getAdmin("admin"),
+                await Auth.getAdmin("admin"),
                 async () => {
                         let users = await User.find().sort({ _id: -1 }).select('fullname email phone verification typeUser');
                         Send(users)
                 });
 
         PATCH(
+                await Auth.getAdmin("admin"),
                 async () => {
                         let { phone, name } = req.query
                         let users = await User.find({ phone: { "$regex": phone } }).select("fullname phone")

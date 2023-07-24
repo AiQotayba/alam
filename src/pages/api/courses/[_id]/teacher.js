@@ -23,7 +23,7 @@ export default async function CoursesOne(req, res, next) {
 
                         let data = []
                         users.map(a => {
-                                let find = co?.teacher.filter(b => b.toString() != a?._id.toString())
+                                let find = co?.teacher.filter(b => b.toString() == a?._id.toString())
                                 if (find.length == 0) data.push(a)
                         })
                         Send(data)

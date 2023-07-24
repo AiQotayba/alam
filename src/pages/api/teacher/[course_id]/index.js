@@ -7,6 +7,7 @@ export default async function CoursesALL(req, res, next) {
 
     let { body, query } = req
     GET(
+        await Auth.getAdmin("teacher"),
         async () => {
             let { course_id } = query
             console.log(course_id);
@@ -24,8 +25,6 @@ export default async function CoursesALL(req, res, next) {
             Send({
                 title: co.title,
                 sessions,
-                // query,
-                // co
             })
         });
 }

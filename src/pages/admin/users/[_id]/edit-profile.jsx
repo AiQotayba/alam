@@ -1,5 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 import { AuthServerSide } from "@/lib/app2";
 import { useState } from "react";
@@ -14,17 +15,15 @@ export async function getServerSideProps(ctx) {
         return { data, config }
     })
 }
-export default function EditUser({ data }) {
-    let [Data, setData] = useState(data)
-    let set = e => setChange(e, Data, setData)
-    let { push } = useRouter()
-
-    function send() {
+export default function EditUser({ data: propsD, config }) {
+    let [Data, setData] = useState(propsD)
+    const { register, handleSubmit } = useForm();
+    let { push, query } = useRouter()
+    const onSubmit = data => {
         // this the code
-        let body = { user_id: data._id, ...Data }
         // send data
-        let url = `${process.env.NEXT_PUBLIC_API}/users/${data._id}`
-        axios.put(url, body)
+        let url = `${process.env.NEXT_PUBLIC_API}/users/${query._id}`
+        axios.put(url, data, config)
             .then(({ data }) => {
                 message.success(data.msg)
                 push("/admin/users")
@@ -32,16 +31,21 @@ export default function EditUser({ data }) {
     }
 
     return (
-        <from className="bord pup w-300 p-20 center" onChange={set}>
+        <form className="box col bord pup w-300 p-20 center" onSubmit={handleSubmit(onSubmit)}>
             <h1>تعديل المستخدم  </h1>
-            <Input title="الاسم الكامل" name="fullname" defaultValue={Data?.fullname} />
-            <Input title="الايميل" name="email" type="email" defaultValue={Data?.email} />
-            <Input title="الهاتف" name="phone" defaultValue={Data?.phone} />
+            <label htmlFor="fullname" className="px-10">الاسم الكامل</label>
+            <input type="text" id="fullname" {...register("fullname")} defaultValue={Data?.fullname} />
+
+            <label htmlFor="email" className="px-10">الايميل  </label>
+            <input type="email" id="email" {...register("email")} defaultValue={Data?.email} />
+
+            <label htmlFor="phone" className="px-10">الهاتف  </label>
+            <input type="text" id="phone" {...register("phone")} defaultValue={Data?.phone} />
 
             <div className="mt-20 w-full box row">
-                <Link href={"/admin/users"} className=" btn p-10 w-full off"  >عودة </Link>
-                <button onClick={send} className="mr-10 w-full"> تحديث</button>
+                <Link href={"/admin/users"} className="ml-10 btn p-10 w-full m-0 off"  >عودة </Link>
+                <input type="submit" className=" w-full " />
             </div>
-        </from>
+        </form>
     )
 }

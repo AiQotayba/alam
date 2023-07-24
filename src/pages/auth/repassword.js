@@ -5,12 +5,12 @@ import Cookies from "js-cookie"
 import { useRouter } from "next/router"
 import { useState } from "react"
 
-// export async function getServerSideProps(ctx) {
-// let { token } = ctx.req.cookies
+export async function getServerSideProps(ctx) {
+    let { token } = ctx.req.cookies
 
-// if (token && token.length > 20) return { redirect: { permanent: false, destination: '/' } }
-// else return { props: {} }
-// }
+    if (token && token.length > 20) return { redirect: { permanent: false, destination: '/' } }
+    else return { props: {} }
+}
 
 export default function Login() {
     let [Data, setData] = useState({})

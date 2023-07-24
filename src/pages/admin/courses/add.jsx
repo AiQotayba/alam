@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { message } from "antd";
 import { Input } from "@/lib/app";
+import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
@@ -14,8 +15,33 @@ export async function getServerSideProps(ctx) {
 }
 export default function CreateChild({ config }) {
     let [Data, setData] = useState({})
+    const { register, handleSubmit } = useForm();
     let set = e => setChange(e, Data, setData)
     let { query, push } = useRouter()
+    const onSubmit = res => {
+        const file = res.image//.files[0];
+        let image = null
+        console.log(file);
+        function send(image) {
+            let data = {
+                ...res,
+                image
+            }
+            axios.post("/api/courses", data, config)
+                .then(({ data }) => {
+                    message.success(data.msg)
+                    // push("/admin/courses")
+                })
+        }
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => send(reader.result)
+            reader.readAsDataURL(file[0]);
+            console.log({ image });
+
+        } else send(image)
+
+    }
     function send() {
         // this the code
         let body = { user_id: query._id, ...Data }
@@ -29,32 +55,21 @@ export default function CreateChild({ config }) {
     }
 
     return (
-        <div className='bord box col p-20 center ' style={{ maxWidth: '500px' }} onChange={set}>
+        <form className='bord box col p-20 center ' onSubmit={handleSubmit(onSubmit)}>
             <h1 className="center box my-20">اضافة دورة تدريبية </h1>
-            <Input title="عنوان الدورة " name="title" />
-            <Input title="وصف الدورة" name="description" />
-            <Input title="الرابط الدائم" name="url" />
-            <Input title="الصورة التعريفية" name="image" type="file" />
+            <label htmlFor="title"  >عنوان الدورة </label>
+            <input type="text" id="title" {...register("title")} />
 
-            {/* <h2>التوقيت</h2> */}
-            {/* <div className="box col space"> */}
-                {/* <Input title="البداية " name="start" object="date" type="date" /> */}
-                {/* <Input title="الوقت الكلي" name="total" object="date" type="date" /> */}
-                {/* <Input title="نهاية الدورة" name="end" object="date" type="date" /> */}
-            {/* </div> */}
-            {/* <div className="box row space"> */}
-                {/* <Input title="النقاط" name="coin" object="count" style={{ width: "120px" }} /> */}
-                {/* <Input title="عدد الجلسات" name="session" object="count" style={{ width: "120px" }} /> */}
-            {/* </div> */}
+            <label htmlFor="description" >وصف الدورة  </label>
+            <textarea type="text" id="description" {...register("description")} />
 
-
-
-
+            <label htmlFor="image" >الصورة التعريفية  </label>
+            <input type="file" id="image" {...register("image")} />
 
             <div className="mt-20 w-full box row">
-                <Link href={"/admin/courses"} className="p-10 w-full btn off"  >الغاء </Link>
-                <button onClick={send} className="mr-10 w-full"> اضافة</button>
+                <Link href={"/admin/courses"} className="p-10 m-0 w-full btn off"  >الغاء </Link>
+                <input type='submit' className="mr-10 w-full" />
             </div>
-        </div>
+        </form>
     )
 }

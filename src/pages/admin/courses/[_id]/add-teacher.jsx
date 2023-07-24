@@ -8,7 +8,7 @@ import { Input } from "@/lib/app";
 import { useRouter } from "next/router";
 
 export async function getServerSideProps(ctx) {
-    return await AuthServerSide(ctx, 'admin', async () => { return {} })
+    return await AuthServerSide(ctx, 'admin', async (config) => { return { config } })
 }
 
 export default function AddTeacher(props) {
@@ -22,7 +22,7 @@ export default function AddTeacher(props) {
             setLoader(true)
             let URL = `${process.env.NEXT_PUBLIC_API}/courses/${query._id}/teacher`
 
-            axios.get(`${URL}?src=${data}`, {}).then(({ data }) => {
+            axios.get(`${URL}?src=${data}`, props.config).then(({ data }) => {
                 setTeacher(data)
                 setLoader(false)
             }).catch(err => setLoader(false))
@@ -36,7 +36,7 @@ export default function AddTeacher(props) {
         { title: "ايميل", dataIndex: "email", key: "email" },
         {
             title: "", dataIndex: "view", key: "view",
-            render: (_, record) => <Add data={record} />
+            render: (_, record) => <Add data={record} config={props.config} />
         }
     ];
     return (
@@ -57,7 +57,7 @@ export default function AddTeacher(props) {
         </div>
     )
 }
-function Add({ data, url }) {
+function Add({ data, url, config }) {
     let route = useRouter()
     let [CT, setCT] = useState("اضافة")
 
@@ -67,10 +67,10 @@ function Add({ data, url }) {
         if (CT) {
             let URL = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/teacher`
 
-            axios.post(URL, { "teacher_id": data._id })
+            axios.post(URL, { "teacher_id": data._id }, config)
                 .then(() => {
                     message.success(`تم اضافة ${data.fullname}`)
-                    route.push(`/admin/courses/${route.query._id}`)
+                    // route.push(`/admin/courses/${route.query._id}`)
                 })
         }
     }

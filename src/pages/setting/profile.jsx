@@ -5,40 +5,30 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
-    return await AuthServerSide(ctx, 'family', async () => {
-
-        let { NEXT_PUBLIC_API } = process.env
-        let { cookies } = ctx.req
-        let _id = "64996c99ec9e55b4ba0a4ac1"
-        let url = `${NEXT_PUBLIC_API}/users/${_id}`
-        let { data } = await axios.get(url);
-        return { props: { data, config } }
+    return await AuthServerSide(ctx, 'family', async ({ NEXT_PUBLIC_API, config }) => {
+        let url = `${NEXT_PUBLIC_API}/setting`
+        let { data } = await axios.get(url, config);
+        return { data, config } 
     })
 }
-export default function ProfileEdit({ data: propsData }) {
+export default function ProfileEdit({ data: propsData, config }) {
     const { register, handleSubmit } = useForm();
     let route = useRouter()
     const onSubmit = data => {
         let url = `/api/setting`
-        data["_id"] = "64996c99ec9e55b4ba0a4ac1"
-
-        axios.put(url, data)
+        axios.put(url, data, config)
             .then(({ data }) => {
                 message.success(data.msg)
                 route.back()
             })
     }
-    let Obj = {
-        "fullname": "Qotayba Mohammad",
-        "email": "ktsyr1@gmail.com",
-        "phone": "70723177"
-    }
     return (
         <div className="box col">
             {/* form */}
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>{propsData?.fullname}</h1>
-                <label htmlFor="fullname" >الادمن</label>
+            <form onSubmit={handleSubmit(onSubmit)} className="w-300">
+                <h1>تعديل الملف الشخصي</h1>
+                <h2>{propsData?.fullname}</h2>
+                <label htmlFor="fullname" >الاسم الكامل</label>
                 <input type="text" id="fullname"  {...register("fullname")} defaultValue={propsData?.fullname} />
 
                 <label htmlFor="email" >الايميل</label>

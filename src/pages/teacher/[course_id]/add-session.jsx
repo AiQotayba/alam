@@ -1,23 +1,25 @@
-import { Input } from "@/lib/app";
 import { message } from "antd";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
-export default function AddSession() {
+export async function getServerSideProps(ctx) {
+    return await AuthServerSide(ctx, 'teacher', async ({ NEXT_PUBLIC_API, config }) => {
+        return { config }
+    })
+}
+export default function AddSession({ config }) {
     const { register, handleSubmit } = useForm();
     let route = useRouter()
     let { query } = route
 
     const onSubmit = data => {
-        axios.post(
-            `/api//teacher/${query.course_id}/add-session`,
-            data
-        )
+
+        let url = `/api//teacher/${query.course_id}/add-session`
+        axios.post(url, data, config)
             .then(({ data }) => {
                 message.success(data.msg)
-
                 route.push(`/teacher/${query.course_id}/${data.NEW._id}`)
             })
     }

@@ -12,30 +12,30 @@ export async function getServerSideProps(ctx) {
         return { config }
     })
 }
-export default function NewPassword({ data }) {
-    let [Data, setData] = useState(data)
+export default function NewPassword({ config }) {
+    let [Data, setData] = useState({})
     let set = e => setChange(e, Data, setData)
-    let { query } = useRouter()
+    let { query, push } = useRouter()
     function send() {
         // this the code
         let body = { ...Data }
         // send data
         let url = `${process.env.NEXT_PUBLIC_API}/users/${query._id}`
-        axios.patch(url, body)
+        axios.patch(url, body, config)
             .then(({ data }) => {
                 message.success(data.msg)
                 push("/admin/users")
             })
     }
     return (
-        <from onChange={set} className="bord pup w-300 p-20 center">
+        <form onChange={set} className="bord pup w-300 p-20 center" >
             <h1>تحديث كلمة السر  </h1>
             <Input title="كلمة السر" name="password" />
             <div className="mt-20 w-full box row">
-                <Link href={"/admin/users"} className=" btn p-10 w-full off"  >عودة </Link>
+                <Link href={"/admin/users"} className=" btn p-10 m-0 w-full off"  >عودة </Link>
                 <button onClick={send} className="mr-10 w-full"> تحديث</button>
             </div>
-        </from>
+        </form>
     )
 
 }

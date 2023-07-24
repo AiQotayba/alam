@@ -13,27 +13,29 @@ export default async function CoursesOne(req, res, next) {
                         let courses = await Courses.findOne(id)
                                 .populate("students")
                                 .populate("teacher", "fullname phone ")
-                        let users_id = await courses.students?.map(data => data.user_id)
-                        let users = await User.find({ _id: { $in: users_id } }).select("fullname phone ")
-                        let _students = courses.students
-                        courses.students = []
-                        let students = []
+                        if (courses) {
+                                let users_id = await courses?.students?.map(data => data?.user_id)
+                                let users = await User.find({ _id: { $in: users_id } }).select("fullname phone ")
+                                let _students = courses?.students
+                                courses["students"] = []
+                                let students = []
 
-                        await Promise.all(_students?.map(async data => {
-                                let user = await users.filter(a => a._id.toString() === data.user_id.toString())[0]
+                                await Promise.all(_students?.map(async data => {
+                                        let user = await users.filter(a => a._id.toString() === data.user_id.toString())[0]
 
-                                students.push({
-                                        _id: data._id,
-                                        name: data?.name,
-                                        age: data?.age,
-                                        fullname: user?.fullname,
-                                        phone: user?.phone,
-                                })
+                                        students.push({
+                                                _id: data._id,
+                                                name: data?.name,
+                                                age: data?.age,
+                                                fullname: user?.fullname,
+                                                phone: user?.phone,
+                                        })
 
-                        }))
+                                }))
 
-                        await Object.assign(courses, { students })
-                        Send({ ...courses._doc, students })
+                                await Object.assign(courses, { students })
+                                Send({ ...courses._doc, students })
+                        } else Send(null)
 
                 })
         PUT(

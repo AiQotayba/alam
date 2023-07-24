@@ -7,7 +7,7 @@ export default async function CoursesALL(req, res, next) {
 
     let { body, query } = req
     GET(
-        //       await  Auth.getAdmin("admin"),
+        await Auth.getAdmin("family"),
         async () => {
             let { child_id, course_id } = query
             // info 

@@ -3,7 +3,6 @@ import mongoose, { Schema } from 'mongoose';
 let schema = new Schema({
     title: String,
     description: String,
-    url: String,
     image: String,
     teacher: [{
         type: mongoose.Schema.Types.ObjectId,

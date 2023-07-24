@@ -8,11 +8,11 @@ import { Input, setChange } from "@/lib/app";
 import { useRouter } from "next/router";
 
 export async function getServerSideProps(ctx) {
-    return await AuthServerSide(ctx, 'admin', async () => { return {} })
+    return await AuthServerSide(ctx, 'admin', async (config) => { return { config } })
 }
 // add student
 // 
-export default function CoursesStudent(props) {
+export default function CoursesStudent({ config }) {
     let [data, setData] = useState({ phone: "", name: "" })
     let [student, setStudent] = useState()
     let [loader, setLoader] = useState(false)
@@ -24,7 +24,7 @@ export default function CoursesStudent(props) {
             setLoader(true)
 
             let URL = `${process.env.NEXT_PUBLIC_API}/courses/${query._id}/student?phone=${data?.phone}&name=${data?.name}`
-            axios.get(URL, {}).then(({ data }) => {
+            axios.get(URL, config).then(({ data }) => {
                 setStudent(data)
                 setLoader(false)
             }).catch(err => setLoader(false))
@@ -39,7 +39,7 @@ export default function CoursesStudent(props) {
         { title: "رقم الهاتف", dataIndex: "phone", key: "phone" },
         {
             title: "", dataIndex: "view", key: "view",
-            render: (_, record) => <Add data={record} />
+            render: (_, record) => <Add data={record} config={config} />
         }
     ];
     return (
@@ -60,7 +60,7 @@ export default function CoursesStudent(props) {
         </div>
     )
 }
-function Add({ data }) {
+function Add({ data, config }) {
     let route = useRouter()
     let [CT, setCT] = useState("اضافة")
 
@@ -69,7 +69,7 @@ function Add({ data }) {
         setCT(false)
         if (CT) {
             let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/student?students_id=${data._id}`
-            axios.post(url,)
+            axios.post(url, config)
                 .then(() => message.success(`تم اضافة ${data.name} ${data.fullname}`))
         }
     }

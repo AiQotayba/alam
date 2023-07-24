@@ -12,7 +12,7 @@ import Image from "next/image";
 export async function getServerSideProps(ctx) {
         return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
                 let url = `${NEXT_PUBLIC_API}/courses/${ctx.query._id}`
-                let { data } = await axios.get(url);
+                let { data } = await axios.get(url, config);
                 return { data, config }
         })
 }
@@ -24,7 +24,7 @@ export default function AdminCourses(props) {
         function DeleteCourse() {
                 let URL = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}`
                 // api
-                axios.delete(URL)
+                axios.delete(URL, props.config)
                         .then(({ data }) => {
                                 message.success(data.msg)
                                 setTimeout(() => route.push("/admin/courses"), 3000)
@@ -44,11 +44,11 @@ export default function AdminCourses(props) {
                         <MenuLine data={{ title: "الكورسات", slug: "/courses" }} />
                         <Info data={data} />
                         <div className="box grid m-10 mt-20" >
-                                <Students data={data} />
-                                <Teacher data={data} />
+                                <Students {...props} />
+                                <Teacher  {...props} />
                         </div>
                         <div className="box row m-10 mt-20" >
-                                <Link href={`${route.asPath}/edit-course`} className="btn mx-10" >تعديل معلومات الدورة</Link>
+                                <Link href={`${route.asPath}/edit-course`} className="btn m-0" >تعديل معلومات الدورة</Link>
                                 <Popconfirm
                                         title="هل أنت متأكد من رغبتك في الحذف؟"
                                         onConfirm={handleDelete}
@@ -76,13 +76,13 @@ function Info({ data }) {
                 </div>
         )
 }
-function Teacher({ data: propsData }) {
+function Teacher({ data: propsData, config }) {
         let [data, set] = useState(propsData)
         let route = useRouter()
 
         function Delete(id) {
                 let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/teacher?teacher_id=${id}`
-                axios.delete(url)
+                axios.delete(url, config)
                 let res = data.teacher.filter(a => a._id !== id)
                 let alertData = data.teacher.filter(a => a._id === id)[0]
                 message.success(`تم حذف ${alertData.fullname}`)
@@ -111,13 +111,13 @@ function Teacher({ data: propsData }) {
                 </div>
         )
 }
-function Students({ data: propsData }) {
+function Students({ data: propsData, config }) {
         let [data, set] = useState(propsData)
         let route = useRouter()
 
         function Delete(id) {
                 let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/student?students_id=${id}`
-                axios.delete(url)
+                axios.delete(url, config)
                 let res = data.students.filter(a => a._id !== id)
                 let alertData = data.students.filter(a => a._id === id)[0]
                 message.success(`تم حذف ${alertData.name} ${alertData.fullname}`)

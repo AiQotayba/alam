@@ -8,14 +8,18 @@ export default async function FamilyHomeAPI(req, res, next) {
 
         let { body } = req
         GET(
-                //       await  Auth.getAdmin("admin"),
+                await Auth.getAdmin("family"),
                 async () => {
                         // list childs
-                        const user_id = "64996c99ec9e55b4ba0a4ac1";
-
-                        let childs = await Child.find()
-                        childs = childs?.filter(c => c.user_id.toString() === user_id)
-                        let childs_id = childs?.map(c => c._id.toString())
+                        let user_id = await Auth.UserId()
+                        console.log({ user_id });
+                        user_id = user_id?._id?.toString()
+                        console.log({ user_id });
+                        let childs = await Child.find({})
+                        childs = await childs?.filter(c => {
+                                // console.log([c.user_id.toString(), user_id])
+                                return c.user_id.toString() === user_id
+                        })
 
                         // last 5 attendants
                         let queryAtt = new Date().getTime() - 864000000
@@ -30,6 +34,7 @@ export default async function FamilyHomeAPI(req, res, next) {
                                 attendants,
                                 childs,
                         }
+                        console.log({ data });
 
                         Send(data)
 

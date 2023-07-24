@@ -18,6 +18,7 @@ PUT   {{api}}/users/64996c99ec9e55b4ba0a4ac1
 
 PUT    {{api}}/setting
 content-type: application/json
+
 {
     "_id": "64a824163a104aa061932fa1",
 		"fullname": "test teachers",

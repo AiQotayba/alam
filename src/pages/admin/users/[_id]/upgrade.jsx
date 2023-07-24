@@ -14,7 +14,7 @@ export async function getServerSideProps(ctx) {
     })
 }
 
-export default function EditUser({ data }) {
+export default function EditUser({ data, config }) {
     const { register, handleSubmit } = useForm();
     let { push, query } = useRouter()
 
@@ -22,7 +22,7 @@ export default function EditUser({ data }) {
         let body = []
         Object.keys(data)
             .map(a => data[a] ? body.push(a) : null)
-        axios.post(`/api//users/${query._id}`, body)
+        axios.post(`/api//users/${query._id}`, body, config)
             .then(({ data }) => {
                 message.success(data.msg)
                 push("/admin/users")

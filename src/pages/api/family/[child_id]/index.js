@@ -7,11 +7,9 @@ export default async function CoursesALL(req, res, next) {
 
         let { body, query } = req
         GET(
-                //       await  Auth.getAdmin("admin"),
+                await Auth.getAdmin("family"),
                 async () => {
                         // list childs
-                        const user_id = "64996c99ec9e55b4ba0a4ac1";
-                        // info child
                         let child = await Child.findOne({ _id: query.child_id })
                         //  my courses
                         let courses = await Courses.find({ students: { $in: [query.child_id] } }).select("completion title image ")

@@ -163,7 +163,6 @@ export class APIAuth {
         this.Send = this.Send.bind(this)
 
         this.isLogin = this.isLogin.bind(this)
-        this.isAdmin = this.isAdmin.bind(this)
         this.getAdmin = this.getAdmin.bind(this)
 
     }
@@ -188,12 +187,9 @@ export class APIAuth {
     async getAdmin(permission) {
         return this._init(this.req)
             .then(async config => {
-                if (await this.isAdmin() !== undefined || false) {
-                    let user = config?.typeUser?.filter(a => a === permission)[0]
-                    if (user != undefined) return true
-                    else this.Send({ msg: "غير مصرح لك الدخول" })
-
-                }
+                let user = config?.typeUser?.filter(a => a === permission)[0]
+                if (user != undefined) return true
+                else this.Send({ msg: "غير مصرح لك الدخول" })
             })
     }
 
@@ -207,15 +203,6 @@ export class APIAuth {
             })
     }
 
-    isAdmin() {
-        return this._init(this.req)
-            .then(config => {
-                if (this.isLogin()) {
-                    if (config.isAdmin) return true
-                    else this.Send({ msg: " غير مصرح لك بالدخول " })
-                }
-            })
-    }
 
     async Send(data, status = 200) {
         this.res.setHeader('Content-Type', 'application/json')

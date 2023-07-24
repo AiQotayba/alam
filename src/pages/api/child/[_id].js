@@ -9,13 +9,13 @@ export default async function auth(req, res, next) {
     let user_id = await Auth.UserId()
 
     GET(
-        // await Auth.isLogin(),
+        await Auth.getAdmin("admin"),
         async () => {
             let data = await Child.findOne(id)
             Send(data)
         })
     DELETE(
-        // await Auth.isLogin(),
+        await Auth.getAdmin("admin"),
         async () => {
             await Child.deleteOne(id)
 

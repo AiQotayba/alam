@@ -1,3 +1,4 @@
+import { AuthServerSide } from "@/lib/app2";
 import { Popconfirm, Table, message } from "antd";
 import axios from "axios";
 import Image from "next/image";
@@ -8,15 +9,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
-    // return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
-    let config = {}
-    let url = `${process.env.NEXT_PUBLIC_API}/teacher/${ctx.query.course_id}/${ctx.query.session_id}`
-    let { data } = await axios.get(url, config);
-    return { props: { data, config, url } }
-    // })
+    return await AuthServerSide(ctx, 'teacher', async ({ NEXT_PUBLIC_API, config }) => {
+        let url = `${NEXT_PUBLIC_API}/teacher/${ctx.query.course_id}/${ctx.query.session_id}`
+        let { data } = await axios.get(url, config);
+        return { data, config, url }
+    })
 }
 
-export default function SessionAttendance({ data: propsData, url }) {
+export default function SessionAttendance({ data: propsData, url, config }) {
     let route = useRouter()
     let [data, setD] = useState(propsData)
     let [selectStudents, setSS] = useState(data.students[0])
@@ -32,7 +32,7 @@ export default function SessionAttendance({ data: propsData, url }) {
         }
         let students = data?.students?.filter(a => a._id != init.child_id)
 
-        axios.put(url, init)
+        axios.put(url, init, config)
             .then(({ data }) => {
                 document.querySelector('form').reset()
                 setD({ ...data, students })
@@ -49,7 +49,7 @@ export default function SessionAttendance({ data: propsData, url }) {
     let ratingContext = ["غياب", "ضعيف جدا", "ضعيف", "معتدل", "جيد جدا", "ممتاز"]
     function FormAtt() {
         if (data.students.length > 0) return (
-            <div className="box col w-300 mt-10" >
+            <div className="box col w-300 m-a" >
                 {/* select */}
                 <div className=" bord p-20 box row space aitem" onClick={() => setSD(true)}  >
                     <p> {`${selectStudents?.name} ${selectStudents?.user_id?.fullname}`}</p>
@@ -97,7 +97,7 @@ export default function SessionAttendance({ data: propsData, url }) {
     }
     function DeleteSession() {
         // send
-        axios.delete(url)
+        axios.delete(url, config)
     }
     const handleDelete = () => {
         // تأكيد الحذف وتنفيذ العملية
@@ -113,10 +113,10 @@ export default function SessionAttendance({ data: propsData, url }) {
 
 
     return (
-        <section className=" p-10 m-10 page" >
-            <div className="box col bord p-20 ">
+        <section className=" m-a page" >
+            <div className="box col bord p-20 m-a ">
                 <h1 >{data?.title}</h1>
-                <div className="box grid p-10 aitem my-10">
+                <div className="box grid p-10 aitem mt-10">
 
                     <h3>جلسة : {data?.session?.title}</h3>
                     <Popconfirm

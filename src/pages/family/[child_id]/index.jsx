@@ -19,7 +19,7 @@ export async function getServerSideProps(ctx) {
         let url = `${NEXT_PUBLIC_API}/family/${ctx.query.child_id}`
 
         let { data } = await axios.get(url, config);
-        return { props: { data, config } }
+        return { data, config } 
     })
 }
 

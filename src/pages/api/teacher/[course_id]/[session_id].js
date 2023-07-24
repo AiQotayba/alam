@@ -8,6 +8,7 @@ export default async function CoursesALL(req, res, next) {
     let { body, query } = req
     let { course_id, session_id } = query
     GET(
+        await Auth.getAdmin("teacher"),
         async () => {
             //  list student 
             let co = await Courses.findOne({ _id: course_id }).select(" title students")
@@ -33,6 +34,7 @@ export default async function CoursesALL(req, res, next) {
             Send({ ...data, co: co.students })
         });
     POST(
+        await Auth.getAdmin("teacher"),
         async () => {
             // create session
             // ok
@@ -48,6 +50,7 @@ export default async function CoursesALL(req, res, next) {
         }
     )
     PUT(
+        await Auth.getAdmin("teacher"),
         async () => {
 
             // add  feedback student
@@ -72,6 +75,7 @@ export default async function CoursesALL(req, res, next) {
         }
     )
     DELETE(
+        await Auth.getAdmin("teacher"),
         async () => {
             await Session.deleteOne({ _id: session_id })
             Send({ msg: "تم حذف الجلسة" })

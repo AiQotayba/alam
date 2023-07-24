@@ -15,26 +15,19 @@ export default async function CoursesALL(req, res, next) {
                 });
         POST(
                 async () => {
-                        let emails = body.teacher?.split(",").map(a => a.trim())
-                        console.log(emails);
-                        let ids = await User.find({ email: { $in: emails } }).select("_id")
-                        ids = ids.map(a => a._id)
 
                         let data = {
-                                teacher: ids,
                                 title: body.title,
                                 description: body.description,
-                                url: body.url,
                                 image: body.image,
                                 // date: {
                                 // start: body.date.start,
                                 // total: body.date.total,
                                 // end: body.date.end,
                                 // },
-                                count: {
-                                        coin: body?.count?.coin,
-                                        session: body?.count?.session,
-                                }
+                                // count: {
+                                        // coin: body?.count?.coin,
+                                // }
                         }
 
                         await Courses.create(data)

@@ -18,13 +18,11 @@ export async function getServerSideProps(ctx) {
         let url = `${NEXT_PUBLIC_API}/family`
 
         let { data } = await axios.get(url, config);
-        return { props: { data, config } }
+        return { data, config } 
     })
 }
 
-export default function HomeFamily({ data: propsData }) {
-    let [data, set] = useState(propsData)
-
+export default function HomeFamily({ data }) {
     return (
         <div className="m-10">
             {/* List child data */}

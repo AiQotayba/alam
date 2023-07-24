@@ -46,7 +46,7 @@ export default function AdminUsers(props) {
 	return (
 		<section className="bord p-10 m-10">
 			<h1 className="m-20">المستخدمين</h1>
-			<Menu data={One} set={setOne} />
+			<Menu data={One} set={setOne} config={props.config} />
 
 			<div className="m-10">
 				{props.data.length > 0 ? <Table dataSource={data} columns={columns} pagination={false} /> : ""}
@@ -55,14 +55,13 @@ export default function AdminUsers(props) {
 	)
 }
 
-function Menu({ data, set }) {
+function Menu({ data, set, config }) {
 	function Delete() {
-		axios.delete(
-			`/api/users/${data?._id}`,
-		).then(({ data }) => {
-			message.success(data.msg)
-			location.reload()
-		})
+		axios.delete(`/api/users/${data?._id}`, config)
+			.then(({ data }) => {
+				message.success(data.msg)
+				location.reload()
+			})
 
 	}
 	if (data?.fullname) {

@@ -16,8 +16,9 @@ export default function CreateChild({ config }) {
     let [Data, setData] = useState({})
     let set = e => setChange(e, Data, setData)
     let { query, push } = useRouter()
-    function send() {
-        // this the code
+    function send(e) {
+        e.preventDefault()
+         // this the code
         let body = { user_id: query._id, ...Data }
         console.log(body);
         // send data
@@ -28,14 +29,14 @@ export default function CreateChild({ config }) {
             })
     }
     return (
-        <from className='bord pup w-300 p-20 center ' onChange={set}>
+        <form className='bord pup w-300 p-20 center ' onChange={set} >
             <h1>اضافة طفل/ة</h1>
             <Input title="الاسم" name="name" />
             <Input title="العمر" name="age" />
             <div className="mt-20 w-full box row">
-                <Link href={"/admin/users"} className="p-10 w-full btn off"  >الغاء </Link>
+                <Link href={"/admin/users"} className="p-10 w-full m-0 btn off"  >الغاء </Link>
                 <button onClick={send} className="mr-10 w-full"> اضافة</button>
             </div>
-        </from>
+        </form>
     )
 }

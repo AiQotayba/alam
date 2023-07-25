@@ -5,11 +5,12 @@ import bcrypt from 'bcrypt'
 export default async function CoursesOne(req, res, next) {
         let { body, query } = req
         let { GET, id, PATCH, POST, ALL, DELETE, PUT, Send } = new API(req, res)
-        // let Auth = new APIAuth(req, res)
+        let Auth = new APIAuth(req, res)
 
 
 
         GET(
+                await Auth.getAdmin("admin"),
                 async () => {
                         let { phone, name } = req.query
                         let users = await User.find({ phone: { "$regex": phone } }).select("fullname phone")
@@ -41,7 +42,7 @@ export default async function CoursesOne(req, res, next) {
         )
         // add student
         POST(
-                //await Auth.getUser(),
+                await Auth.getAdmin("admin"),
                 async () => {
 
                         let students_id = query.students_id
@@ -59,13 +60,14 @@ export default async function CoursesOne(req, res, next) {
                 }
         )
         PUT(
-                // await Auth.getAdmin('admin'),
+                await Auth.getAdmin("admin"),
                 async () => {
                         Send({ msg: " تم تحديث الملف الشخصي" })
                 })
 
 
         DELETE(
+                await Auth.getAdmin("admin"),
                 async () => {
                         let { students_id } = query
                         let co = await Courses.findOne(id).select("students")

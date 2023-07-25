@@ -10,6 +10,7 @@ export default async function CoursesOne(req, res, next) {
 
 
         GET(
+                await Auth.getAdmin("admin"),
                 async () => {
                         let src = query.src.toLowerCase()
                         let users = await User.find({
@@ -32,7 +33,7 @@ export default async function CoursesOne(req, res, next) {
         )
         // add student
         POST(
-                //await Auth.getUser(),
+                await Auth.getAdmin("admin"),
                 async () => {
                         let _id = body.teacher_id
                         let co = await Courses.findOne(id).select("teacher")
@@ -46,6 +47,7 @@ export default async function CoursesOne(req, res, next) {
         )
 
         DELETE(
+                await Auth.getAdmin("admin"),
                 async () => {
                         let { teacher_id } = query
                         let co = await Courses.findOne(id).select("teacher")

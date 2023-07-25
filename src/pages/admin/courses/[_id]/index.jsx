@@ -8,6 +8,7 @@ import { Input, setChange } from "@/lib/app";
 import { useRouter } from "next/router";
 import { MenuLine } from "@/lib/ui";
 import Image from "next/image";
+import { CheckCircleTwoTone, HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
 
 export async function getServerSideProps(ctx) {
         return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
@@ -20,9 +21,9 @@ export async function getServerSideProps(ctx) {
 export default function AdminCourses(props) {
         let [data, setD] = useState(props?.data);
         let route = useRouter()
+        let URL = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}`
 
         function DeleteCourse() {
-                let URL = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}`
                 // api
                 axios.delete(URL, props.config)
                         .then(({ data }) => {
@@ -30,6 +31,15 @@ export default function AdminCourses(props) {
                                 setTimeout(() => route.push("/admin/courses"), 3000)
                         })
         }
+        function OK() {
+                // api
+                axios.patch(URL, {}, props.config)
+                        .then(({ data }) => {
+                                message.success(data.msg)
+                                setTimeout(() => route.push("/admin/courses"), 3000)
+                        })
+        }
+
         const handleDelete = () => {
                 // تأكيد الحذف وتنفيذ العملية
                 DeleteCourse();
@@ -48,6 +58,17 @@ export default function AdminCourses(props) {
                                 <Teacher  {...props} />
                         </div>
                         <div className="box row m-10 mt-20" >
+                                <Popconfirm
+                                        title="هل أنت متأكدة من ان الكورس  قد انتهى"
+                                        onConfirm={OK}
+                                        okText="نعم"
+                                        cancelText="لا"
+                                >
+                                        <button className="mr-10 green ml-10 box aitem" >
+                                                <CheckCircleTwoTone twoToneColor="#52c41a" />
+                                                <p className="mx-10"> انتهاء الكوس </p>
+                                        </button>
+                                </Popconfirm>
                                 <Link href={`${route.asPath}/edit-course`} className="btn m-0" >تعديل معلومات الدورة</Link>
                                 <Popconfirm
                                         title="هل أنت متأكد من رغبتك في الحذف؟"

@@ -100,6 +100,8 @@ button , .btn , [type="submit"]
         border: 1px solid #0292ab
         background-color: #fff !important
         color: #0292ab
+    &.green
+        background-color: #4CAF50
 
 .err
     background-color: #E91E63 !important
@@ -274,19 +276,16 @@ from
 .select
     max-height: 250px
     overflow-y: scroll
-
-.select::-webkit-scrollbar
-    margin: 10px
-    width: 1em
-
-.select::-webkit-scrollbar-track
-    border-radius: 20px
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
-
-.select::-webkit-scrollbar-thumb
-    border-radius: 20px
-    background-color: #46AADD
-    outline: 0px
+    &::-webkit-scrollbar
+        margin: 10px
+        width: 1em
+    &::-webkit-scrollbar-track
+        border-radius: 20px
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+    &::-webkit-scrollbar-thumb
+        border-radius: 20px
+        background-color: #46AADD
+        outline: 0px
 .landing
     border-radius: 20px
     transition: box-shadow 0.5s
@@ -303,3 +302,17 @@ from
         padding: 10px
         width: 300px
         height: 300px
+
+.full
+    position: absolute
+    z-index: 100
+    width: -webkit-fill-available
+    height: -webkit-fill-available
+    top: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    & form
+        background-color: #fff
+        width: 300px
+        border-radius: 20px

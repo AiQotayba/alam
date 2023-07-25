@@ -15,6 +15,7 @@ export async function getServerSideProps(ctx) {
 export default function CoursesStudent({ config }) {
     let [data, setData] = useState({ phone: "", name: "" })
     let [student, setStudent] = useState()
+    let [studentOne, setStudentOne] = useState()
     let [loader, setLoader] = useState(false)
     let set = e => setChange(e, data, setData)
     let { query } = useRouter()
@@ -39,7 +40,7 @@ export default function CoursesStudent({ config }) {
         { title: "رقم الهاتف", dataIndex: "phone", key: "phone" },
         {
             title: "", dataIndex: "view", key: "view",
-            render: (_, record) => <Add data={record} config={config} />
+            render: (_, record) => <Add data={record} config={config} set={setStudentOne} s />
         }
     ];
     return (
@@ -52,6 +53,8 @@ export default function CoursesStudent({ config }) {
                 {loader ? <Loader /> : <></>}
 
             </div>
+            <Form data={studentOne} />
+
             {student?.length > 0 ? <Table dataSource={student} columns={columns} pagination={false} /> : ""}
 
             <div className="mt-20 w-full box row w-300">
@@ -60,22 +63,44 @@ export default function CoursesStudent({ config }) {
         </div>
     )
 }
-function Add({ data, config }) {
+function Add(props) {
+    let { data, config } = props
     let route = useRouter()
     let [CT, setCT] = useState("اضافة")
 
     function send() {
-
         setCT(false)
         if (CT) {
-            let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/student?students_id=${data._id}`
-            axios.post(url, config)
-                .then(() => message.success(`تم اضافة ${data.name} ${data.fullname}`))
+            props.set(data)
+            // let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/student?students_id=${data._id}`
+            // axios.post(url, config)
+            // .then(() => message.success(`تم اضافة ${data.name} ${data.fullname}`))
         }
     }
     return (
-        <div onClick={send} className={`${CT ? "btn" : ""}`}>{CT ? "اضافة" : "تم الاضافة "}</div>
-
+        <>
+            <div
+                // onClick={send}
+                className={`${CT ? "btn" : ""}`}>{CT ? "اضافة" : "تم الاضافة "}</div>
+        </>
+    )
+}
+function Form({ data, set }) {
+    const { query } = useRouter();
+    // let [Data, set] = useState(data)
+    return (
+        <div className="full">
+            <form  >
+                {/* name */}
+                <h2>{`${data?.name} ${data?.fullname}`}</h2>
+                <label htmlFor="">الإسم</label><br />
+                <input type='text' />
+                <div className="mt-20 w-full box row">
+                    <button className="p-10 w-full off" onClick={() => set(data)} >الغاء </button>
+                    <input type="submit" className="mr-20  w-full " />
+                </div>
+            </form>
+        </div>
     )
 }
 function Loader() {

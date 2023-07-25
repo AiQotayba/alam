@@ -5,9 +5,9 @@ import bcrypt from 'bcrypt'
 export default async function CoursesOne(req, res, next) {
         let { body, query } = req
         let { GET, id, PATCH, POST, ALL, DELETE, PUT, Send } = new API(req, res)
-        // let Auth = new APIAuth(req, res)
+        let Auth = new APIAuth(req, res)
         GET(
-                // await Auth.getAdmin('admin'),
+                await Auth.getAdmin('admin'),
                 async () => {
 
                         let courses = await Courses.findOne(id)
@@ -39,6 +39,7 @@ export default async function CoursesOne(req, res, next) {
 
                 })
         PUT(
+                await Auth.getAdmin("admin"),
                 async () => {
                         let data = {
                                 count: {
@@ -56,7 +57,17 @@ export default async function CoursesOne(req, res, next) {
                         Send({ msg: "تم تحديث الدورة التدريبية", data })
                 }
         )
+        PATCH(
+                await Auth.getAdmin("admin"),
+                async () => {
+
+                        await Courses.updateOne(id, { completion: true })
+                        Send({ msg: "تم اتمام الدورة التدريبية" })
+
+                }
+        )
         DELETE(
+                await Auth.getAdmin("admin"),
                 async () => {
                         await Courses.deleteOne(id)
                         Send({ msg: "تم حذف الدورة التدريبية" })

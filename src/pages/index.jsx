@@ -19,7 +19,7 @@ export default function Home({ data }) {
       {/* Login or admin */}
 
       {/* Courses */}
-      {data.map(co => <CardCourse data={co} />)}
+      {data.map(co => <CardCourse data={co} key={co._id} />)}
       {/* Contact us and social media links  */}
       <Contact />
       <Links />

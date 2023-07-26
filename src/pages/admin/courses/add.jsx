@@ -37,8 +37,6 @@ export default function CreateChild({ config }) {
             const reader = new FileReader();
             reader.onloadend = () => send(reader.result)
             reader.readAsDataURL(file[0]);
-            console.log({ image });
-
         } else send(image)
 
     }

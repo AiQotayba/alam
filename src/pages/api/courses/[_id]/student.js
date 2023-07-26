@@ -1,6 +1,7 @@
 import { Child, Courses, User } from "@/lib/models";
 import { API, APIAuth } from "@/lib/app";
 import bcrypt from 'bcrypt'
+import { QuestionOutlined } from "@ant-design/icons";
 
 export default async function CoursesOne(req, res, next) {
         let { body, query } = req
@@ -53,6 +54,12 @@ export default async function CoursesOne(req, res, next) {
                                 students = students.map(a => a.toString())
                                 co.students = Array.from(new Set(students))
                                 await Courses.updateOne(id, { students: co.students })
+                                let child = await Child.findOne({ _id: students_id }).select("user_id")
+                                let q = { _id: child.user_id }
+                                let user = await User.findOne(q)
+                                if (body.cash >= 100) {
+                                        await User.updateOne(q, { coins: user.coins + (body.cash / 20) })
+                                }
                         }
                         let data = await Courses.findOne(id).populate("students").select("students")
 

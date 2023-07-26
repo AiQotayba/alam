@@ -71,7 +71,7 @@ function Menu({ data, set, config }) {
 				<Link href={`/admin/users/${data._id}/edit-profile`} className="p-10">تعديل المستخدم</Link>
 				<Link href={`/admin/users/${data._id}/new-password`} className="p-10">تغيير كلمة السر</Link>
 				<Link href={`/admin/users/${data._id}/upgrade`} className="p-10">تغيير الصلاحيات  </Link>
-				<p className="p-10" style={{ color: "#0292ab" }} onClick={Delete}>حذف</p>
+				<p className="p-10 m-10" style={{ color: "#0292ab" }} onClick={Delete}>حذف</p>
 				<button className="p-10 mt-20" onClick={() => set(null)} >الغاء </button>
 			</div>
 		)

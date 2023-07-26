@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Table, message } from "antd";
 import { Input, setChange } from "@/lib/app";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, 'admin', async (config) => { return { config } })
@@ -13,9 +14,10 @@ export async function getServerSideProps(ctx) {
 // add student
 // 
 export default function CoursesStudent({ config }) {
+    const { register, handleSubmit } = useForm();
     let [data, setData] = useState({ phone: "", name: "" })
     let [student, setStudent] = useState()
-    let [studentOne, setStudentOne] = useState()
+    let [studentOne, setSO] = useState()
     let [loader, setLoader] = useState(false)
     let set = e => setChange(e, data, setData)
     let { query } = useRouter()
@@ -25,8 +27,9 @@ export default function CoursesStudent({ config }) {
             setLoader(true)
 
             let URL = `${process.env.NEXT_PUBLIC_API}/courses/${query._id}/student?phone=${data?.phone}&name=${data?.name}`
-            axios.get(URL, config).then(({ data }) => {
-                setStudent(data)
+            axios.get(URL, config).then(async (res) => {
+                let dataAll = await Promise.all(res.data.map(a => { return { ...a, add: false } }))
+                setStudent(dataAll)
                 setLoader(false)
             }).catch(err => setLoader(false))
         }, 1000)
@@ -40,9 +43,63 @@ export default function CoursesStudent({ config }) {
         { title: "رقم الهاتف", dataIndex: "phone", key: "phone" },
         {
             title: "", dataIndex: "view", key: "view",
-            render: (_, record) => <Add data={record} config={config} set={setStudentOne} s />
+            render: (_, record) => <Add data={record} config={config} set={setSO} />
         }
     ];
+    function Add(props) {
+        let { data, config } = props
+        function send() {
+            if (!data.add) {
+                props.set(data)
+            }
+        }
+        return (
+            <div onClick={send} className={`${!data.add ? "btn" : ""}`}>{!data.add ? "اضافة" : "تم الاضافة "}</div>
+        )
+    }
+    function Form({ data: _data }) {
+        const onSubmit = body => {
+            let One = student?.filter(a => a._id === _data._id)[0]
+            console.log(One);
+            One.add = true
+            console.log(One);
+
+            let all = student?.filter(a => a._id != _data._id)
+            let full = [...all, One]
+            setStudent(full)
+            setSO({})
+            let url = `${process.env.NEXT_PUBLIC_API}/courses/${query._id}/student?students_id=${_data._id}`
+            document.querySelector('form').reset()
+
+            axios.post(url, body, config)
+                .then(() => {
+                    message.success(`تم اضافة ${_data.name} ${_data.fullname}`)
+                    if (body.cash >= 100) message.success(`تم اضافة ${body.cash / 20} نقطة`)
+                })
+
+
+        }
+        if (_data?.name) {
+            return (
+                <div className="full">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        {/* name */}
+                        <h2>{`${_data?.name} ${_data?.fullname}`}</h2>
+                        {/* cash */}
+                        <label htmlFor="cash"  >المبلغ المدفوع</label>
+                        <input type="number" id="cash" {...register("cash")} defaultValue={0} />
+
+                        {/* select */}
+
+                        <div className="mt-20 w-full box row">
+                            <div className="p-10 btn w-full off" onClick={() => setSO({})} >الغاء </div>
+                            <input type="submit" className="mr-20  w-full " />
+                        </div>
+                    </form>
+                </div>
+            )
+        } else <></>
+    }
     return (
         <div className='bord m-10 p-20 center ' >
             <h1 className="mb-20">اضافة طلاب </h1>
@@ -55,7 +112,7 @@ export default function CoursesStudent({ config }) {
             </div>
             <Form data={studentOne} />
 
-            {student?.length > 0 ? <Table dataSource={student} columns={columns} pagination={false} /> : ""}
+            <Table dataSource={student} columns={columns} pagination={false} />
 
             <div className="mt-20 w-full box row w-300">
                 <Link href={`/admin/courses/${query._id}`} className=" btn p-10 w-full off"  >عودة </Link>
@@ -63,46 +120,7 @@ export default function CoursesStudent({ config }) {
         </div>
     )
 }
-function Add(props) {
-    let { data, config } = props
-    let route = useRouter()
-    let [CT, setCT] = useState("اضافة")
 
-    function send() {
-        setCT(false)
-        if (CT) {
-            props.set(data)
-            // let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/student?students_id=${data._id}`
-            // axios.post(url, config)
-            // .then(() => message.success(`تم اضافة ${data.name} ${data.fullname}`))
-        }
-    }
-    return (
-        <>
-            <div
-                // onClick={send}
-                className={`${CT ? "btn" : ""}`}>{CT ? "اضافة" : "تم الاضافة "}</div>
-        </>
-    )
-}
-function Form({ data, set }) {
-    const { query } = useRouter();
-    // let [Data, set] = useState(data)
-    return (
-        <div className="full">
-            <form  >
-                {/* name */}
-                <h2>{`${data?.name} ${data?.fullname}`}</h2>
-                <label htmlFor="">الإسم</label><br />
-                <input type='text' />
-                <div className="mt-20 w-full box row">
-                    <button className="p-10 w-full off" onClick={() => set(data)} >الغاء </button>
-                    <input type="submit" className="mr-20  w-full " />
-                </div>
-            </form>
-        </div>
-    )
-}
 function Loader() {
     return (
         <div className="lds-ring">

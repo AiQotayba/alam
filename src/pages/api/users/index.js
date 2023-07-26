@@ -8,7 +8,7 @@ export default async function users(req, res, next) {
         GET(
                 await Auth.getAdmin("admin"),
                 async () => {
-                        let users = await User.find().sort({ _id: -1 }).select('fullname email phone verification typeUser');
+                        let users = await User.find().sort({ _id: -1 }).select('fullname email phone verification typeUser coins');
                         Send(users)
                 });
 

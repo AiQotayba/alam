@@ -41,7 +41,6 @@ export default async function CoursesALL(req, res, next) {
 
             let { title, time_start, date_start } = body
             let data = {
-                teacher_id: "64996c99ec9e55b4ba0a4ac1",
                 course_id,
                 title, time_start, date_start
             }

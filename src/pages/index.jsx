@@ -1,16 +1,23 @@
-import { AuthServerSide } from "@/lib/app2";
+import { SSRctx } from "@/lib/app2";
 import { CardCourse } from "@/lib/ui";
 import axios from "axios";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+
 export async function getServerSideProps(ctx) {
-  // return await AuthServerSide(ctx, 'family', async ({ NEXT_PUBLIC_API, config }) => {
   let url = `${process.env.NEXT_PUBLIC_API}/`
-  let { data } = await axios.get(url);
+  let SSR = await SSRctx(ctx)
+  let { data } = await axios.get(url, SSR.config);
   return { props: { data } }
-  // })
 }
 export default function Home({ data }) {
+  useEffect(() => {
+    if (data?.typeUser?.length > 0) {
+      Cookies.set("typeUser", JSON.stringify(data.typeUser))
+    }
+  }, [])
   return (
     <>
       {/* <Link href={'/admin'} className="center box btn w-300   m-a">لوحة التحكم</Link> */}
@@ -19,7 +26,9 @@ export default function Home({ data }) {
       {/* Login or admin */}
 
       {/* Courses */}
-      {data.map(co => <CardCourse data={co} key={co._id} />)}
+      <div className="box row scroll page m-a p-20">
+        {data?.courses?.map(co => <CardCourse data={co} key={co._id} slug={"/course/"} />)}
+      </div>
       {/* Contact us and social media links  */}
       <Contact />
       <Links />
@@ -41,9 +50,9 @@ function Hero({ config, data }) {
 function Contact() {
   function Line({ slug, src, title }) {
     return (
-      <Link href={slug} className="box row p-10 aitem " >
+      <Link href={slug} className="box row p-10 aitem  "  >
         <Image src={`/icons/${src}`} width={40} height={40} alt="icon  social media" />
-        <p className="px-10">{title}</p>
+        <p className="px-10" style={{ direction: 'ltr' }}>{title}</p>
       </Link>
     )
   }
@@ -54,9 +63,9 @@ function Contact() {
         {/* wa lb */}
         <div className="box col w-full  p-10">
 
-          <Line slug={"https://api.whatsapp.com/send?phone=905380594084"} src={"whatsapp.svg"} title={" 905380594084"} />
+          <Line slug={"https://api.whatsapp.com/send?phone=905380594084"} src={"whatsapp.svg"} title={"+90 538 059 40 84"} />
           {/* wa tr */}
-          <Line slug={"https://api.whatsapp.com/send?phone=905380594084"} src={"whatsapp.svg"} title={" 905380594084"} />
+          <Line slug={"https://api.whatsapp.com/send?phone=96171234567"} src={"whatsapp.svg"} title={" +961 71 234 567"} />
           {/* email */}
           <Line slug={"mailto:info@alamalmoubdien.com"} src={"email.svg"} title={"info@alamalmoubdien.com"} />
 

@@ -83,7 +83,7 @@ export default async function auth(req, res, next) {
                                 return Send({ error: 'المعلومات غير صحيحة' }, 200)
                         } else {
                                 let token = jwt.sign({ email: body.email.toLowerCase(), _id: findEmail._id, }, secret)
-                                Send({ token, admin: findEmail.isAdmin })
+                                Send({ token, typeUser: findEmail.typeUser })
                         }
                 } else return Send(res, { error: 'المعلومات غير صحيحة' }, 200)
         })

@@ -1,10 +1,10 @@
-import { Courses, User } from "@/lib/models";
+import { Attendance, Courses, Session, User } from "@/lib/models";
 import { API, APIAuth } from "@/lib/app";
 import bcrypt from 'bcrypt'
 
 export default async function CoursesOne(req, res, next) {
         let { body, query } = req
-        let { GET, id, PATCH, POST, ALL, DELETE, PUT, Send } = new API(req, res)
+        let { GET, id, PATCH, DELETE, PUT, Send } = new API(req, res)
         let Auth = new APIAuth(req, res)
         GET(
                 await Auth.getAdmin('admin'),
@@ -32,9 +32,16 @@ export default async function CoursesOne(req, res, next) {
                                         })
 
                                 }))
+                                let Sessions = await Session.find()
+                                let sessions = await Sessions.filter(a => a.course_id.toString() === query._id)
 
                                 await Object.assign(courses, { students })
-                                Send({ ...courses._doc, students })
+                                let data = {
+                                        ...courses._doc,
+                                        students,
+                                        sessions
+                                }
+                                Send(data)
                         } else Send(null)
 
                 })
@@ -42,14 +49,9 @@ export default async function CoursesOne(req, res, next) {
                 await Auth.getAdmin("admin"),
                 async () => {
                         let data = {
-                                count: {
-                                        coin: 50,
-                                        session: 10,
-                                        students: 0
-                                },
                                 title: body.title,
                                 description: body.description,
-                                url: body.url,
+                                price: body.price,
                                 image: body.image,
                         }
 

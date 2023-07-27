@@ -4,6 +4,7 @@ let schema = new Schema({
     title: String,
     description: String,
     image: String,
+    price: String,
     teacher: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -13,11 +14,6 @@ let schema = new Schema({
         ref: 'child',
     }],
 
-
-    count: {
-        coin: Number,
-        session: Number
-    },
     date: {
         start: Number,
         total: Number,

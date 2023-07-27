@@ -12,9 +12,7 @@ export default async function FamilyHomeAPI(req, res, next) {
                 async () => {
                         // list childs
                         let user_id = await Auth.UserId()
-                        console.log({ user_id });
                         user_id = user_id?._id?.toString()
-                        console.log({ user_id });
                         let childs = await Child.find({})
                         childs = await childs?.filter(c => {
                                 // console.log([c.user_id.toString(), user_id])
@@ -29,13 +27,13 @@ export default async function FamilyHomeAPI(req, res, next) {
                                 .populate("session_id")
                                 .populate("child_id")
                         attendants = attendants?.filter(at => at.child_id.user_id.toString() === user_id)
+                        let user = await User.findOne({ _id: user_id }).select("coins")
                         // init data 
                         let data = {
                                 attendants,
                                 childs,
+                                coins: user.coins
                         }
-                        console.log({ data });
-
                         Send(data)
 
 

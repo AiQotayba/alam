@@ -30,7 +30,7 @@ export default function CreateChild({ config }) {
             axios.post("/api/courses", data, config)
                 .then(({ data }) => {
                     message.success(data.msg)
-                    // push("/admin/courses")
+                    push("/admin/courses")
                 })
         }
         if (file) {
@@ -39,17 +39,6 @@ export default function CreateChild({ config }) {
             reader.readAsDataURL(file[0]);
         } else send(image)
 
-    }
-    function send() {
-        // this the code
-        let body = { user_id: query._id, ...Data }
-        // send data
-        axios.post("/api/courses", body, config)
-            .then(({ data }) => {
-                message.success(data.msg)
-
-                push("/admin/courses")
-            })
     }
 
     return (
@@ -60,6 +49,9 @@ export default function CreateChild({ config }) {
 
             <label htmlFor="description" >وصف الدورة  </label>
             <textarea type="text" id="description" {...register("description")} />
+
+            <label htmlFor="price" > السعر  </label>
+            <textarea type="text" id="price" {...register("price")} />
 
             <label htmlFor="image" >الصورة التعريفية  </label>
             <input type="file" id="image" {...register("image")} />

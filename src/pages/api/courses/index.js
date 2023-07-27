@@ -21,14 +21,7 @@ export default async function CoursesALL(req, res, next) {
                                 title: body.title,
                                 description: body.description,
                                 image: body.image,
-                                // date: {
-                                // start: body.date.start,
-                                // total: body.date.total,
-                                // end: body.date.end,
-                                // },
-                                // count: {
-                                        // coin: body?.count?.coin,
-                                // }
+                                price: body.price,
                         }
 
                         await Courses.create(data)

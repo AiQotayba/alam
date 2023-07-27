@@ -1,5 +1,7 @@
+import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function Layout({ children }) {
 
@@ -16,7 +18,13 @@ export function openMenu() {
     document.querySelector(".menu")?.classList.toggle('menu-delay')
 }
 export function Nav() {
-    function CastemLink({ title, href, src }) {
+    let [menu, set] = useState([])
+    useEffect(() => {
+
+        let res = Cookies.get("typeUser")
+        if (res) set(JSON.parse(res))
+    }, [])
+    function CL({ title, href, src }) {
         return (
             <Link href={href} className='box row aitem px-10' >
                 <Image src={src} alt="icon " height={30} width={30} />
@@ -28,12 +36,17 @@ export function Nav() {
         document.querySelector('nav .menu').classList.toggle("menu-delay")
 
     }
+    let List = {
+        admin: { title: "الادارة", href: "/admin", src: "/icons/dashboard.svg" },
+        teacher: { title: "المعلمة", href: "/teacher", src: "/icons/teacher.svg" },
+        family: { title: "الاهل", href: "/family", src: "/icons/family.webp" },
+    }
     return (
         <nav >
             <div className='box row aitem'>
 
                 {/* menu icon */}
-                <Image src="/icons/menu.svg" alt="icon " height={50} width={50} className="mr-10" onClick={open} />
+                <Image src="/icons/menu.svg" alt="icon " height={50} width={50} className="mr-10 menu-btn" onClick={open} />
 
                 {/* logo */}
                 <Link href={'/'} className='logo'>
@@ -42,13 +55,8 @@ export function Nav() {
             </div>
 
             <div className="  menu  " onClick={open}  >
-                {/* <Link href={"/admin/users"}>المستخدمين</Link> */}
-                {/* <Link href={"/admin/courses"}>الكورسات</Link> */}
-
-                <CastemLink title={"الادارة"} href={"/admin"} src="/icons/dashboard.svg" />
-                <CastemLink title={"المعلمة"} href={"/teacher"} src="/icons/teacher.svg" />
-                <CastemLink title={"الاهل"} href={"/family"} src="/icons/family.webp" />
-
+                <CL title={"الرئيسية"} href={"/"} src={"/icons/home-ui.svg"} />
+                {menu.map(a => <CL title={List[a].title} href={List[a].href} src={List[a].src} key={a} />)}
                 {/* menu */}
             </div>
             {/* links  */}

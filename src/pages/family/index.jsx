@@ -18,14 +18,17 @@ export async function getServerSideProps(ctx) {
         let url = `${NEXT_PUBLIC_API}/family`
 
         let { data } = await axios.get(url, config);
-        return { data, config } 
+        return { data, config }
     })
 }
 
 export default function HomeFamily({ data }) {
+
+    let Coin = () => <div className="bord p-10 w-300 m-a">النقاط {data.coins}</div>
     return (
         <div className="m-10">
             {/* List child data */}
+            {data?.coins > 0 ? <Coin /> : <></>}
             <h2 className="m-20">الاطفال</h2>
             <div className="box grid">
                 {data?.childs.map(child => (

@@ -27,6 +27,7 @@ export default function Login() {
                     message.success("تم تسجيل الدخول")
                     // set token in cookie
                     Cookies.set('token', data.token)
+                    Cookies.set("typeUser", JSON.stringify(data.typeUser))
                     // redirect to home page admin or user page
                     location.replace("/")
 

@@ -8,7 +8,7 @@ import { Input, setChange } from "@/lib/app";
 import { useRouter } from "next/router";
 import { MenuLine } from "@/lib/ui";
 import Image from "next/image";
-import { CheckCircleTwoTone, HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
+import { CheckCircleTwoTone } from '@ant-design/icons';
 
 export async function getServerSideProps(ctx) {
         return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
@@ -56,6 +56,7 @@ export default function AdminCourses(props) {
                         <div className="box grid m-10 mt-20" >
                                 <Students {...props} />
                                 <Teacher  {...props} />
+                                <Session {...props} />
                         </div>
                         <div className="box row m-10 mt-20" >
                                 <Popconfirm
@@ -163,6 +164,44 @@ function Students({ data: propsData, config }) {
                                 <Link href={`${route.asPath}/add-student`} className="py-10 btn aitem" >اضافة طالب</Link>
                         </div>
                         <Table dataSource={data?.students} columns={columnsStudents} pagination={false} rowKey={record => record._id} />
+                </div>
+        )
+}
+function Session({ data: propsData, config }) {
+        let [data, set] = useState(propsData.sessions)
+        let route = useRouter()
+
+        function Delete(id) {
+                let url = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}/session?session_id=${id}`
+                let filter = data.filter(a => a._id.toString() !== id)
+                set(filter)
+                axios.delete(url, config)
+                        .then(res => message.success(res.data.msg))
+        }
+        // completion: boolean;
+        const columns = [
+                {
+                        title: "العنوان", dataIndex: "title", key: "title",
+                        render: (_, record) => <Link href={`/${route.asPath}/${record._id}`} >{record.title}</Link>
+                },
+                { title: "الوقت  ", dataIndex: "time_start", key: "time_start" },
+                { title: "التاريخ  ", dataIndex: "date_start", key: "date_start" },
+                {
+                        title: "الاتمام  ", dataIndex: "completion", key: "completion",
+                        render: (_, record) => <p >{record.completion ? " تم الانتهاء " : " لم تنتهي"}</p>
+                },
+                {
+                        title: "", dataIndex: "view", key: "view",
+                        render: (_, record) => <button className="err" onClick={() => Delete(record._id)} >حذف</button>
+                }
+        ];
+        return (
+                <div className="m-10 p-20 bord scroll">
+                        <div className="m-10 box grid aitem">
+                                <h2 className="px-10">الجلسات</h2>
+                                <Link href={`${route.asPath}/add-session`} className="py-10 btn aitem" >اضافة جلسة</Link>
+                        </div>
+                        <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} />
                 </div>
         )
 }

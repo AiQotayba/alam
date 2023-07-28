@@ -79,7 +79,7 @@ export function Contact() {
 
           </div>
         </div>
-        <h3>تابعينا على </h3>
+        <h3 className="mt-10">تابعينا على </h3>
         <div className="my-10 box row w-300 space">
           <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />
           <Con slug="https://instagram.com/alam.almoubdien" src="insta.svg" />

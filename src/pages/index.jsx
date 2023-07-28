@@ -23,6 +23,7 @@ export default function Home({ data }) {
       {/* <Link href={'/admin'} className="center box btn w-300   m-a">لوحة التحكم</Link> */}
       {/* Hero */}
       <Hero {...props} />
+
       {/* Login or admin */}
 
       {/* Courses */}
@@ -52,6 +53,13 @@ export function Contact() {
       <Link href={slug} className="box row p-10 aitem  "  >
         <Image src={`/icons/${src}`} width={40} height={40} alt="icon  social media" />
         <p className="px-10" style={{ direction: 'ltr' }}>{title}</p>
+      </Link>
+    )
+  }
+  function Con({ slug, src }) {
+    return (
+      <Link href={slug} className="box row p-10 aitem  "  >
+        <Image src={`/icons/${src}`} width={40} height={40} alt="icon  social media" />
       </Link>
     )
   }

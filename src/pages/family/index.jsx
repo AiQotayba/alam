@@ -24,9 +24,9 @@ export async function getServerSideProps(ctx) {
 
 export default function HomeFamily({ data }) {
 
-    let Coin = () => (<div className="bord p-10 w-300 m-a">
+    let Coin = () => (<div className="bord p-10 w-300 m-a box row aitem ">
         <p>النقاط  </p>
-        <Image src={"/icons/coin.svg"} width={60} height={60} alt="icon " />
+        <Image src={"/icons/coin.svg"} width={30} height={30} alt="icon " className="mx-10" />
         <p>  {data.coins}</p>
     </div>)
     return (

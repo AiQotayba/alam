@@ -80,7 +80,7 @@ export function Contact() {
           </div>
         </div>
       </div>
-      <div className="box col bord m-10  aitem page">
+      <div className="box col bord m-a  aitem page">
         <h3>تابعينا على </h3>
         <div className="my-10 box row w-300 space">
           <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />

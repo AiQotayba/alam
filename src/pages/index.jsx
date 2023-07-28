@@ -22,7 +22,7 @@ export default function Home({ data }) {
     <>
       {/* <Link href={'/admin'} className="center box btn w-300   m-a">لوحة التحكم</Link> */}
       {/* Hero */}
-      <Hero {...props} />
+      <Hero />
 
       {/* Login or admin */}
 
@@ -35,7 +35,7 @@ export default function Home({ data }) {
     </>
   )
 }
-function Hero({ config, data }) {
+function Hero() {
   return (
     <div className=" landing">
       <img src="/images/landing-hero.png" alt="" />

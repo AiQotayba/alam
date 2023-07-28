@@ -24,7 +24,11 @@ export async function getServerSideProps(ctx) {
 
 export default function HomeFamily({ data }) {
 
-    let Coin = () => <div className="bord p-10 w-300 m-a">النقاط {data.coins}</div>
+    let Coin = () => (<div className="bord p-10 w-300 m-a">
+        <p>النقاط  </p>
+        <Image src={"/icons/coin.svg"} width={60} height={60} alt="icon " />
+        <p>  {data.coins}</p>
+    </div>)
     return (
         <div className="m-10">
             {/* List child data */}
@@ -33,7 +37,7 @@ export default function HomeFamily({ data }) {
             <div className="box grid">
                 {data?.childs.map(child => (
                     <Link href={`/family/${child?._id}`} className="aitem bord box col m-10 p-20" style={{ width: 150 }} key={child._id}>
-                        <Image src={"/icons/user.svg"} width={60} height={60} alt="icon " />
+                        <Image src={"/icons/user.svg"} width={60} height={60} alt="icon " className="px-10" />
                         <p className="p-10">{child?.name}</p>
                     </Link>
                 ))}

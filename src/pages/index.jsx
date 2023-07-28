@@ -22,16 +22,15 @@ export default function Home({ data }) {
     <>
       {/* <Link href={'/admin'} className="center box btn w-300   m-a">لوحة التحكم</Link> */}
       {/* Hero */}
-      {/* <Hero {...props} /> */}
+      <Hero {...props} />
       {/* Login or admin */}
 
       {/* Courses */}
-      <div className="box row scroll page m-a p-20">
+      <div className="box row scroll page m-a p-20 j">
         {data?.courses?.map(co => <CardCourse data={co} key={co._id} slug={"/course/"} />)}
       </div>
       {/* Contact us and social media links  */}
       <Contact />
-      <Links />
     </>
   )
 }
@@ -47,7 +46,7 @@ function Hero({ config, data }) {
     </div>
   )
 }
-function Contact() {
+export function Contact() {
   function Line({ slug, src, title }) {
     return (
       <Link href={slug} className="box row p-10 aitem  "  >
@@ -57,42 +56,32 @@ function Contact() {
     )
   }
   return (
-    <div className=" page   center m-a  p-10  ">
-      <div className="box col bord aitem">
-        <h2 className="p-20 ">اتصل بنا</h2>
-        {/* wa lb */}
-        <div className="box col w-full  p-10">
+    <>
+      <div className=" page   center m-a  p-10  ">
+        <div className="box col bord aitem">
+          <h2 className="p-20 ">اتصل بنا</h2>
+          {/* wa lb */}
+          <div className="box col w-full  p-10">
 
-          <Line slug={"https://api.whatsapp.com/send?phone=905380594084"} src={"whatsapp.svg"} title={"+90 538 059 40 84"} />
-          {/* wa tr */}
-          <Line slug={"https://api.whatsapp.com/send?phone=96171234567"} src={"whatsapp.svg"} title={" +961 71 234 567"} />
-          {/* email */}
-          <Line slug={"mailto:info@alamalmoubdien.com"} src={"email.svg"} title={"info@alamalmoubdien.com"} />
+            <Line slug={"https://api.whatsapp.com/send?phone=905380594084"} src={"whatsapp.svg"} title={"+90 538 059 40 84"} />
+            {/* wa tr */}
+            <Line slug={"https://api.whatsapp.com/send?phone=96171234567"} src={"whatsapp.svg"} title={" +961 71 234 567"} />
+            {/* email */}
+            <Line slug={"mailto:info@alamalmoubdien.com"} src={"email.svg"} title={"info@alamalmoubdien.com"} />
 
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
-function Links() {
-  function Con({ slug, src }) {
-    return (
-      <Link href={slug} >
-        <Image src={`/icons/${src}`} width={40} height={40} alt="icon  social media" />
-      </Link>
-    )
-  }
-  return (
-    <div className="box col bord m-10  aitem ">
-      <h3>تابعينا على </h3>
-      <div className="my-10 box row w-300 space">
-        <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />
-        <Con slug="https://instagram.com/alam.almoubdien" src="insta.svg" />
-        <Con slug="https://t.me/alamalmoubdien" src="t.svg" />
-        <Con slug="https://twitter.com/almoubdien?s=08" src="twitter.svg" />
-        <Con slug="https://youtube.com/channel/UCQVLTT_gQrGLgFxyjmHWa1Q" src="youtube.svg" />
-
+      <div className="box col bord m-10  aitem page">
+        <h3>تابعينا على </h3>
+        <div className="my-10 box row w-300 space">
+          <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />
+          <Con slug="https://instagram.com/alam.almoubdien" src="insta.svg" />
+          <Con slug="https://t.me/alamalmoubdien" src="t.svg" />
+          <Con slug="https://twitter.com/almoubdien?s=08" src="twitter.svg" />
+          <Con slug="https://youtube.com/channel/UCQVLTT_gQrGLgFxyjmHWa1Q" src="youtube.svg" />
+        </div>
       </div>
-    </div>
+    </>
   )
 }

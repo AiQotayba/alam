@@ -59,9 +59,7 @@ DELETE       http://localhost:3000/api/courses/64a1abab923f2f3e96302420/teacher
 ?teacher_id=64996c99ec9e55b4ba0a4ac1
 content-type: application/json
 ###
-GET     http://localhost:3000/api/courses/64a1abab923f2f3e96302420/teacher
-    ?src=kt
-content-type: application/json
+GET     http://localhost:3000/api/courses/all?_id=64a1abab923f2f3e96302420
 ###
 POST    http://localhost:3000/api/courses/64a1abab923f2f3e96302420/teacher
     ?teacher_id=64996c99ec9e55b4ba0a4ac1

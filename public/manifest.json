@@ -9,42 +9,42 @@
     "background_color": "#ffffff",
     "icons": [
         {
-            "src": "/assets/android-launchericon-48-48.png-72x72.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "72x72"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-96x96.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "96x96"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-128x128.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "128x128"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-144x144.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "144x144"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-152x152.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "152x152"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-192x192.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-384x384.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "384x384"
         },
         {
-            "src": "/assets/android-launchericon-48-48.png-512x512.png",
+            "src": "/assets/android-launchericon-48-48.png",
             "type": "image/png",
             "sizes": "512x512"
         }

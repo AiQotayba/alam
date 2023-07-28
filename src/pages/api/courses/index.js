@@ -6,7 +6,7 @@ export default async function CoursesALL(req, res, next) {
         let Auth = new APIAuth(req, res)
         let { body } = req
         GET(
-                await Auth.getAdmin("admin"),
+                // await Auth.getAdmin("admin"),
                 async () => {
                         let data = await Courses.find()
                                 .populate('teacher', "fullname ")

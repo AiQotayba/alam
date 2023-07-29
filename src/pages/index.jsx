@@ -94,13 +94,15 @@ export function Contact() {
 
           </div>
         </div>
-        <h3 className="mt-10">تابعينا على </h3>
-        <div className="my-10 box row w-300 space">
-          <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />
-          <Con slug="https://instagram.com/alam.almoubdien" src="insta.svg" />
-          <Con slug="https://t.me/alamalmoubdien" src="t.svg" />
-          <Con slug="https://twitter.com/almoubdien?s=08" src="twitter.svg" />
-          <Con slug="https://youtube.com/channel/UCQVLTT_gQrGLgFxyjmHWa1Q" src="youtube.svg" />
+        <div className="box col bord aitem">
+          <h3 className="mt-10">تابعينا على </h3>
+          <div className="my-10 box row w-300 space">
+            <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />
+            <Con slug="https://instagram.com/alam.almoubdien" src="insta.svg" />
+            <Con slug="https://t.me/alamalmoubdien" src="t.svg" />
+            <Con slug="https://twitter.com/almoubdien?s=08" src="twitter.svg" />
+            <Con slug="https://youtube.com/channel/UCQVLTT_gQrGLgFxyjmHWa1Q" src="youtube.svg" />
+          </div>
         </div>
       </div>
     </>

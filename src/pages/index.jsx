@@ -96,7 +96,7 @@ export function Contact() {
 
           </div>
         </div>
-        <div className="box col bord aitem">
+        <div className="box col bord aitem m-10">
           <h3 className="mt-10">تابعينا على </h3>
           <div className="my-10 box row w-300 space">
             <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />

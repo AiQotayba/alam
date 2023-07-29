@@ -73,17 +73,17 @@ function Menu({ data, set, config }) {
 	if (data?.fullname) {
 		return (
 			<div className="bord box col m-a pup w-300" style={{ left: '50px', right: '50px', zIndex: '1' }}>
-				<Link href={`/admin/users/${data._id}/childs`} className="p-10">الاطفال</Link>
-				<Link href={`/admin/users/${data._id}/edit-profile`} className="p-10">تعديل المستخدم</Link>
-				<Link href={`/admin/users/${data._id}/new-password`} className="p-10">تغيير كلمة السر</Link>
-				<Link href={`/admin/users/${data._id}/upgrade`} className="p-10">تغيير الصلاحيات  </Link>
+				<Link href={`/admin/users/${data._id}/childs`} className="p-10 m-10">الاطفال</Link>
+				<Link href={`/admin/users/${data._id}/edit-profile`} className="p-10 m-10">تعديل المستخدم</Link>
+				<Link href={`/admin/users/${data._id}/new-password`} className="p-10 m-10">تغيير كلمة السر</Link>
+				<Link href={`/admin/users/${data._id}/upgrade`} className="p-10 m-10">تغيير الصلاحيات  </Link>
 				<Popconfirm
 					title="هل أنت متأكدة من تصفير النقاط  "
 					onConfirm={reset}
 					okText="نعم"
 					cancelText="لا"
 				>
-					<p className="p-10 m-10" style={{ color: "#0292ab" }}  >تصفير النقاط</p>
+					<button className="p-10 m-10 off" style={{ color: "#0292ab" }}  >تصفير النقاط</button>
 				</Popconfirm>
 				<Popconfirm
 					title="هل أنت متأكدة من حذف المستخدمين"
@@ -91,7 +91,7 @@ function Menu({ data, set, config }) {
 					okText="نعم"
 					cancelText="لا"
 				>
-					<p className="p-10 m-10" style={{ color: "#0292ab" }} >حذف</p>
+					<button className="p-10 m-10 off" style={{ color: "#0292ab" }} >حذف</button>
 				</Popconfirm>
 				<button className="p-10 mt-20" onClick={() => set(null)} >الغاء </button>
 			</div>

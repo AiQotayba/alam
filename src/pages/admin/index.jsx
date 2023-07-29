@@ -10,7 +10,7 @@ export async function getServerSideProps(ctx) {
 
 export default function AdminPage() {
     return (
-        <div className="box col bord p-20 m-10  ">
+        <div className="box col p-20 m-10  ">
             <h2 className="px-20 py-10">الاقسام</h2>
             <div className="box grid">
                 <Part URL={"users"} Title={"المستخدمين"} icon={"users.svg"} />

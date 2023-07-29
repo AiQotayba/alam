@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -7,6 +8,9 @@ export default function Layout({ children }) {
 
     return (
         <>
+            <Head>
+                <title>عالم المبدعين</title>
+            </Head>
             <Nav />
             <section >
                 {children}

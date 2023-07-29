@@ -24,8 +24,8 @@ export default function Home({ data }) {
                 {/* join */}
                 <div className="box  row">
                     <p>
-                        <span>{data.date.start}</span>
-                        <span>{data.date.end}</span>
+                        <span>{data.date?.start}</span>
+                        <span>{data.date?.end}</span>
                     </p>
                     <button>
                         <Image src={`/icons/whatsapp.svg`} width={40} height={40} alt="icon social media" />

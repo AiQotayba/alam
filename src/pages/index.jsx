@@ -10,7 +10,7 @@ export async function getServerSideProps(ctx) {
   let url = `${process.env.NEXT_PUBLIC_API}/`
   let SSR = await SSRctx(ctx)
   let { data } = await axios.get(url, SSR.config);
-  return { props: { data } }
+  return { props: { data, SSR } }
 }
 export default function Home({ data }) {
   useEffect(() => {
@@ -36,13 +36,28 @@ export default function Home({ data }) {
   )
 }
 function Hero() {
+
+  function BTN() {
+    let list = {
+      "family": { slug: "/family", title: "صفحة الاهل" },
+      "teacher": { slug: "/teacher", title: "صفحة المعلم" },
+      "admin": { slug: "/admin", title: "لوحة التحكم" },
+      "login": { slug: "/login", title: "تسجيل الدخول" },
+    }
+    let TYPE = Cookies.get("typeUser")
+    if (TYPE) {
+      return JSON.parse(TYPE)?.map(a => (
+        <Link href={list[a].slug} className="btn w-100">{list[a].title} </Link>
+      ))
+    } else return <Link href={list["login"].slug} className="btn w-100">{list["login"].title} </Link>
+  }
   return (
     <div className=" landing">
       <img src="/images/landing-hero.png" alt="" />
       <div className="box col m-10 info">
         <h1 > عالم المبدعين</h1>
         <p className="py-10">هل تبحث عن تعليم لطفلك </p>
-        <Link href={"/auth/login"} className="btn w-100">login</Link>
+
       </div>
     </div>
   )

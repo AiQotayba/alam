@@ -1,4 +1,4 @@
-import {  User } from "@/lib/models";
+import { User } from "@/lib/models";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { API, APIAuth } from "@/lib/app";
@@ -46,28 +46,10 @@ export default async function auth(req, res, next) {
                         let token = jwt.sign({ email: body.email, _id: _user._id, }, secret)
                         let findEmail = await User.findOne(user_id)
                         // ---------
-                        let nav = {
-                                user: [
-                                        { title: "الصفحة الرئيسية", url: "/" },
-                                        { title: "المهام", url: "/user/tasks" },
-                                        { title: "المحفضة", url: "/user/wallet" },
-                                        { title: "الملف الشخصي", url: "/user/profile" },
-                                        { title: "الاشعارات", url: "/user/notification" },
-                                ],
-                                admin: []
-                        }
                         let ads = [{ title: "المستخدمين", url: "/admin/users" }]
                         let user = await User.findOne(user_id)
-                        if (user.isAdmin) nav.user.push({ title: "الدخول كمسؤول", url: "/admin" })
-                        user?.permissions?.map(permission => {
-                                if (permission === "admin") nav.admin.push(...ads)
-                                if (permission === "ads") {
-                                        nav.admin.push({ title: "المنشورات", url: "/admin/posts" })
-                                        nav.admin.push({ title: "الخدمات", url: "/admin/service" })
-                                }
-                        })
 
-                        Send({ token,  nav, admin: findEmail.isAdmin, msg: "تم تغيير كلمة السر " })
+                        Send({ token, msg: "تم تغيير كلمة السر " })
                 })
         // login build
         PUT(

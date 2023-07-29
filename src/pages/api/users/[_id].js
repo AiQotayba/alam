@@ -19,7 +19,6 @@ export default async function users(req, res, next) {
                 await Auth.getAdmin('admin'),
                 async () => {
                         let typeUser = ["family", ...body]
-                        console.log({ typeUser, body });
                         await User.findByIdAndUpdate({ _id: query._id }, { typeUser })
                         Send({ msg: "تم تحديث الصلاحيات" })
                 }
@@ -33,9 +32,8 @@ export default async function users(req, res, next) {
                                 email: body.email.toLowerCase(),
                                 phone: body.phone
                         }
-                        console.log(id);
                         let put = await User.findOneAndUpdate({ _id: query._id }, data)
-                        Send({ msg: " تم تحديث الملف الشخصي", data })
+                        Send({ msg: " تم تحديث الملف الشخصي" })
                 })
         PATCH(
                 await Auth.getAdmin("admin"),
@@ -56,14 +54,9 @@ export default async function users(req, res, next) {
         ALL(
                 await Auth.getAdmin("admin"),
                 async () => {
-                        let data = {
-                                fullname: body.name,
-                                email: body.age.toLowerCase(),
-                                phone: body.phone
-                        }
-                        await User.updateOne(id, data)
-                        Send({ msg: " تم تحديث الملف الشخصي" })
-                }
+                        await User.updateOne(id, { coins: 0 })
+                        Send({ msg: " تم تصفير النقاط" })
+                } 
         )
 
 }

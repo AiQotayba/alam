@@ -57,7 +57,7 @@ function Hero() {
       <div className="box col m-10 info">
         <h1 > عالم المبدعين</h1>
         <p className="py-10">هل تبحث عن تعليم لطفلك </p>
-
+        <BTN />
       </div>
     </div>
   )

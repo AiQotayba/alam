@@ -10,9 +10,6 @@ export default function Layout({ children }) {
         <>
             <Head>
                 <title>عالم المبدعين</title>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-                <link href="https://fonts.googleapis.com/css2?family=Marhey:wght@300&display=swap" rel="stylesheet" />
             </Head>
             <Nav />
             <section >

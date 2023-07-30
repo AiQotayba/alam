@@ -47,7 +47,7 @@ function Hero() {
     let TYPE = Cookies.get("typeUser")
     if (TYPE) {
       return JSON.parse(TYPE)?.map(a => (
-        <Link href={list[a].slug} className="btn w-100" key={a}>{list[a].title} </Link>
+        <Link href={list[a].slug} className="btn w-100 m-10" key={a}>{list[a].title} </Link>
       ))
     } else return <Link href={list["login"].slug} className="btn w-100">{list["login"].title} </Link>
   }
@@ -75,7 +75,7 @@ export function Contact() {
   }
   function Con({ slug, src }) {
     return (
-      <Link href={slug} className="box row p-10 aitem  "  >
+      <Link href={slug} className="box row aitem  "  >
         <Image src={`/icons/${src}`} width={40} height={40} alt="icon  social media" />
       </Link>
     )
@@ -97,7 +97,7 @@ export function Contact() {
           </div>
         </div>
         <div className="box col bord aitem m-10">
-          <h3 className="mt-10">تابعينا على </h3>
+          <h3 className="my-10">تابعينا على </h3>
           <div className="my-10 box row w-300 space">
             <Con slug="https://www.facebook.com/Alam.almoubdien/" src="fb.svg" />
             <Con slug="https://instagram.com/alam.almoubdien" src="insta.svg" />

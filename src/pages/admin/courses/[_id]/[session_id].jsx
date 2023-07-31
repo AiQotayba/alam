@@ -19,7 +19,8 @@ export default function EditChild({ data: propsData, config }) {
     const { register, handleSubmit } = useForm();
 
     let [data, setData] = useState(propsData.attendance)
-    let { query, push } = useRouter()
+    let route = useRouter()
+    let { query, push } = route
     const columns = [
         { title: "العنوان", dataIndex: "title", key: "title" },
         { title: "الوقت  ", dataIndex: "time_start", key: "time_start" },
@@ -27,8 +28,12 @@ export default function EditChild({ data: propsData, config }) {
     ];
     return (
         <div className="m-10 p-20 bord scroll">
-            <div className="m-10 box grid aitem">
-                <h2 className="px-10">الجلسات</h2>
+            <div className="m-10 box col  ">
+                <div className="  box grid aitem">
+                    <h2 className="px-10">جلسة : {propsData.session.title} </h2>
+                    <button onClick={route.back()}>رجوع</button>
+                </div>
+                <p className="px-10">  {propsData.session.date_start + " - " + propsData.session.date_start}</p>
             </div>
             <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} />
         </div>

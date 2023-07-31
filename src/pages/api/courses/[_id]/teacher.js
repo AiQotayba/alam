@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 export default async function CoursesOne(req, res, next) {
         let { body, query } = req
         let { GET, id, PATCH, POST, ALL, DELETE, PUT, Send } = new API(req, res)
-        // let Auth = new APIAuth(req, res)
+        let Auth = new APIAuth(req, res)
 
 
 
@@ -16,8 +16,8 @@ export default async function CoursesOne(req, res, next) {
                         let users = await User.find({
                                 typeUser: { $in: ["teacher"] },
                                 $or: [
-                                        { email: { $regex: src } },
-                                        { phone: { $regex: src } },
+                                        { email: { $regex: src || "" } },
+                                        { phone: { $regex: src || "" } },
                                 ]
                         }).select("fullname phone email")
                         let co = await Courses.findById(query._id).select("teacher")

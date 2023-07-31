@@ -17,7 +17,11 @@ export default function AdminUsers(props) {
 	let [data, setD] = useState(() => props?.data.map(a => ({ ...a, view: false })));
 
 	const columns = [
-		{ title: "الاسم", dataIndex: "title", key: "title", fixed: "left" },
+		{
+			title: "الاسم", dataIndex: "title", key: "title", fixed: "left",
+			render: (_, record) => <Link href={`/admin/courses/${record._id}`} className="btn w-50 box j"> {record.title}</Link>
+
+		},
 		{
 			title: "المدربة /ات", dataIndex: "teacher", key: "teacher",
 			render: (_, record) => <div>{record.teacher.map(a => <p key={a._id} >{a.fullname}</p>)}</div>
@@ -30,10 +34,6 @@ export default function AdminUsers(props) {
 			title: "الاتمام", dataIndex: "completion", key: "completion",
 			render: (_, record) => <p>{record.completion ? "تم " : "لم يتم "} الانتهاء</p>
 		},
-		{
-			title: "الخيارات", dataIndex: "view", key: "view",
-			render: (_, record) => <Link href={`/admin/courses/${record._id}`} className="btn w-50 box j">المزيد</Link>
-		}
 	];
 	return (
 		<section className="bord p-10 m-10">

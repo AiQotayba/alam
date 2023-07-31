@@ -120,7 +120,7 @@ function Teacher({ data: propsData, config }) {
                 {
                         title: "", dataIndex: "view", key: "view",
                         render: (_, record) =>
-                                <button onClick={() => Delete(record._id)} >حذف</button>
+                                <button className="err" onClick={() => Delete(record._id)} >حذف</button>
                 }
         ];
         return (
@@ -154,7 +154,7 @@ function Students({ data: propsData, config }) {
                 { title: "رقم الهاتف", dataIndex: "phone", key: "phone" },
                 {
                         title: "", dataIndex: "view", key: "view",
-                        render: (_, record) => <button onClick={() => Delete(record._id)} >حذف</button>
+                        render: (_, record) => <button className="err" onClick={() => Delete(record._id)} >حذف</button>
                 }
         ];
         return (

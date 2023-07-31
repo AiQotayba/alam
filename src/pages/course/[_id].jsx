@@ -14,33 +14,36 @@ export async function getServerSideProps(ctx) {
 }
 export default function Home({ data }) {
     return (
-        <div className="box col page  m-a">
-            {/* info */}
-            <div className="bord">
+        <>
+            <div className="box col page  m-a">
+                {/* info */}
+                <div className="bord">
 
-                <img src={data.image} alt="صورة تعريفية عن الكورس " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
-                <h1 className="my-20 mx-10">{data.title} </h1>
-                <div className="box row w-full">
-                    <p>{data.teacher.fullname} </p>
-                    <p>{data.price} </p>
+                    <img src={data.image} alt="صورة تعريفية عن الكورس " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
+                    <h1 className="my-20 mx-10">{data.title} </h1>
+                    <div className="box col w-full m-10">
+                        <p className="my-10">{data.teacher?.map(a => a.fullname + " , ")} </p>
+                        <p className="my-10">{data.price}$</p>
+                    </div>
                     {/* join */}
                     <div className="box  col">
                         <p>
-                            <span>{data.date?.start}</span>
-                            <span>{data.date?.end}</span>
+                            {/* <span>{data.date?.start}</span>
+                            <span>{data.date?.end}</span> */}
                         </p>
                     </div>
-                    <button className="w-200 aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
-                        <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
-                        <b className="mr-10">تسجيل</b>
-                    </button>
+                    <div className="box w-full" style={{ justifyContent: 'flex-end' }}>
+                        <button className="w-200 aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
+                            <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
+                            <b className="mr-10">تواصل معنا</b>
+                        </button>
+                    </div>
+                    {/* about */}
+                    <div className="  m-10 " dangerouslySetInnerHTML={{ __html: data.description }} />
                 </div>
-
-                {/* about */}
-                <div className="   " dangerouslySetInnerHTML={{ __html: data.description }} />
+                {/* Follow links ar Contact */}
             </div>
-            {/* Follow links ar Contact */}
             <Contact />
-        </div>
+        </>
     )
 }

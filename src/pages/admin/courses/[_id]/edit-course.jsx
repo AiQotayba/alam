@@ -23,14 +23,9 @@ export default function EditChild({ data: propsData, config }) {
 
     const onSubmit = res => {
         let body = {
-            count: {
-                coin: 50,
-                session: 10,
-                students: 0
-            },
             title: res.title,
             description: res.description,
-            url: res.url,
+            price: res.price,
         }
         const file = res.image//.files[0];
         if (file.length > 0) {

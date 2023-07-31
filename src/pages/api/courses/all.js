@@ -9,7 +9,7 @@ export default async function CoursesALL(req, res, next) {
             let { _id } = req.query
             let data = await Courses.findOne({ _id })
                 .populate('teacher', "fullname ")
-                .sort({ _id: -1 })
+                // .sort({ _id: -1 })
             Send(data)
         });
 

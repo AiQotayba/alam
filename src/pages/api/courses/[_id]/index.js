@@ -54,7 +54,7 @@ export default async function CoursesOne(req, res, next) {
                                 price: body.price,
                                 image: body.image,
                         }
-
+                        console.log(data);
                         await Courses.updateOne(id, data)
                         Send({ msg: "تم تحديث الدورة التدريبية", data })
                 }

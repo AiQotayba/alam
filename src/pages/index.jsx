@@ -27,7 +27,7 @@ export default function Home({ data }) {
       {/* Login or admin */}
 
       {/* Courses */}
-      <div className="box row scroll page m-a p-20 j">
+      <div className="box grid j m-a p-20">
         {data?.courses?.map(co => <CardCourse data={co} key={co._id} slug={"/course/"} />)}
       </div>
       {/* Contact us and social media links  */}

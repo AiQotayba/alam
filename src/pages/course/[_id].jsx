@@ -29,9 +29,9 @@ export default function Home({ data }) {
                             <span>{data.date?.start}</span>
                             <span>{data.date?.end}</span>
                         </p>
-                        <button>
-                            <Image src={`/icons/whatsapp2.svg`} width={40} height={40} alt="icon social media" />
-                            <p className="ml-10">تسجيل</p>
+                        <button style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
+                            <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
+                            <b className="mr-10">تسجيل</b>
                         </button>
                     </div>
                 </div>

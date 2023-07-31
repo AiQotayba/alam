@@ -24,16 +24,16 @@ export default function Home({ data }) {
                     <p>{data.teacher.fullname} </p>
                     <p>{data.price} </p>
                     {/* join */}
-                    <div className="box  row">
+                    <div className="box  col">
                         <p>
                             <span>{data.date?.start}</span>
                             <span>{data.date?.end}</span>
                         </p>
-                        <button style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
-                            <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
-                            <b className="mr-10">تسجيل</b>
-                        </button>
                     </div>
+                    <button className="w-200 aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
+                        <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
+                        <b className="mr-10">تسجيل</b>
+                    </button>
                 </div>
 
                 {/* about */}

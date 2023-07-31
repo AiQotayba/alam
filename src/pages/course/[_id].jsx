@@ -16,7 +16,7 @@ export default function Home({ data }) {
     return (
         <div className="box col page bord">
             {/* info */}
-            <img src={data.title} alt="صورة تعريفية عن الكورس " />
+            <img src={data.image} alt="صورة تعريفية عن الكورس " />
             <h1>{data.title} </h1>
             <div className="box row w-full">
                 <p>{data.teacher.fullname} </p>

@@ -19,7 +19,7 @@ export default function AdminUsers(props) {
 	const columns = [
 		{
 			title: "الاسم", dataIndex: "title", key: "title", fixed: "left",
-			render: (_, record) => <Link href={`/admin/courses/${record._id}`} className="btn w-50 box j"> {record.title}</Link>
+			render: (_, record) => <Link href={`/admin/courses/${record._id}`} className="w-50 box j"> {record.title}</Link>
 
 		},
 		{

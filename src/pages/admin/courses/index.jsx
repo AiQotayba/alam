@@ -44,7 +44,7 @@ export default function AdminUsers(props) {
 			</div>
 
 			<div className="m-10">
-				{props.data.length > 0 ? <Table dataSource={data} columns={columns} pagination={false} /> : ""}
+				<Table dataSource={data} columns={columns} pagination={false} />
 			</div>
 		</section>
 	)

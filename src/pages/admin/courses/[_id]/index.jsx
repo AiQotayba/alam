@@ -25,11 +25,7 @@ export default function AdminCourses(props) {
 
         function DeleteCourse() {
                 // api
-                axios.delete(URL, props.config)
-                        .then(({ data }) => {
-                                message.success(data.msg)
-                                setTimeout(() => route.push("/admin/courses"), 3000)
-                        })
+
         }
         function OK() {
                 // api
@@ -42,9 +38,11 @@ export default function AdminCourses(props) {
 
         const handleDelete = () => {
                 // تأكيد الحذف وتنفيذ العملية
-                DeleteCourse();
-                message.success('تم الحذف بنجاح!');
-                route.push(`/teacher/${route.query.course_id}`)
+                axios.delete(URL, props.config)
+                        .then(({ data }) => {
+                                message.success(data.msg)
+                                setTimeout(() => route.push("/admin/courses"), 3000)
+                        })
         };
         const handleCancel = () => {
                 message.error('تم إلغاء الحذف');

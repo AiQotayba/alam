@@ -14,28 +14,31 @@ export async function getServerSideProps(ctx) {
 }
 export default function Home({ data }) {
     return (
-        <div className="box col page bord">
+        <div className="box col page  m-a">
             {/* info */}
-            <img src={data.image} alt="صورة تعريفية عن الكورس " />
-            <h1>{data.title} </h1>
-            <div className="box row w-full">
-                <p>{data.teacher.fullname} </p>
-                <p>{data.price} </p>
-                {/* join */}
-                <div className="box  row">
-                    <p>
-                        <span>{data.date?.start}</span>
-                        <span>{data.date?.end}</span>
-                    </p>
-                    <button>
-                        <Image src={`/icons/whatsapp.svg`} width={40} height={40} alt="icon social media" />
-                        <p className="ml-10">تسجيل</p>
-                    </button>
-                </div>
-            </div>
+            <div className="bord">
 
-            {/* about */}
-            <div className="bord page" dangerouslySetInnerHTML={{ __html: data.description }} />
+                <img src={data.image} alt="صورة تعريفية عن الكورس " className="bord p-0" />
+                <h1 className="my-20 mx-10">{data.title} </h1>
+                <div className="box row w-full">
+                    <p>{data.teacher.fullname} </p>
+                    <p>{data.price} </p>
+                    {/* join */}
+                    <div className="box  row">
+                        <p>
+                            <span>{data.date?.start}</span>
+                            <span>{data.date?.end}</span>
+                        </p>
+                        <button>
+                            <Image src={`/icons/whatsapp2.svg`} width={40} height={40} alt="icon social media" />
+                            <p className="ml-10">تسجيل</p>
+                        </button>
+                    </div>
+                </div>
+
+                {/* about */}
+                <div className="bord page" dangerouslySetInnerHTML={{ __html: data.description }} />
+            </div>
             {/* Follow links ar Contact */}
             <Contact />
         </div>

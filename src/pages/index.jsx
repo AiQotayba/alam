@@ -47,7 +47,7 @@ function Hero() {
     let TYPE = Cookies.get("typeUser")
     if (TYPE) {
       return JSON.parse(TYPE)?.map(a => (
-        <Link href={list[a].slug} className="btn w-100 m-10" key={a}>{list[a].title} </Link>
+        <Link href={list[a].slug} className="btn w-100 m-10" key={a} style={{ flex: "auto" }}>{list[a].title} </Link>
       ))
     } else return <Link href={list["login"].slug} className="btn w-100">{list["login"].title} </Link>
   }
@@ -58,7 +58,7 @@ function Hero() {
         <h1 > عالم المبدعين</h1>
         <p className="py-10">هل تبحث عن تعليم لطفلك </p>
         <div className="box grid">
-        <BTN />
+          <BTN />
         </div>
       </div>
     </div>

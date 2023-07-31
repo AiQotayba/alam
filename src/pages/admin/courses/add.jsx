@@ -48,10 +48,10 @@ export default function CreateChild({ config }) {
             <input type="text" id="title" {...register("title")} />
 
             <label htmlFor="description" >وصف الدورة  </label>
-            <textarea type="text" id="description" {...register("description")} />
+            <textarea type="text" id="description" {...register("description")} className="h-200" />
 
             <label htmlFor="price" > السعر  </label>
-            <textarea type="text" id="price" {...register("price")} />
+            <input type="number" id="price" {...register("price")} />
 
             <label htmlFor="image" >الصورة التعريفية  </label>
             <input type="file" id="image" {...register("image")} />

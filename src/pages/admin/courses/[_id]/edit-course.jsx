@@ -57,7 +57,7 @@ export default function EditChild({ data: propsData, config }) {
             <input {...register("description")} defaultValue={data?.description} />
 
             <label htmlFor="price" > السعر  </label>
-            <textarea type="text" id="price" {...register("price")} defaultValue={data?.price} />
+            <input type="number" id="price" {...register("price")} defaultValue={data?.price} />
 
             <p>الصورة التعريفية</p>
             <input {...register("image")} type="file" />

@@ -18,7 +18,7 @@ export default function Home({ data }) {
             {/* info */}
             <div className="bord">
 
-                <img src={data.image} alt="صورة تعريفية عن الكورس " className="bord p-0" style={{ width: '-webkit-fill-available' }} />
+                <img src={data.image} alt="صورة تعريفية عن الكورس " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
                 <h1 className="my-20 mx-10">{data.title} </h1>
                 <div className="box row w-full">
                     <p>{data.teacher.fullname} </p>
@@ -37,7 +37,7 @@ export default function Home({ data }) {
                 </div>
 
                 {/* about */}
-                <div className="bord page" dangerouslySetInnerHTML={{ __html: data.description }} />
+                <div className="   " dangerouslySetInnerHTML={{ __html: data.description }} />
             </div>
             {/* Follow links ar Contact */}
             <Contact />

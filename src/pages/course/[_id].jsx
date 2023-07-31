@@ -18,7 +18,7 @@ export default function Home({ data }) {
             {/* info */}
             <div className="bord">
 
-                <img src={data.image} alt="صورة تعريفية عن الكورس " className="bord p-0" />
+                <img src={data.image} alt="صورة تعريفية عن الكورس " className="bord p-0" style={{ width: '-webkit-fill-available' }} />
                 <h1 className="my-20 mx-10">{data.title} </h1>
                 <div className="box row w-full">
                     <p>{data.teacher.fullname} </p>

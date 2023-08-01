@@ -22,7 +22,7 @@ export default function Home({ data }) {
                     <img src={data.image} alt="صورة تعريفية عن الكورس " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
                     <h1 className="my-20 mx-10">{data.title} </h1>
                     <div className="box col w-full m-10">
-                        <p className="my-10">{data.teacher?.map(a => a.fullname + " , ")} </p>
+                        <p className="my-10">{data.teacher?.map(a => "أ. " + a.fullname + " , ")} </p>
                         <p className="my-10">{data.price}$</p>
                     </div>
                     {/* join */}
@@ -33,7 +33,7 @@ export default function Home({ data }) {
                         </p>
                     </div>
                     <div className="box w-full" style={{ justifyContent: 'flex-end' }}>
-                        <a href={`https://api.whatsapp.com/send?phone=905380594084&text=${data.title}`} className="w-200 aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
+                        <a href={`https://api.whatsapp.com/send?phone=905380594084&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
                             <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
                             <b className="mr-10">تواصل معنا</b>
                         </a>

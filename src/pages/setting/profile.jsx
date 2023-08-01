@@ -24,11 +24,11 @@ export default function ProfileEdit({ data: propsData, config }) {
     }
 
     const onSPW = data => {
-        let re = e.target.value
         let New = document.querySelector("#newpassword").value
-        if (re === New) message.error("كلمة المرور غير متطابقة")
-        else if (New.length > 6) message.error("كلمة المرور قصيرة")
-        else axios.put(url, data, config)
+        let re = document.querySelector("#renewpassword").value
+        if (re != New) message.error("كلمة المرور غير متطابقة")
+        else if (New.length < 6) message.error("كلمة المرور قصيرة")
+        else axios.patch(url, data, config)
             .then(({ data }) => {
                 message.success(data.msg)
                 route.back()

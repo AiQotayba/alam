@@ -31,7 +31,7 @@ export default function SessionAttendance({ data: propsData, url, config }) {
             feedback: body.feedback,
             rating: body.rating,
         }
-        let students = data?.students?.filter(a => a._id != init.child_id)
+        let students = Data?.students?.filter(a => a._id != init.child_id)
 
         // axios.put(url, init, config)
             // .then(({ data }) => {
@@ -125,7 +125,7 @@ export default function SessionAttendance({ data: propsData, url, config }) {
                         okText="نعم"
                         cancelText="لا"
                     >
-                        <button className="mr-10" >
+                        <button className="mr-10 err" >
                             <Image src={"/icons/delete.svg"} width={20} height={20} />
                             <p className="mx-10">حذف الجلسة</p>
                         </button>

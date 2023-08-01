@@ -64,7 +64,7 @@ function Menu({ data, set, config }) {
 			})
 	}
 	function reset() {
-		axios.all(`/api/users/${data?._id}`, config)
+		axios.all(`/api/users/${data?._id}`, {}, config)
 			.then(({ data }) => {
 				message.success(data.msg)
 				location.reload()

@@ -3,3 +3,4 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 - src/pages/admin/courses/[_id]/[session_id].jsx ``not data``
 - src/pages/admin/courses/[_id]/edit-course.jsx ```not put```
+ 

@@ -20,7 +20,6 @@ export default function AdminUsers(props) {
 		{
 			title: "الاسم", dataIndex: "title", key: "title", fixed: "left",
 			render: (_, record) => <Link href={`/admin/courses/${record._id}`} className="w-50 box j"> {record.title}</Link>
-
 		},
 		{
 			title: "المدربة /ات", dataIndex: "teacher", key: "teacher",

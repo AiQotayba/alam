@@ -8,7 +8,7 @@ export default async function users(req, res, next) {
     GET(
         async () => {
             let _id = await Auth.UserId()
-            let courses = await Courses.find({ completion: false })
+            let courses = await Courses.find({ completion: false }).sort({ _id: -1 })
 
             let user = await User.findOne(_id)
             let typeUser = user?.typeUser

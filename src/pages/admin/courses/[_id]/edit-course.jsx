@@ -27,19 +27,20 @@ export default function EditChild({ data: propsData, config }) {
             description: res.description,
             price: res.price,
         }
+        let path = `courses/${query._id}`
+        function Send(data) {
+            axios.put(`/api/${path}`, body, config)
+                .then(({ data }) => {
+                    message.success(data.msg)
+                    push(`/admin/${path}`)
+                })
+        }
         const file = res.image//.files[0];
         if (file.length > 0) {
             const reader = new FileReader();
-            reader.onloadend = () => body["image"] = reader.result
+            reader.onloadend = () => Send({ ...body, image: reader.result })
             reader.readAsDataURL(file[0]);
-        } else body["image"] = data?.image
-
-        let path = `courses/${query._id}`
-        axios.put(`/api/${path}`, body, config)
-            .then(({ data }) => {
-                message.success(data.msg)
-                push(`/admin/${path}`)
-            })
+        } else Send({ ...body, image: data?.image })
     }
 
     return (

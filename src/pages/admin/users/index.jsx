@@ -66,7 +66,7 @@ function Menu({ data, set, config }) {
 	function reset() {
 		axios.all(`/api/users/${data?._id}`, {}, config)
 			.then(({ data }) => {
-				message.success(data.msg)
+				message.success(" تم تصفير النقاط")
 				location.reload()
 			})
 	}

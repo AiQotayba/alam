@@ -19,6 +19,7 @@ export async function getServerSideProps(ctx) {
 export default function SessionAttendance({ data: propsData, url, config }) {
     let route = useRouter()
     let [data, setD] = useState(propsData)
+    let [Data, setDa] = useState(propsData)
     let [selectStudents, setSS] = useState(data.students[0])
     let [selectDisplay, setSD] = useState(false)
     let [rating, setR] = useState(false)
@@ -32,13 +33,13 @@ export default function SessionAttendance({ data: propsData, url, config }) {
         }
         let students = data?.students?.filter(a => a._id != init.child_id)
 
-        axios.put(url, init, config)
-            .then(({ data }) => {
+        // axios.put(url, init, config)
+            // .then(({ data }) => {
                 document.querySelector('form').reset()
-                setD({ ...data, students })
+        setDa({ ...Data, students })
                 setSS(students[0])
-                message.success(data.msg)
-            })
+                // message.success(data.msg)
+            // })
 
     }
 
@@ -109,8 +110,6 @@ export default function SessionAttendance({ data: propsData, url, config }) {
     const handleCancel = () => {
         message.error('تم إلغاء الحذف');
     };
-
-
 
     return (
         <section className=" m-a page" >

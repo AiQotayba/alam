@@ -39,6 +39,7 @@ export default function Home({ data }) {
                         </a>
                     </div>
                     {/* about */}
+                    <h2>الوصف</h2>
                     <div className="  m-10 " dangerouslySetInnerHTML={{ __html: data.description }} />
                 </div>
                 {/* Follow links ar Contact */}

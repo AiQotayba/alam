@@ -33,13 +33,14 @@ export default function SessionAttendance({ data: propsData, url, config }) {
         }
         let students = Data?.students?.filter(a => a._id != init.child_id)
 
-        // axios.put(url, init, config)
-            // .then(({ data }) => {
+        axios.put(url, init, config)
+            .then(({ data }) => {
                 document.querySelector('form').reset()
-        setDa({ ...Data, students })
-                setSS(students[0])
-                // message.success(data.msg)
-            // })
+                setDa({ ...Data, students })
+                let _ = students.length > 0 ? students[0] : []
+                setSS(_)
+                message.success(data.msg)
+            })
 
     }
 
@@ -49,7 +50,7 @@ export default function SessionAttendance({ data: propsData, url, config }) {
     }
     let ratingContext = ["غياب", "ضعيف جدا", "ضعيف", "معتدل", "جيد جدا", "ممتاز"]
     function FormAtt() {
-        if (data.students.length > 0) return (
+        if (Data.students.length > 0) return (
             <div className="box col w-300 m-a" >
                 {/* select */}
                 <div className=" bord p-20 box row space aitem" onClick={() => setSD(true)}  >
@@ -57,8 +58,8 @@ export default function SessionAttendance({ data: propsData, url, config }) {
                     <img src="/icons/down-arrow.svg" alt="icon" width={30} />
                 </div>
                 {selectDisplay ?
-                    <div className="bord p-20  pup w-300 select">
-                        {data?.students?.map(st => (
+                    <div className="bord p-20 w-300 select" style={{ position: 'absolute', zIndex: '1' }}>
+                        {Data?.students?.map(st => (
                             <p key={st._id} className="p-10 pl-0 py-20" onClick={() => SelectOpen(st)} style={{ cursor: 'pointer' }} >
                                 {`${st.name} ${st.user_id?.fullname}`}
                             </p>

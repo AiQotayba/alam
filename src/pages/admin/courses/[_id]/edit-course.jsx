@@ -55,8 +55,8 @@ export default function EditChild({ data: propsData, config }) {
             <label htmlFor="price" > السعر  </label>
             <input type="number" id="price" {...register("price")} defaultValue={data?.price} />
 
-            <p>الصورة التعريفية</p>
-            <input {...register("image")} type="file" />
+            {/* <p>الصورة التعريفية</p> */}
+            {/* <input {...register("image")} type="file" /> */}
 
             <div className="mt-20 w-full box row">
                 <Link href={`/admin/courses/${query._id}`} className="p-10 w-full btn m-0 off"  >الغاء </Link>

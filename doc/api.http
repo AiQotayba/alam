@@ -73,3 +73,18 @@ DELETE     http://localhost:3000/api/courses/64a1abab923f2f3e96302420/student
 ###
 POST      http://localhost:3000/api/courses/64a1abab923f2f3e96302420/student
     ?students_id=649e1d58b32d5a42df1d5d6d
+###
+GET     http://localhost:3000/api/courses/64ca1ec3474ef93ba181a754/session?session_id=64ca280b474ef93ba181a817
+
+HTTP/1.1 200  - OK
+content-type: application/json; charset=utf-8
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-requested-with: NEXTJS
+access-control-allow-headers: Origin, Content-Type, Accept
+etag: "rhscljk8w069"
+vary: Accept-Encoding
+date: Wed, 02 Aug 2023 12:08:18 GMT
+content-encoding: gzip
+connection: close
+transfer-encoding: chunked

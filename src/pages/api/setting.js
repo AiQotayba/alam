@@ -30,15 +30,21 @@ export default async function users(req, res, next) {
     PATCH(
         await Auth.getAdmin('family'),
         async () => {
+            let { newpassword, renewpassword, nowpassword } = body
             let id = await Auth.UserId()
             let findEmail = await User.findOne(id)
-            let compare = await bcrypt.compare(body.password, findEmail.password)
+
+            let compare = await bcrypt.compare(nowpassword, findEmail.password)
+
             if (!compare) {
-                return Send({ error: 'المعلومات غير صحيحة' }, 200)
-            } else {
-                let token = jwt.sign({ email: body.email.toLowerCase(), _id: findEmail._id, }, secret)
-                Send({ token, typeUser: findEmail.typeUser })
-            }
+                return Send({ msg: 'المعلومات غير صحيحة', code: 400 })
+            } else if (newpassword === renewpassword) {
+                let data = { password: newpassword, }
+                let user_id = await Auth.UserId()
+
+                await User.updateOne({ _id: user_id._id }, data)
+                Send({ msg: " تم تحديث الملف الشخصي" })
+            } else Send({ msg: 'المعلومات غير صحيحة' })
         }
     )
 }

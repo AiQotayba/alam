@@ -2,6 +2,19 @@
 @userId = "64996c99ec9e55b4ba0a4ac1"
 
 GET {{api}}/users
+
+HTTP/1.1 200  - OK
+content-type: application/json; charset=utf-8
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-requested-with: NEXTJS
+access-control-allow-headers: Origin, Content-Type, Accept
+etag: "16fxsiddkjws"
+vary: Accept-Encoding
+date: Wed, 02 Aug 2023 08:04:33 GMT
+content-encoding: gzip
+connection: close
+transfer-encoding: chunked
 ###
 @api = http://localhost:3000/api
 
@@ -25,3 +38,20 @@ content-type: application/json
 		"email": "text@mail",
 		"phone": "03318913"
 }
+###
+@api = http://localhost:3000/api
+
+GET    {{api}}/users/64996c99ec9e55b4ba0a4ac1 
+
+HTTP/1.1 200  - OK
+content-type: application/json; charset=utf-8
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-requested-with: NEXTJS
+access-control-allow-headers: Origin, Content-Type, Accept
+etag: "zje8dkxt2b7u"
+vary: Accept-Encoding
+date: Wed, 02 Aug 2023 08:13:05 GMT
+content-encoding: gzip
+connection: close
+transfer-encoding: chunked

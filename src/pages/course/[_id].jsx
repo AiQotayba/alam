@@ -6,13 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { Contact } from "..";
-
+import MarkdownIt from 'markdown-it'
 export async function getServerSideProps(ctx) {
     let url = `${process.env.NEXT_PUBLIC_API}/courses/all?_id=${ctx.query._id}`
     let { data } = await axios.get(url);
     return { props: { data } }
 }
 export default function Home({ data }) {
+    let md = new MarkdownIt()
+    let des = md.render(data?.description || '')
+
     return (
         <>
             <div className="box col page  m-a">
@@ -40,7 +43,7 @@ export default function Home({ data }) {
                     </div>
                     {/* about */}
                     <h2>الوصف</h2>
-                    <div className="  m-10 " dangerouslySetInnerHTML={{ __html: data.description }} />
+                    <div className="  m-10 " dangerouslySetInnerHTML={{ __html: des }} />
                 </div>
                 {/* Follow links ar Contact */}
             </div>

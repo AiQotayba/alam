@@ -23,18 +23,20 @@ export default function EditChild({ data: propsData, config }) {
     let route = useRouter()
     let { query, push } = route
     const columns = [
-        { title: "العنوان", dataIndex: "title", key: "title" },
-        { title: "الوقت  ", dataIndex: "time_start", key: "time_start" },
-        { title: "التاريخ  ", dataIndex: "date_start", key: "date_start" },
+        { title: "الاسم", dataIndex: "name", key: "name" },
+        { title: "الاهل  ", dataIndex: "fullname", key: "fullname" },
+        { title: "الهاتف", dataIndex: "phone", key: "phone" },
+        { title: "الملاحظة", dataIndex: "feedback", key: "feedback" },
+        { title: "التقييم", dataIndex: "rating", key: "rating" },
     ];
     return (
         <div className="m-10 p-20 bord scroll">
             <div className="m-10 box col  ">
                 <div className="  box grid aitem">
                     <h2 className="px-10">جلسة : {propsData.session.title} </h2>
-                    <button onClick={route.back()}>رجوع</button>
+                    <button onClick={() => route.back()}>رجوع</button>
                 </div>
-                <p className="px-10">  {propsData.session.date_start + " - " + propsData.session.date_start}</p>
+                <p className="px-10">  {propsData.session.time_start + " - " + propsData.session.date_start}</p>
             </div>
             <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} />
         </div>

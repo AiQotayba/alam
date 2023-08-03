@@ -49,7 +49,7 @@ function Hero() {
       return JSON.parse(TYPE)?.map(a => (
         <Link href={list[a].slug} className="btn w-100 m-10" key={a} style={{ flex: "auto" }}>{list[a].title} </Link>
       ))
-    } else return <Link href={list["login"].slug} className="btn w-100">{list["login"].title} </Link>
+    } else return <Link href={list["login"].slug} className="btn w-200">{list["login"].title} </Link>
   }
   return (
     <div className=" landing">

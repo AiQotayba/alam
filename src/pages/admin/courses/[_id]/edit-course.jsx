@@ -35,12 +35,13 @@ export default function EditChild({ data: propsData, config }) {
                     push(`/admin/${path}`)
                 })
         }
-        const file = res.image//.files[0];
-        if (file.length > 0) {
-            const reader = new FileReader();
-            reader.onloadend = () => Send({ ...body, image: reader.result })
-            reader.readAsDataURL(file[0]);
-        } else Send({ ...body, image: data?.image })
+        // const file = res.image//.files[0];
+        // if (file.length > 0) {
+        //     const reader = new FileReader();
+        //     reader.onloadend = () => Send({ ...body, image: reader.result })
+        //     reader.readAsDataURL(file[0]);
+        // } else
+        Send({ ...body, image: data?.image })
     }
 
     return (

@@ -11,6 +11,8 @@ export default function Document() {
       <Head>
         {/* ---------------  application  --------------- */}
         <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/assets/android-launchericon-144-144.png" />
+        <meta name="theme-color" content="#fff" />
       </Head>
 
       <body>

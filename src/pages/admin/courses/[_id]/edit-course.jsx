@@ -50,7 +50,7 @@ export default function EditChild({ data: propsData, config }) {
             <input  {...register("title")} defaultValue={data?.title} />
 
             <p>وصف الدورة</p>
-            <input {...register("description")} defaultValue={data?.description} />
+            <textarea id="description" {...register("description")} className="h-200" defaultValue={data?.description} />
 
             <label htmlFor="price" > السعر  </label>
             <input type="number" id="price" {...register("price")} defaultValue={data?.price} />

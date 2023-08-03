@@ -10,6 +10,8 @@ export default function Layout({ children }) {
         <>
             <Head>
                 <title>عالم المبدعين</title>
+                <meta name="description" content="    للتعليم الإبداعي والتربية الإعلامية و نساعد في تنمية قدرات طفلك ومهاراته الحياتية و توعيته لمواجهة أخطار الإعلام واكثر من + 400 طالب التعليم عن بعد" />
+
             </Head>
             <Nav />
             <section >

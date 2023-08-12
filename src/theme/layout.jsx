@@ -44,7 +44,7 @@ export function Nav() {
     }
     let List = {
         admin: { title: "الادارة", href: "/admin", src: "/icons/dashboard.svg" },
-        teacher: { title: "المعلمة", href: "/teacher", src: "/icons/teacher.svg" },
+        teacher: { title: "المعلم", href: "/teacher", src: "/icons/teacher.svg" },
         family: { title: "الاهل", href: "/family", src: "/icons/family.webp" },
     }
     return (

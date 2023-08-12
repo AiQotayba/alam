@@ -65,7 +65,7 @@ export default function AdminCourses(props) {
                                 >
                                         <button className="mr-10 green ml-10 box aitem" >
                                                 <CheckCircleTwoTone twoToneColor="#52c41a" />
-                                                <p className="mx-10"> انتهاء الكوس </p>
+                                                <p className="mx-10" >انتهاء الدورة </p>
                                         </button>
                                 </Popconfirm>
                                 <Link href={`${route.asPath}/edit-course`} className="btn m-0" >تعديل معلومات الدورة</Link>
@@ -78,7 +78,7 @@ export default function AdminCourses(props) {
                                 >
                                         <button className="mr-10 err" >
                                                 <Image src={"/icons/delete.svg"} width={20} height={20} alt="icon" />
-                                                <p className="mx-10">حذف الكورس</p>
+                                                <p className="mx-10">حذف الدورة</p>
                                         </button>
                                 </Popconfirm>
                         </div>

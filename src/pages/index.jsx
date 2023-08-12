@@ -42,7 +42,7 @@ function Hero() {
       "family": { slug: "/family", title: "صفحة الاهل" },
       "teacher": { slug: "/teacher", title: "صفحة المعلم" },
       "admin": { slug: "/admin", title: "لوحة التحكم" },
-      "login": { slug: "/login", title: "تسجيل الدخول" },
+      "login": { slug: "/auth/login", title: "تسجيل الدخول" },
     }
     let TYPE = Cookies.get("typeUser")
     if (TYPE) {

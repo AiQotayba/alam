@@ -17,13 +17,14 @@ export default function Layout({ children }) {
             <section >
                 {children}
             </section>
+            <Menu className="bottom" />
         </>
     )
 }
 export function openMenu() {
     document.querySelector(".menu")?.classList.toggle('menu-delay')
 }
-export function Nav() {
+function Menu({ className }) {
     let [menu, set] = useState([])
     useEffect(() => {
 
@@ -38,15 +39,22 @@ export function Nav() {
             </Link>
         )
     }
-    function open() {
-        // document.querySelector('nav .menu').classList.toggle("menu-delay")
-
-    }
     let List = {
         admin: { title: "الادارة", href: "/admin", src: "/icons/dashboard.svg" },
         teacher: { title: "المعلم", href: "/teacher", src: "/icons/teacher.svg" },
         family: { title: "الاهل", href: "/family", src: "/icons/family.webp" },
     }
+    return (
+        <div className={`  menu ${className || "-"}  `} onClick={open}  >
+            <CL title={"الرئيسية"} href={"/"} src={"/icons/home-ui.svg"} />
+            {menu.map(a => <CL title={List[a].title} href={List[a].href} src={List[a].src} key={a} />)}
+            {/* menu */}
+        </div>
+    )
+}
+export function Nav() {
+
+
     return (
         <nav >
             <div className='box row aitem'>
@@ -59,12 +67,7 @@ export function Nav() {
                     <Image src="/images/logo.png" alt="logo " height={48} width={128} />
                 </Link>
             </div>
-
-            <div className="  menu  " onClick={open}  >
-                <CL title={"الرئيسية"} href={"/"} src={"/icons/home-ui.svg"} />
-                {menu.map(a => <CL title={List[a].title} href={List[a].href} src={List[a].src} key={a} />)}
-                {/* menu */}
-            </div>
+            <Menu />
             {/* links  */}
             <Link href={'/setting/profile'} className='logo'>
                 <Image src="/icons/user.svg" alt="logo " height={40} width={40} />

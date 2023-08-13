@@ -52,7 +52,7 @@ export default function CreateChild({ config }) {
             <input type="number" id="price" {...register("price")} />
 
             <label htmlFor="image" >الصورة التعريفية  </label>
-            <input type="file" id="image" {...register("image")} />
+            <input type="file" id="image" {...register("image")} required={false} />
 
             <div className="mt-20 w-full box row">
                 <Link href={"/admin/courses"} className="p-10 m-0 w-full btn off"  >الغاء </Link>

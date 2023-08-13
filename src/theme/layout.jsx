@@ -14,10 +14,10 @@ export default function Layout({ children }) {
 
             </Head>
             <Nav />
+            <Menu className="bottom" />
             <section >
                 {children}
             </section>
-            <Menu className="bottom" />
         </>
     )
 }

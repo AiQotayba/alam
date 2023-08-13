@@ -13,6 +13,7 @@ export async function getServerSideProps(ctx) {
         return { config }
     })
 }
+
 export default function CreateChild({ config }) {
     let [Data, setData] = useState({})
     const { register, handleSubmit } = useForm();
@@ -23,10 +24,7 @@ export default function CreateChild({ config }) {
         let image = null
         console.log(file);
         function send(image) {
-            let data = {
-                ...res,
-                image
-            }
+            let data = { ...res, image }
             axios.post("/api/courses", data, config)
                 .then(({ data }) => {
                     message.success(data.msg)

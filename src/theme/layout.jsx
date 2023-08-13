@@ -21,9 +21,6 @@ export default function Layout({ children }) {
         </>
     )
 }
-export function openMenu() {
-    document.querySelector(".menu")?.classList.toggle('menu-delay')
-}
 function Menu({ className }) {
     let [menu, set] = useState([])
     useEffect(() => {
@@ -47,7 +44,7 @@ function Menu({ className }) {
     }
     let login = { title: "تسجيل الدخول", href: "/auth/login", src: "/icons/user.svg" }
     return (
-        <div className={`  menu ${className || "-"}  `} onClick={open}  >
+        <div className={`  menu ${className || "-"}  `}   >
             <CL title={"الرئيسية"} href={"/"} src={"/icons/home-ui.svg"} />
             {menu.map(a => <CL title={List[a].title} href={List[a].href} src={List[a].src} key={a} />)}
             {menu?.length == 0 ? <CL title={login.title} href={login.href} src={login.src} /> : <></>}

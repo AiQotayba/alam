@@ -16,15 +16,21 @@ nav
     width: -webkit-fill-available
     top: 0
     z-index: 10
-    .menu
+.menu
+    display: flex
+    a
+        padding: 10px
+        margin: 0
         display: flex
-        a
-            padding: 10px
-            margin: 0
-            &:hover
-                box-shadow: 6px 2px 10px #eee
-                border-right: 3px solid
-                transition: border-right 0.2s
+        flex-direction: row
+        align-items: center
+        padding-left: 10px
+        padding-right: 10px
+        &:hover
+            box-shadow: 6px 2px 10px #eee
+            border-radius: 10px
+            background-color: #Eef
+            transition: box-shadow .2s
 #__next > section
     margin-top: 70px
 
@@ -36,18 +42,20 @@ nav
     nav
         padding: 0
     .menu
-        right: -300px
         position: absolute
-        flex-direction: column
-        width: 300px
-
-        &-delay
-            right: 0 !important
-            z-index: 20
+        z-index: 20
+        background-color: #fff
+        min-height: max-content
+        bottom: 0
+        width: -webkit-fill-available
+        flex-direction: row
+        justify-content: space-around
+        clear: both
+        top: 1px
+        a
+            padding: 10px
+            display: flex
             flex-direction: column
-            background-color: #fff
-            top: 60px
-            min-height: 300px
 
     a
         // padding: 10px 
@@ -86,10 +94,10 @@ form
     box-shadow: 0 0 10px #ddd
     padding: 20px
     label ,p
-        padding: 10px
+    padding: 10px
     h1 ,h2
-        text-align: center
-        padding: 20px
+    text-align: center
+    padding: 20px
 input ,textarea
     padding: 10px
     border: 0.2px solid #0292ab

@@ -32,14 +32,14 @@ export function Nav() {
     }, [])
     function CL({ title, href, src }) {
         return (
-            <Link href={href} className='box row aitem px-10' >
+            <Link href={href}  >
                 <Image src={src} alt="icon " height={30} width={30} />
                 <p className="px-10"> {title}</p>
             </Link>
         )
     }
     function open() {
-        document.querySelector('nav .menu').classList.toggle("menu-delay")
+        // document.querySelector('nav .menu').classList.toggle("menu-delay")
 
     }
     let List = {

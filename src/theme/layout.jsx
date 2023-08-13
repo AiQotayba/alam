@@ -43,11 +43,14 @@ function Menu({ className }) {
         admin: { title: "الادارة", href: "/admin", src: "/icons/dashboard.svg" },
         teacher: { title: "المعلم", href: "/teacher", src: "/icons/teacher.svg" },
         family: { title: "الاهل", href: "/family", src: "/icons/family.webp" },
+
     }
+    let login = { title: "تسجيل الدخول", href: "/auth/login", src: "/icons/user.svg" }
     return (
         <div className={`  menu ${className || "-"}  `} onClick={open}  >
             <CL title={"الرئيسية"} href={"/"} src={"/icons/home-ui.svg"} />
             {menu.map(a => <CL title={List[a].title} href={List[a].href} src={List[a].src} key={a} />)}
+            {menu?.length == 0 ? <CL title={login.title} href={login.href} src={login.src} /> : <></>}
             {/* menu */}
         </div>
     )
@@ -60,7 +63,7 @@ export function Nav() {
             <div className='box row aitem'>
 
                 {/* menu icon */}
-                <Image src="/icons/menu.svg" alt="icon " height={50} width={50} className="mr-10 menu-btn" onClick={open} />
+                {/* <Image src="/icons/menu.svg" alt="icon " height={50} width={50} className="mr-10 menu-btn" onClick={open} /> */}
 
                 {/* logo */}
                 <Link href={'/'} className='logo'>

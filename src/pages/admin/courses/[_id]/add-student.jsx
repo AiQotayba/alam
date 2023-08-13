@@ -73,8 +73,7 @@ export default function CoursesStudent({ config }) {
 
             axios.post(url, body, config)
                 .then(() => {
-                    message.success(`تم اضافة ${_data.name} ${_data.fullname}`)
-                    if (body.cash >= 100) message.success(`تم اضافة ${body.cash / 20} نقطة`)
+                    message.success(`تم اضافة ${_data.name} ${_data.fullname} و تم اضافة ${body.cash / 20} نقطة`)
                 })
 
 

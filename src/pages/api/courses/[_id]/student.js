@@ -57,9 +57,7 @@ export default async function CoursesOne(req, res, next) {
                                 let child = await Child.findOne({ _id: students_id }).select("user_id")
                                 let q = { _id: child.user_id }
                                 let user = await User.findOne(q)
-                                if (body.cash >= 100) {
-                                        await User.updateOne(q, { coins: user.coins + (body.cash / 20) })
-                                }
+                                await User.updateOne(q, { coins: user.coins + (body.cash / 20) })
                         }
                         let data = await Courses.findOne(id).populate("students").select("students")
 

@@ -38,8 +38,8 @@ export default function AdminUsers(props) {
 		<section className="bord p-10 m-10">
 			<MenuLine />
 			<div className="m-10 box grid aitem">
-				<h1 className="mx-20">الكورسات</h1>
-				<Link href={`/admin/courses/add`} className="py-10 btn aitem" >اضافة كورس</Link>
+				<h1 className="mx-20">الدورات التدريبية</h1>
+				<Link href={`/admin/courses/add`} className="py-10 btn aitem" >اضافة دورة التدريبية</Link>
 			</div>
 
 			<div className="m-10">

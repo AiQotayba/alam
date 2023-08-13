@@ -49,26 +49,26 @@ export default function AdminCourses(props) {
         };
         return (
                 <section className="bord p-10 m-10">
-                        <MenuLine data={{ title: "الكورسات", slug: "/courses" }} />
+                        <MenuLine data={{ title: "الدورة التدريبية", slug: "/courses" }} />
                         <Info data={data} />
                         <div className="box grid m-10 mt-20" >
                                 <Students {...props} />
                                 <Teacher  {...props} />
                                 <Session {...props} />
                         </div>
-                        <div className="box row m-10 mt-20" >
+                        <div className="box grid m-10 mt-20" >
                                 <Popconfirm
-                                        title="هل أنت متأكدة من ان الكورس  قد انتهى"
+                                        title="هل أنت متأكدة من ان الدورة التدريبية  قد انتهى"
                                         onConfirm={OK}
                                         okText="نعم"
                                         cancelText="لا"
                                 >
                                         <button className="mr-10 green ml-10 box aitem" >
                                                 <CheckCircleTwoTone twoToneColor="#52c41a" />
-                                                <p className="mx-10" >انتهاء الدورة </p>
+                                                <p className="mx-10" >انتهاء الدورة التدريبية </p>
                                         </button>
                                 </Popconfirm>
-                                <Link href={`${route.asPath}/edit-course`} className="btn m-0" >تعديل معلومات الدورة</Link>
+                                <Link href={`${route.asPath}/edit-course`} className="btn m-0" >تعديل المعلومات  </Link>
                                 <Popconfirm
                                         title="هل أنت متأكد من رغبتك في الحذف؟"
                                         onConfirm={handleDelete}
@@ -78,7 +78,7 @@ export default function AdminCourses(props) {
                                 >
                                         <button className="mr-10 err" >
                                                 <Image src={"/icons/delete.svg"} width={20} height={20} alt="icon" />
-                                                <p className="mx-10">حذف الدورة</p>
+                                                <p className="mx-10">حذف الدورة التدريبية</p>
                                         </button>
                                 </Popconfirm>
                         </div>

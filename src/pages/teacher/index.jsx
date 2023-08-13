@@ -14,7 +14,7 @@ export default function AdminUsers(props) {
 
     return (
         <section className="box col m-20">
-            <h1 className=" p-20">الكورسات</h1>
+            <h1 className=" p-20">الدورات التدريبية</h1>
             <div className="box grid  aitem">
 
                 {props.data?.map(co => (

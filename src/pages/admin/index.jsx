@@ -14,7 +14,7 @@ export default function AdminPage() {
             <h2 className="px-20 py-10">الاقسام</h2>
             <div className="box grid">
                 <Part URL={"users"} Title={"المستخدمين"} icon={"users.svg"} />
-                <Part URL={"courses"} Title={"الكورسات"} icon={"posts.svg"} />
+                <Part URL={"courses"} Title={"الدورات التدريبية"} icon={"posts.svg"} />
             </div>
         </div>
     )

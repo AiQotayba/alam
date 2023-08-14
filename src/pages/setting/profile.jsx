@@ -1,6 +1,7 @@
 import { AuthServerSide } from "@/lib/app2";
 import { message } from "antd";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
@@ -12,7 +13,7 @@ export async function getServerSideProps(ctx) {
     })
 }
 export default function ProfileEdit({ data: propsData, config }) {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm({ defaultValues: propsData });
     let route = useRouter()
     let url = `/api/setting`
     const onSubmit = data => {
@@ -34,14 +35,10 @@ export default function ProfileEdit({ data: propsData, config }) {
                 route.back()
             })
     }
-    function verifyRe(e) {
-        // let re = e.target.value
-        // let New = document.querySelector("#newpassword").value
-        // if (re !== New) message.error("كلمة المرور غير متطابقة")
-    }
-    function verifyNew(e) {
-        // let New = document.querySelector("#newpassword").value
-        // if (New.length > 6) message.error("كلمة المرور قصيرة")
+    function logout() {
+        Cookies.remove("token")
+        Cookies.remove("typeUser")
+        location.replace("/")
     }
     return (
         <div className="box col">
@@ -50,13 +47,13 @@ export default function ProfileEdit({ data: propsData, config }) {
                 <h1>تعديل الملف الشخصي</h1>
                 <h2>{propsData?.fullname}</h2>
                 <label htmlFor="fullname" >الاسم الكامل</label>
-                <input type="text" id="fullname"  {...register("fullname")} defaultValue={propsData?.fullname} />
+                <input type="text" id="fullname"  {...register("fullname")} />
 
                 <label htmlFor="email" >الايميل</label>
-                <input type="email" id="email"  {...register("email")} defaultValue={propsData?.email} />
+                <input type="email" id="email"  {...register("email")} />
 
                 <label htmlFor="phone" >الهاتف</label>
-                <input type="text" id="phone"  {...register("phone")} defaultValue={propsData?.phone} />
+                <input type="text" id="phone"  {...register("phone")} />
 
                 <div className="aitem box mt-20 row w-full">
                     <button
@@ -74,10 +71,10 @@ export default function ProfileEdit({ data: propsData, config }) {
                 <input type="password" id="nowpassword"  {...register("nowpassword")} />
 
                 <label htmlFor="newpassword" >كلمة السر الجديدة</label>
-                <input type="password" id="newpassword"  {...register("newpassword")} onChange={verifyNew} />
+                <input type="password" id="newpassword"  {...register("newpassword")} />
 
                 <label htmlFor="renewpassword" >اعادة كلمة السر الجديدة</label>
-                <input type="password" id="renewpassword"  {...register("renewpassword")} onChange={verifyRe} />
+                <input type="password" id="renewpassword"  {...register("renewpassword")} />
 
                 <div className="aitem box mt-20 row w-full">
                     <button
@@ -89,7 +86,7 @@ export default function ProfileEdit({ data: propsData, config }) {
                 </div>
 
             </form>
-
+            <button onClick={logout} className="w-300 mt-20 m-a center"  >تسجيل الخروج</button>
         </div>
     )
 }

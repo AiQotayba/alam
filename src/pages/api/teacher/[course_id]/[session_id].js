@@ -20,8 +20,8 @@ export default async function CoursesALL(req, res, next) {
             let students = []
             let attendants = await Attendance.find({ session_id })
             allStudents.map(a => {
-                let find = attendants.filter(b => a._id.toString() === b.child_id)
-                if (find.length == 0) students.push(a)
+                let find = attendants.filter(b => a._id.toString() === b.child_id.toString())
+                if (find.length === 0) students.push(a)
             })
             let data = {
                 title: co.title,

@@ -31,7 +31,7 @@ export default function CreateChild({ config }) {
                     push("/admin/courses")
                 })
         }
-        if (file) {
+        if (file.length > 0) {
             const reader = new FileReader();
             reader.onloadend = () => send(reader.result)
             reader.readAsDataURL(file[0]);

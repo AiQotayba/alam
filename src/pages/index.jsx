@@ -4,13 +4,13 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(ctx) {
   let url = `${process.env.NEXT_PUBLIC_API}/`
   let SSR = await SSRctx(ctx)
-  let { data } = await axios.get(url, SSR.config);
-  return { props: { data, SSR } }
+  let { data } = await axios.get(url, SSR?.config);
+  return { props: { data } }
 }
 export default function Home({ data }) {
   useEffect(() => {
@@ -20,7 +20,6 @@ export default function Home({ data }) {
   }, [])
   return (
     <>
-      {/* <Link href={'/admin'} className="center box btn w-300   m-a">لوحة التحكم</Link> */}
       {/* Hero */}
       <Hero />
 
@@ -36,21 +35,27 @@ export default function Home({ data }) {
   )
 }
 function Hero() {
-
-  function BTN() {
-    let list = {
-      "family": { slug: "/family", title: "صفحة الاهل" },
-      "teacher": { slug: "/teacher", title: "صفحة المعلم" },
-      "admin": { slug: "/admin", title: "لوحة التحكم" },
-      "login": { slug: "/auth/login", title: "تسجيل الدخول" },
-    }
-    let TYPE = Cookies.get("typeUser")
-    if (TYPE) {
-      return JSON.parse(TYPE)?.map(a => (
-        <Link href={list[a].slug} className="btn w-100 m-10" key={a} style={{ flex: "auto" }}>{list[a].title} </Link>
-      ))
-    } else return <Link href={list["login"].slug} className="btn w-200">{list["login"].title} </Link>
+  let list = {
+    "family": { slug: "/family", title: "صفحة الاهل" },
+    "teacher": { slug: "/teacher", title: "صفحة المعلم" },
+    "admin": { slug: "/admin", title: "لوحة التحكم" },
+    "login": { slug: "/auth/login", title: "تسجيل الدخول" },
   }
+  let [Btns, set] = useState(false)
+  let Login = () => <Link href={list["login"].slug} className="btn w-200">{list["login"].title} </Link>
+  let Rules = () => {
+    let TYPE = Cookies.get("typeUser")
+    if (TYPE) return (
+      <> {JSON.parse(TYPE)?.map(a => (
+        <Link href={list[a].slug} className="btn w-100 m-10" key={a} style={{ flex: "auto" }}>{list[a].title} </Link>
+      ))} </>
+    )
+  }
+  useEffect(() => {
+    let TYPE = Cookies.get("typeUser")
+    if (TYPE) set(true)
+  }, [])
+
   return (
     <div className=" landing">
       <img src="/images/landing-hero.png" alt="" />
@@ -58,7 +63,7 @@ function Hero() {
         <h1 > عالم المبدعين</h1>
         <p className="py-10">هل تبحث عن تعليم لطفلك </p>
         <div className="box grid">
-          <BTN />
+          {Btns ? <Rules /> : <Login />}
         </div>
       </div>
     </div>

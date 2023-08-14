@@ -7,8 +7,8 @@ import { useState } from "react";
 import { Input, setChange } from "@/lib/app";
 import { useRouter } from "next/router";
 import { MenuLine } from "@/lib/ui";
-import Image from "next/image";
 import { CheckCircleTwoTone } from '@ant-design/icons';
+import Image from "next/image";
 
 export async function getServerSideProps(ctx) {
         return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, config }) => {
@@ -23,10 +23,6 @@ export default function AdminCourses(props) {
         let route = useRouter()
         let URL = `${process.env.NEXT_PUBLIC_API}/courses/${route.query._id}`
 
-        function DeleteCourse() {
-                // api
-
-        }
         function OK() {
                 // api
                 axios.patch(URL, {}, props.config)
@@ -90,7 +86,7 @@ function Info({ data }) {
                 <div className="box grid  m-20 ">
                         <Image src={data?.image} width={300} height={200} alt="image" />
                         <div className="box col ">
-                                <h1 className="m-20">{data.title}</h1>
+                                <h1 className="m-20">{data?.title}</h1>
                                 <div className="mx-20" dangerouslySetInnerHTML={{ __html: data?.description }} />
                         </div>
                 </div>

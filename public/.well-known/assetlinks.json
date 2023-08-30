@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.alamalmoubdien.app.lite",
+      "sha256_cert_fingerprints": [
+        "7C:CB:5A:86:82:3C:72:F5:BA:40:4D:04:59:EF:56:ED:8E:52:71:B8:44:8E:DC:BA:9C:CF:F9:3E:E3:AA:17:3E"
+      ]
+    }
+  }
+]

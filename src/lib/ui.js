@@ -20,7 +20,7 @@ export function MenuLine({ data }) {
 export function CardCourse({ data, slug }) {
     return (
         <Link href={`${slug}${data._id}`} className="card" key={data._id}>
-            <img src={data.image} alt="" />
+            <img src={data?.image || "/images/image-null.png"} alt="" />
             <b>{data.title}</b>
         </Link>
     )

@@ -84,7 +84,7 @@ export default function AdminCourses(props) {
 function Info({ data }) {
         return (
                 <div className="box grid  m-20 ">
-                        <Image src={data?.image} width={300} height={200} alt="image" />
+                        <Image src={data?.image || "/images/image-null.png"} width={300} height={200} alt="image" />
                         <div className="box col ">
                                 <h1 className="m-20">{data?.title}</h1>
                                 <div className="mx-20" dangerouslySetInnerHTML={{ __html: data?.description }} />

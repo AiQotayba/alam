@@ -26,7 +26,7 @@ export default function EditChild({ data: propsData, config }) {
         { title: "الاسم", dataIndex: "name", key: "name" },
         { title: "الاهل  ", dataIndex: "fullname", key: "fullname" },
         { title: "الهاتف", dataIndex: "phone", key: "phone" },
-        { title: "الملاحظة", dataIndex: "feedback", key: "feedback",width:300 },
+        { title: "الملاحظة", dataIndex: "feedback", key: "feedback", width: 300 },
         { title: "التقييم", dataIndex: "rating", key: "rating" },
     ];
     return (
@@ -38,7 +38,10 @@ export default function EditChild({ data: propsData, config }) {
                 </div>
                 <p className="px-10">  {propsData.session.time_start + " - " + propsData.session.date_start}</p>
             </div>
-            <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} />
+            <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} scroll={{
+                x: 1500,
+                y: 300,
+            }} />
         </div>
     )
 }

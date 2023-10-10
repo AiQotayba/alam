@@ -26,7 +26,7 @@ export default function EditChild({ data: propsData, config }) {
         { title: "الاسم", dataIndex: "name", key: "name" },
         { title: "الاهل  ", dataIndex: "fullname", key: "fullname" },
         { title: "الهاتف", dataIndex: "phone", key: "phone" },
-        { title: "الملاحظة", dataIndex: "feedback", key: "feedback" },
+        { title: "الملاحظة", dataIndex: "feedback", key: "feedback",width:300 },
         { title: "التقييم", dataIndex: "rating", key: "rating" },
     ];
     return (

@@ -185,7 +185,7 @@ function Session({ data: propsData, config }) {
                         render: (_, record) => <p >{record.completion ? " تم الانتهاء " : " لم تنتهي"}</p>
                 },
                 {
-                        title: "", dataIndex: "view", key: "view",
+                        title: "", dataIndex: "view", key: "view", width: 200,
                         render: (_, record) => <button className="err" onClick={() => Delete(record._id)} >حذف</button>
                 }
         ];

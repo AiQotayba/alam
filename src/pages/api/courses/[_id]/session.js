@@ -23,10 +23,10 @@ export default async function CoursesOne(req, res, next) {
                         let user = await users.filter(b => a.child_id.user_id.toString() === b._id.toString())[0]
                         let data = {
                                 name: a.child_id.name,
-                                fullname: user.fullname,
-                                phone: user.phone,
-                                feedback: a.feedback,
-                                rating: a.rating
+                                fullname: user?.fullname,
+                                phone: user?.phone,
+                                feedback: a?.feedback,
+                                rating: a?.rating
                         }
 
                         return data

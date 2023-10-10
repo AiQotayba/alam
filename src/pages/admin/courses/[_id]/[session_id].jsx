@@ -38,10 +38,7 @@ export default function EditChild({ data: propsData, config }) {
                 </div>
                 <p className="px-10">  {propsData.session.time_start + " - " + propsData.session.date_start}</p>
             </div>
-            <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} scroll={{
-                x: 1500,
-                y: 300,
-            }} />
+            <Table dataSource={data} columns={columns} pagination={false} rowKey={record => record._id} style={{minWidth: '700px'}} />
         </div>
     )
 }

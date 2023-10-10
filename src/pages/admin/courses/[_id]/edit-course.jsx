@@ -16,9 +16,9 @@ export async function getServerSideProps(ctx) {
 }
 
 export default function EditChild({ data: propsData, config }) {
-    const { register, handleSubmit } = useForm();
 
     let [data, setData] = useState(propsData)
+    const { register, handleSubmit } = useForm({ defaultValues: data });
     let { query, push } = useRouter()
 
     const onSubmit = res => {
@@ -26,38 +26,30 @@ export default function EditChild({ data: propsData, config }) {
             title: res.title,
             description: res.description,
             price: res.price,
+            duration: res.duration,
         }
         let path = `courses/${query._id}`
-        function Send(data) {
-            axios.put(`/api/${path}`, body, config)
-                .then(({ data }) => {
-                    message.success(data.msg)
-                    push(`/admin/${path}`)
-                })
-        }
-        // const file = res.image//.files[0];
-        // if (file.length > 0) {
-        //     const reader = new FileReader();
-        //     reader.onloadend = () => Send({ ...body, image: reader.result })
-        //     reader.readAsDataURL(file[0]);
-        // } else
-        Send({ ...body, image: data?.image })
+        axios.put(`/api/${path}`, body, config)
+            .then(({ data }) => {
+                message.success(data.msg)
+                push(`/admin/${path}`)
+            })
     }
 
     return (
         <form className='bord box col  w-300 p-20 center ' onSubmit={handleSubmit(onSubmit)}>
             <h1>تعديل دورة تدريبية </h1>
             <p>عنوان الدورة </p>
-            <input  {...register("title")} defaultValue={data?.title} />
+            <input  {...register("title")} />
+
+            <p> المدة </p>
+            <input  {...register("duration")} />
 
             <p>وصف الدورة</p>
-            <textarea id="description" {...register("description")} className="h-200" defaultValue={data?.description} />
+            <textarea id="description" {...register("description")} className="h-200" />
 
             <label htmlFor="price" > السعر  </label>
-            <input type="number" id="price" {...register("price")} defaultValue={data?.price} />
-
-            {/* <p>الصورة التعريفية</p> */}
-            {/* <input {...register("image")} type="file" /> */}
+            <input type="number" id="price" {...register("price")} />
 
             <div className="mt-20 w-full box row">
                 <Link href={`/admin/courses/${query._id}`} className="p-10 w-full btn m-0 off"  >الغاء </Link>

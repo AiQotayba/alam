@@ -1,10 +1,6 @@
-import { SSRctx } from "@/lib/app2";
-import { CardCourse } from "@/lib/ui";
-import axios from "axios";
-import Cookies from "js-cookie";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
+ 
+import axios from "axios"; 
+import Image from "next/image";  
 import { Contact } from "..";
 import MarkdownIt from 'markdown-it'
 export async function getServerSideProps(ctx) {
@@ -13,8 +9,7 @@ export async function getServerSideProps(ctx) {
     return { props: { data } }
 }
 export default function Home({ data }) {
-    let md = new MarkdownIt()
-    let des = md.render(data?.description || '')
+    let md = new MarkdownIt() 
 
     return (
         <>
@@ -26,24 +21,21 @@ export default function Home({ data }) {
                     <h1 className="my-20 mx-10">{data.title} </h1>
                     <div className="box col w-full m-10">
                         <p className="my-10">{data.teacher?.map(a => "أ. " + a.fullname + " , ")} </p>
-                        <p className="my-10">{data.price}$</p>
-                    </div>
-                    {/* join */}
-                    <div className="box  col">
-                        <p>
-                            {/* <span>{data.date?.start}</span>
-                            <span>{data.date?.end}</span> */}
-                        </p>
-                    </div>
-                    <div className="box w-full" style={{ justifyContent: 'flex-end' }}>
-                        <a href={`https://api.whatsapp.com/send?phone=905380594084&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
-                            <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
-                            <b className="mr-10">تواصل معنا</b>
-                        </a>
                     </div>
                     {/* about */}
                     <h2>الوصف</h2>
-                    <div className="  m-10 " dangerouslySetInnerHTML={{ __html: des }} />
+                    <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md.render(data?.description || '') }} />
+                    {/* join */}
+                    <b className="m-10">السعر </b>
+                    <div className="box row bord p-10 space mt-20">
+
+                        <p style={{padding: '15px',fontSize: 'larger',fontFamily: 'system-ui',fontWeight: 'bold',color: '#0292ab'}}>   {data.price}$</p> 
+                            <a href={`https://api.whatsapp.com/send?phone=905380594084&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center' }}>
+                                <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
+                                <b className="mr-10">تواصل معنا</b>
+                            </a> 
+
+                    </div>
                 </div>
                 {/* Follow links ar Contact */}
             </div>

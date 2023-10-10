@@ -4,8 +4,7 @@ import Link from "next/link";
 import { AuthServerSide } from "@/lib/app2";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { message } from "antd";
-import { Input } from "@/lib/app";
+import { message } from "antd"; 
 import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
@@ -16,13 +15,11 @@ export async function getServerSideProps(ctx) {
 
 export default function CreateChild({ config }) {
     let [Data, setData] = useState({})
-    const { register, handleSubmit } = useForm();
-    let set = e => setChange(e, Data, setData)
+    const { register, handleSubmit } = useForm(); 
     let { query, push } = useRouter()
     const onSubmit = res => {
         const file = res.image//.files[0];
         let image = null
-        console.log(file);
         function send(image) {
             let data = { ...res, image }
             axios.post("/api/courses", data, config)
@@ -44,6 +41,9 @@ export default function CreateChild({ config }) {
             <h1 className="center box my-20">اضافة دورة تدريبية </h1>
             <label htmlFor="title"  >عنوان الدورة </label>
             <input type="text" id="title" {...register("title")} />
+
+            <label htmlFor="duration" >المدة</label>
+            <input type="text" id="duration" {...register("duration")} className="h-200" />
 
             <label htmlFor="description" >وصف الدورة  </label>
             <textarea type="text" id="description" {...register("description")} className="h-200" />

@@ -19,6 +19,9 @@ export default function Home({ data }) {
 
                     <img src={data?.image || "/images/image-null.png"} alt="صورة تعريفية عن الدورة التدريبية " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
                     <h1 className="my-20 mx-10">{data.title} </h1>
+                    
+                    <p className="my-20 mx-10">{data.duration} </p>
+                    
                     <div className="box col w-full m-10">
                         <p className="my-10">{data.teacher?.map(a => "أ. " + a.fullname + " , ")} </p>
                     </div>

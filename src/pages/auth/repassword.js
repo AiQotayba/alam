@@ -3,7 +3,8 @@ import { Input, setChange } from "@/lib/app"
 import axios from "axios"
 import Cookies from "js-cookie"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useState } from "react" 
+import { message } from "antd"
 
 export async function getServerSideProps(ctx) {
     let { token } = ctx.req.cookies

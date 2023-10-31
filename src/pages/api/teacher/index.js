@@ -12,9 +12,9 @@ export default async function TeacherHmoeApi(req, res, next) {
                         // list courses
                         let user_id = await Auth.UserId()
                         user_id = user_id?._id?.toString()
-
+ 
                         let data = await Courses.find({ teacher: { $in: [user_id] }, completion: false })
-                                .select("title url image ")
+                                .select("title url image ") 
                         Send(data)
                 });
 }

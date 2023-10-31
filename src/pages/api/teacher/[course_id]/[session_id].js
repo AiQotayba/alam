@@ -29,8 +29,7 @@ export default async function CoursesALL(req, res, next) {
                 students,
                 attendants
             }
-            // let se = await Attendance.find({ session_id }).select("_id")
-            // console.log([co.students.length, se.length]);
+            // let se = await Attendance.find({ session_id }).select("_id") 
             Send({ ...data, co: co.students })
         });
     POST(
@@ -38,14 +37,19 @@ export default async function CoursesALL(req, res, next) {
         async () => {
             // create session
             // ok
+            let teacher_id = await Auth.UserId()
 
             let { title, time_start, date_start } = body
             let data = {
                 course_id,
-                title, time_start, date_start
+                title, time_start, date_start, teacher_id: teacher_id?._id.toString()
             }
+            console.log(data);
             let NEW = await Session.create(data)
-            Send({ msg: "تم اضافة الجلسة", NEW })
+            Send({
+                msg: "تم اضافة الجلسة",
+                NEW
+            })
         }
     )
     PUT(

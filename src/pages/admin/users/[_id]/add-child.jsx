@@ -19,8 +19,7 @@ export default function CreateChild({ config }) {
     function send(e) {
         e.preventDefault()
          // this the code
-        let body = { user_id: query._id, ...Data }
-        console.log(body);
+        let body = { user_id: query._id, ...Data } 
         // send data
         axios.post("/api/child", body, config)
             .then(({ data }) => {

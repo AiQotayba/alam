@@ -59,10 +59,8 @@ export default function CoursesStudent({ config }) {
     }
     function Form({ data: _data }) {
         const onSubmit = body => {
-            let One = student?.filter(a => a._id === _data._id)[0]
-            console.log(One);
-            One.add = true
-            console.log(One);
+            let One = student?.filter(a => a._id === _data._id)[0] 
+            One.add = true 
 
             let all = student?.filter(a => a._id != _data._id)
             let full = [...all, One]

@@ -8,8 +8,13 @@ import { Input } from "@/lib/app";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
+
 export async function getServerSideProps(ctx) {
-    return await AuthServerSide(ctx, 'admin', async (config) => { return { config } })
+    return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, query, config }) => {
+        let url = `${NEXT_PUBLIC_API}/courses/${ctx.query._id}`
+        let { data } = await axios.get(url, config);
+        return { data, config }
+    })
 }
 
 export default function AddSession(props) {
@@ -29,6 +34,13 @@ export default function AddSession(props) {
             <h1>اضافة جلسة</h1>
             <p>العنوان</p>
             <input  {...register("title")} />
+
+            <p>المعلمة</p>
+            <select {...register("teacher_id")} >
+                {props.data?.teacher.map(a => (
+                    <option value={a._id}>{a.fullname}</option>
+                ))}
+            </select>
             <p>التاريخ</p>
             <input type='date' {...register("date_start")} />
             <p>الساعة </p>

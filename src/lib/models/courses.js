@@ -5,7 +5,8 @@ let schema = new Schema({
     description: String,
     image: String,
     price: String,
-    duration: String,
+    duration: String, 
+    register: String,
     teacher: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',

@@ -1,7 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
 let schema = new Schema({
-    teacher_id: String,
+    teacher_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+    },
     course_id: String,
     title: String,
     time_start: String,

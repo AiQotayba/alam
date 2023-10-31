@@ -29,15 +29,13 @@ export default async function auth(req, res, next) {
     PATCH(
         await Auth.getAdmin("admin"),
         async () => {
-            let user_id = query._id
-            // user_id = new mongoose.Types.ObjectId(user_id);
+            let user_id = query._id 
 
             let user = await User.findOne({ _id: user_id }).select("fullname phone")
 
             let _childs = await Child.find()
             let childs = await _childs.filter(a => a.user_id.toString() === user_id.toString())
-
-            console.log(user_id);
+ 
             Send({
                 _id: user_id,
                 phone: user.phone,

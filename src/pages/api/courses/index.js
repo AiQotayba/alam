@@ -16,14 +16,14 @@ export default async function CoursesALL(req, res, next) {
         POST(
                 await Auth.getAdmin("admin"),
                 async () => {
-
                         let data = {
                                 title: body.title,
                                 description: body.description,
-                                image: body.image,
                                 price: body.price,
+                                duration: body.duration,
+                                register: body.register,
+                                image: body.image,
                         }
-
                         await Courses.create(data)
                         Send({ msg: `تم اظافة  دورة  ${body.title}` })
                 }

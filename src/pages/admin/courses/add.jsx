@@ -45,6 +45,9 @@ export default function CreateChild({ config }) {
             <label htmlFor="duration" >المدة</label>
             <input type="text" id="duration" {...register("duration")} className="h-200" />
 
+            <label htmlFor="register" >فورم التسجيل</label>
+            <input type="text" id="register" {...register("register")} className="h-200" />
+
             <label htmlFor="description" >وصف الدورة  </label>
             <textarea type="text" id="description" {...register("description")} className="h-200" />
 
@@ -61,3 +64,5 @@ export default function CreateChild({ config }) {
         </form>
     )
 }
+
+// .split(`src="`)[1].split(`"`)[0]

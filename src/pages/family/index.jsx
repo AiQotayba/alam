@@ -36,7 +36,7 @@ export default function HomeFamily({ data }) {
         <div className="m-10">
             {/* List child data */}
             {data?.coins > 0 ? <Coin /> : <></>}
-            {data?.childs?.length == 0 ? <div className="box col bord" >
+            {data?.childs?.length == 0 ? <div className="bord box col m-a page aitem p-20" >
                 <h2>تصفح الدورات او تواصل مع الادارة</h2>
                 <a href={`https://api.whatsapp.com/send?phone=905380594084&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', margin: '10px', alignItems: 'center' }}>
                     <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />

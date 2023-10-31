@@ -32,7 +32,7 @@ export default async function CoursesOne(req, res, next) {
                                         })
 
                                 }))
-                                let Sessions = await Session.find()
+                                let Sessions = await Session.find() .populate("teacher_id", "fullname phone ")
                                 let sessions = await Sessions.filter(a => a.course_id.toString() === query._id)
 
                                 await Object.assign(courses, { students })
@@ -52,9 +52,10 @@ export default async function CoursesOne(req, res, next) {
                                 title: body.title,
                                 description: body.description,
                                 price: body.price,
+                                duration: body.duration,
+                                register: body.register,
                                 image: body.image,
-                        }
-                        console.log(data);
+                        } 
                         await Courses.updateOne(id, data)
                         Send({ msg: "تم تحديث الدورة التدريبية", data })
                 }

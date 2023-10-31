@@ -14,8 +14,7 @@ export default async function FamilyHomeAPI(req, res, next) {
                         let user_id = await Auth.UserId()
                         user_id = user_id?._id?.toString()
                         let childs = await Child.find({})
-                        childs = await childs?.filter(c => {
-                                // console.log([c.user_id.toString(), user_id])
+                        childs = await childs?.filter(c => { 
                                 return c.user_id.toString() === user_id
                         })
 

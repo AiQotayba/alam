@@ -83,8 +83,7 @@ export default function AdminCourses(props) {
 }
 function Info({ data }) {
         return (
-                <div className="box grid  m-20 ">
-                        <Image src={data?.image || "/images/image-null.png"} width={300} height={200} alt="image" />
+                <div className="box grid  m-20 "> 
                         <div className="box col ">
                                 <h1 className="m-20">{data?.title}</h1>
                                 <div className="mx-20" dangerouslySetInnerHTML={{ __html: data?.description }} />
@@ -180,6 +179,7 @@ function Session({ data: propsData, config }) {
                 },
                 { title: "الوقت  ", dataIndex: "time_start", key: "time_start" },
                 { title: "التاريخ  ", dataIndex: "date_start", key: "date_start" },
+                { title: "المعلمة  ", dataIndex: "teacher_id", key: "teacher_id", render: (_, record) => <p>{record?.teacher_id?.fullname}</p>},
                 {
                         title: "الاتمام  ", dataIndex: "completion", key: "completion",
                         render: (_, record) => <p >{record.completion ? " تم الانتهاء " : " لم تنتهي"}</p>

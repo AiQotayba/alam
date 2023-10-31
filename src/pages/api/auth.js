@@ -67,8 +67,7 @@ export default async function auth(req, res, next) {
                                 const info = await transporter.sendMail(mailOptions);
                                 // this code
                                 Send({ token })
-                        } catch (error) {
-                                console.log('Error:', error);
+                        } catch (error) { 
                                 res.status(500).json({ error: 'Failed to send email' });
                         }
                 }

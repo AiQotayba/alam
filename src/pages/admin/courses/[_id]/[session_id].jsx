@@ -9,8 +9,7 @@ import { useForm } from "react-hook-form";
 
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, 'admin', async ({ NEXT_PUBLIC_API, query, config }) => {
-        let url = `${NEXT_PUBLIC_API}/courses/${ctx.query._id}/session?session_id=${query.session_id}`
-        console.log(url);
+        let url = `${NEXT_PUBLIC_API}/courses/${ctx.query._id}/session?session_id=${query.session_id}` 
         let { data } = await axios.get(url, config);
         return { data, config }
     })

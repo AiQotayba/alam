@@ -28,8 +28,7 @@ export async function getServerSideProps(ctx) {
 export default function HomeFamily({ data: propsData }) {
     let [data, set] = useState(propsData)
     let [avrage, setAv] = useState(() => {
-        let listRating = data?.attendants?.map(a => a?.rating);
-        console.log(listRating);
+        let listRating = data?.attendants?.map(a => a?.rating); 
         const totalMarks = listRating?.reduce((sum, mark) => sum + mark, 0);
         return Math.round(totalMarks / listRating?.length)
         return 0

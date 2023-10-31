@@ -55,9 +55,7 @@ export default async function auth(req, res, next) {
         PUT(
                 await Auth.isLogin(),
                 async () => {
-                        let user = await User.findOne(user_id)
-                        console.log(user)
-                        console.log(body.password, user.password)
+                        let user = await User.findOne(user_id) 
 
                         let compare = await bcrypt.compare(body.password, user.password)
                         if (!compare) {
@@ -95,8 +93,7 @@ export default async function auth(req, res, next) {
                                 const info = await transporter.sendMail(mailOptions);
                                 // this code
                                 Send({ msg: "تم ارسال رابط اعادة التعيين بنجاح", state: true })
-                        } catch (error) {
-                                console.log('Error:', error);
+                        } catch (error) { 
                                 res.status(500).json({ error: 'Failed to send email' });
                         }
                         // this code
@@ -106,8 +103,7 @@ export default async function auth(req, res, next) {
                 // auth 
                 // tocken user or token repassword
                 let password
-                if (auth) {
-                        console.log(body.password, findEmail.password)
+                if (auth) { 
                         let compare = await bcrypt.compare(body.password, findEmail.password)
                         if (!compare) {
                                 return Send({ msg: 'كلمة السر القديمة غير صحيحة' }, 400)

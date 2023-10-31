@@ -27,6 +27,7 @@ export default function EditChild({ data: propsData, config }) {
             description: res.description,
             price: res.price,
             duration: res.duration,
+            register: res.register
         }
         let path = `courses/${query._id}`
         axios.put(`/api/${path}`, body, config)
@@ -39,11 +40,15 @@ export default function EditChild({ data: propsData, config }) {
     return (
         <form className='bord box col  w-300 p-20 center ' onSubmit={handleSubmit(onSubmit)}>
             <h1>تعديل دورة تدريبية </h1>
+            
             <p>عنوان الدورة </p>
             <input  {...register("title")} />
 
             <p> المدة </p>
             <input  {...register("duration")} />
+
+            <label htmlFor="register" >فورم التسجيل</label>
+            <input type="text" id="register" {...register("register")} />
 
             <p>وصف الدورة</p>
             <textarea id="description" {...register("description")} className="h-200" />

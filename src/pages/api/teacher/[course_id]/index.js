@@ -10,12 +10,13 @@ export default async function CoursesALL(req, res, next) {
         await Auth.getAdmin("teacher"),
         async () => {
             let { course_id } = query
-            console.log(course_id);
             // course & sessions
             let co = await Courses.findOne({ _id: course_id })
-            console.log(co);
             let sessions = await Session.find({ course_id })
+            let teacher_id = await Auth.UserId()
 
+            sessions = sessions.filter(a => a.teacher_id == teacher_id?._id.toString())
+            // console.log({sessions});
             sessions.sort((a, b) => {
                 const dateA = new Date(a.date_start);
                 const dateB = new Date(b.date_start);

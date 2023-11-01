@@ -39,14 +39,16 @@ export default function Home({ data }) {
                         </a>
 
                     </div>
-<br />
-{/* register */}
-                    {data?.register ? 
-                    <>
-                    <h3 className="m-20 ">فورم التسجيل</h3>
-                    <iframe src={data?.register?.split(`src="`)[1].split(`"`)[0]  } frameborder="0" marginheight="0" style={{width: '-webkit-fill-available',
-height: '-webkit-fill-available', 
-minHeight: '600px'}} marginwidth="0" loading="lazy" /></>:<></>}
+                    <br />
+                    {/* register */}
+                    {data?.register ?
+                        <>
+                            <h3 className="m-20 ">فورم التسجيل</h3>
+                            <iframe src={data?.register?.split(`src="`)[1].split(`"`)[0]} frameborder="0" marginheight="0" style={{
+                                width: '-webkit-fill-available',
+                                height: '-webkit-fill-available',
+                                minHeight: '600px'
+                            }} marginwidth="0" loading="lazy" /></> : <></>}
                 </div>
                 {/* Follow links ar Contact */}
             </div>

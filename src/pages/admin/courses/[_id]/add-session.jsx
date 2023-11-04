@@ -38,7 +38,7 @@ export default function AddSession(props) {
             <p>المعلمة</p>
             <select {...register("teacher_id")} >
                 {props.data?.teacher.map(a => (
-                    <option value={a._id}>{a.fullname}</option>
+                    <option value={a._id } key={a._id}>{a.fullname}</option>
                 ))}
             </select>
             <p>التاريخ</p>

@@ -95,7 +95,7 @@ export function Contact() {
 
                         <Line slug={"https://api.whatsapp.com/send?phone=905380594084"} src={"whatsapp.svg"} title={"+90 538 059 40 84"} />
                         {/* wa tr */}
-                        <Line slug={"https://api.whatsapp.com/send?phone=96171234567"} src={"whatsapp.svg"} title={" +961 71 234 567"} />
+                        <Line slug={"https://api.whatsapp.com/send?phone=96181324565"} src={"whatsapp.svg"} title={" +961 81 324 565"} />
                         {/* email */}
                         <Line slug={"mailto:info@alamalmoubdien.com"} src={"email.svg"} title={"info@alamalmoubdien.com"} />
 

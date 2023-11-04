@@ -3,6 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import { Contact } from "..";
 import MarkdownIt from 'markdown-it'
+
 export async function getServerSideProps(ctx) {
     let url = `${process.env.NEXT_PUBLIC_API}/courses/all?_id=${ctx.query._id}`
     let { data } = await axios.get(url);

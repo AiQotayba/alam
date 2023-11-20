@@ -1,0 +1,37 @@
+@api = http://localhost:3000/api
+POST  {{api}}/admin/course-ads/65575883ea9a9c8e3e87aa02
+content-type: application/json
+
+{  
+    "title": "ماذا تستفيد  " ,
+    "image": "/images/logo.png",
+    "about": "شسيشس يش يشس يشس شس يشس يشسي شسي شسي بلا لبا بلا بلا ",
+    "Sort": 1,
+    "typeView": "col"
+}
+###
+GET http://localhost:3000/api/client/course-ads/65575883ea9a9c8e3e87aa02
+
+HTTP/1.1 200  - OK
+content-type: application/json; charset=utf-8
+access-control-allow-origin: *
+access-control-allow-credentials: true
+access-control-allow-headers: Origin, Content-Type, Accept
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-xss-protection: 1; mode=block
+content-security-policy: default-src 'self'
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+referrer-policy: no-referrer
+etag: "1gv1f3zzmsq0"
+vary: Accept-Encoding
+date: Fri, 17 Nov 2023 21:34:57 GMT
+content-encoding: gzip
+connection: close
+transfer-encoding: chunked
+###
+GET http://localhost:3000/api/admin/course-ads
+###
+DELETE http://localhost:3000/api/admin/course-ads/65575de9ea9a9c8e3e87aa09
+###
+GET http://localhost:3000/api/client/course-ads/65575883ea9a9c8e3e87aa02

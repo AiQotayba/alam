@@ -8,7 +8,7 @@ content-type: application/json
     "age": 10
 }
 ###
-GET http://localhost:3000/api/child
+PATCH http://localhost:3000/api?domain=http://localhost:3000
 ###
 PATCH  http://localhost:3000/api/child?_id=64996c99ec9e55b4ba0a4ac1
 ###
@@ -75,6 +75,8 @@ POST      http://localhost:3000/api/courses/64a1abab923f2f3e96302420/student
     ?students_id=649e1d58b32d5a42df1d5d6d
 ###
 GET     http://localhost:3000/api/courses/64ca1ec3474ef93ba181a754/session?session_id=64ca280b474ef93ba181a817
+###
+GET    http://localhost:3000/api/family
 
 HTTP/1.1 200  - OK
 content-type: application/json; charset=utf-8
@@ -82,9 +84,9 @@ access-control-allow-origin: *
 access-control-allow-credentials: true
 x-requested-with: NEXTJS
 access-control-allow-headers: Origin, Content-Type, Accept
-etag: "gh8j61639af8"
+etag: "16fxsiddkjws"
 vary: Accept-Encoding
-date: Thu, 03 Aug 2023 20:19:20 GMT
+date: Tue, 07 Nov 2023 16:47:50 GMT
 content-encoding: gzip
 connection: close
 transfer-encoding: chunked

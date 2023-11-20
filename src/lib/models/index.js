@@ -22,6 +22,9 @@ export const User = user
 import courses from "@/lib/models/courses";
 export const Courses = courses
 
+import courseAds from "@/lib/models/course-ads";
+export const CourseAds = courseAds
+
 import session from "@/lib/models/session";
 export const Session = session
 

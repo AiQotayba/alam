@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps(ctx) {
-    let url = `${process.env.NEXT_PUBLIC_API}/`
+    let url = `${process.env.NEXT_PUBLIC_API}/client/course-ads`
     let SSR = await SSRctx(ctx)
     let { data } = await axios.get(url, SSR?.config);
     return { props: { data } }
@@ -27,7 +27,7 @@ export default function Home({ data }) {
 
             {/* Courses */}
             <div className="box grid j m-a p-20">
-                {data?.courses?.map(co => <CardCourse data={co} key={co._id} slug={"/course/"} />)}
+                {data?.map(co => <CardCourse data={co} key={co._id} slug={"/course/"} />)}
             </div>
             {/* Contact us and social media links  */}
             <Contact />

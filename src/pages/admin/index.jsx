@@ -15,6 +15,7 @@ export default function AdminPage() {
             <div className="box grid">
                 <Part URL={"users"} Title={"المستخدمين"} icon={"users.svg"} />
                 <Part URL={"courses"} Title={"الدورات التدريبية"} icon={"posts.svg"} />
+                <Part URL={"course-ads"} Title={"اعلانات الدورات"} icon={"posts.svg"} />
             </div>
         </div>
     )

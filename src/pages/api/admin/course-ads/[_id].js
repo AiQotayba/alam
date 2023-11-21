@@ -29,14 +29,7 @@ export default async function api_admin_course_ads_one(req, res, next) {
         let data = await CourseAds.updateOne({ _id: app.id }, body);
         app.Send({ msg: "لقد تمت تحديث الفقرات", data });
     });
-
-    app.all(await Auth.getAdmin("admin"), async () => {
-        // add techer
-        let one = await CourseAds.findOne({ _id: app.id }).select("teacher");
-        let body = { teacher: [...one.teacher, teacher._id] };
-        let data = await CourseAds.updateOne({ _id: app.id }, body);
-        app.Send({ msg: `لقد تمت اضافة المعلمة `, data });
-    });
+ 
 
     app.delete(await Auth.getAdmin("admin"), async () => {
         await CourseAds.deleteOne({ _id: app.id });

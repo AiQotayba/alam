@@ -48,9 +48,9 @@ export default function EditChild({ data: propsData, config }) {
     }
     return (
         <div className="box grid">
-            <div className="box col m-20" style={{ maxWidth: "350px"}}>
-            
-                        <Link href="/admin/course-ads" className="p-10 m-0 w-full btn off"> اعلانات الدورات </Link>
+            <div className="box col m-20" style={{ maxWidth: "350px" }}>
+
+                <Link href="/admin/course-ads" className="p-10 m-0 w-full btn off"> اعلانات الدورات </Link>
                 <div className="box row w-full my-20 bord space">
                     <button name="-info" onClick={btns}> العامة</button>
                     <button name="-part" onClick={btns}> الفقرة</button>
@@ -86,7 +86,7 @@ export default function EditChild({ data: propsData, config }) {
                 </div>
 
                 <div className="box col -techer" style={{ display: "none" }}>
-                    <AddTeacher data={data?.teacher} teachers={propsData.teacher} />
+                    <AddTeacher data={data?.teacher} teachers={propsData.teacher} config={config}/>
                 </div>
                 <FormPart
                     part={part}
@@ -98,7 +98,7 @@ export default function EditChild({ data: propsData, config }) {
                     config={config}
                 />
             </div>
-                <CourseAdsView data={data} call={false} />
+            <CourseAdsView data={data} call={false} />
         </div>
     )
 }
@@ -109,7 +109,7 @@ function AddTeacher(props) {
         { title: "رقم الهاتف", dataIndex: "phone", key: "phone" },
         {
             title: "", dataIndex: "view", key: "view",
-            render: (_, record) => <Add data={record} config={props.config} />
+            render: (_, record) => <Add data={record} myTeachers={props.data}  config={props.config} />
         }
     ];
     return (
@@ -120,18 +120,32 @@ function AddTeacher(props) {
     )
 }
 
-function Add({ data, config }) {
+function Add({ data, config ,myTeachers}) {
     let route = useRouter();
-    let [CT, setCT] = useState(true);
+    let [StateTeacher ,setStateTeacher ] = useState(()=> myTeachers .filter(a=> a._id == data._id) )
+        console.log(StateTeacher)
+    
+    let [CT, setCT] = useState(StateTeacher.length >0 ? false: true );
     function send() {
+        let URL = `/api/admin/course-ads/teacher?_id=${route.query._id}`; 
+
         if (CT) {
-            let URL = `/api/admin/course-ads/${route.query._id}`;
-            axios.all(URL, { "_id": data._id }, config)
-                .then(({ data }) => message.success(data?.msg));
-            setCT(false);
+            axios.put(URL, { "_id": data._id, type: "post" }, config)
+                .then(({ data:dm }) => {
+                
+        console.log(dm)
+                    message.success(dm?.msg)
+                    setCT(false);                
+                }); 
+        } else {
+            axios.put(URL, { "_id": data._id, type: "delete" }, config)
+                 .then(({ data:dm }) => {
+                    message.error(dm?.msg)
+                    setCT(true);                
+                });  
         }
     }
-    return <div onClick={send} className={`${CT ? "btn" : ""}`}>{CT ? "اضافة" : "تم الاضافة "}</div>
+    return <button onClick={send} className={`${CT ? " " : "err"}`}>{CT ? "اضافة" : "حذف"}</button>
 }
 // ---------------------------------------------
 function FormPart({ part, setPart, useView, config }) {

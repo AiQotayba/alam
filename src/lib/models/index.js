@@ -15,6 +15,7 @@ export const connect = async () => {
 }
 
 // DBmodels
+connect()
 
 import user from "@/lib/models/user";
 export const User = user

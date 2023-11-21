@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 export async function getServerSideProps(ctx) {
     let url = `${process.env.NEXT_PUBLIC_API}/client/course-ads`
+    console.log(url)
     let SSR = await SSRctx(ctx)
     let { data } = await axios.get(url, SSR?.config);
     return { props: { data } }

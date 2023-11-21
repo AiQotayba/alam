@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "deploy": "git add . && git commit -m 'UpdateCommitAuto' && git push origin  ",
+    "deploy": "npm run lint && git add . && git commit -m 'UpdateCommitAuto' && git push origin  ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

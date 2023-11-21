@@ -209,7 +209,7 @@ function ListParts(props) {
         <div>
             <h2>الفقرات</h2>
             {data.map((a) => (
-                <div className="box row space aitem p-10 bord px-20 my-20">
+                <div className="box row space aitem p-10 bord px-20 my-20" key={a._id}>
                     <p>{a.title}</p>
                     <b onClick={() => DELETE(a._id)}>X</b>
                 </div>

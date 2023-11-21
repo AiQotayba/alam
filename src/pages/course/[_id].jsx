@@ -25,9 +25,7 @@ else    return (
 
                     <div className="box col w-full m-10">
                         <p className="my-10">{data.teacher?.map(a => "أ. " + a.fullname + " , ")} </p>
-                    </div>
-                    {/* about */}
-                    <h2>الوصف</h2>
+                    </div> 
                     <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md.render(data?.bio || '') }} />
                     {/* join */}
                     {data.part?.map(a => <CardPart data={a} key={a._id} />)}
@@ -59,12 +57,14 @@ else    return (
     )
 }
 function CardPart({ data }) {
+
+    let md = new MarkdownIt()
     return (
         <div className={` type type-${data.typeView}`}>
             <img src={data?.image} alt={`صورة ${data}`} />
-            <div>
-                <h3>{data.title}</h3>
-                <p>{data.about}</p>
+            <div className="m-10">
+                <h3 className="my-10" >{data.title}</h3>
+                <p dangerouslySetInnerHTML={{ __html: md.render(data?.about || '') }} />
             </div>
         </div>
     )

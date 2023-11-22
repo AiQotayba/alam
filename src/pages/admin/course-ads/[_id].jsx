@@ -41,7 +41,6 @@ export default function EditChild({ data: propsData, config }) {
         } else send(file);
     }
     const View = ({ children, name }) => {
-        console.log(name);
         if (name == view) return <>{children}</>
         else <></>
     }

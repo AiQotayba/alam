@@ -1,4 +1,4 @@
-import { Courses, User } from "@/lib/models";
+import { CourseAds, User } from "@/lib/models";
 import { API, APIAuth } from "@/lib/app";
 
 export default async function users(req, res, next) {
@@ -8,11 +8,23 @@ export default async function users(req, res, next) {
     GET(
         async () => {
             let _id = await Auth.UserId()
-            let courses = await Courses.find({ completion: false }).sort({ _id: -1 })
+            let courses = await CourseAds.find() .select("create_at").sort({ _id: -1 })
 
-            let user = await User.findOne(_id)
-            let typeUser = user?.typeUser
-            Send({ typeUser, courses })
+        let { domain } = req.query
+      
+        function DATE(e) {
+            if (e) {
+                return new Date(e)?.toISOString().split('T')[0]
+            } else return
+        }
+        courses=courses.map(a =>  {
+        return {
+                    url: `${domain}/course/${a._id}`,
+                    lastmod: DATE(a?.create_at)
+                }}
+            )
+ 
+            Send(  courses )
         }
     )
 

@@ -1,5 +1,6 @@
 import { SSRctx } from "@/lib/app2";
 import { CardCourse } from "@/lib/ui";
+import SEO from "@/theme/SEO";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Image from "next/image";
@@ -21,6 +22,7 @@ export default function Home({ data }) {
     }, [])
     return (
         <>
+            <SEO />
             {/* Hero */}
             <Hero />
 

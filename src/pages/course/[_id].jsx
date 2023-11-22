@@ -3,6 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import { Contact } from "..";
 import MarkdownIt from 'markdown-it'
+import SEO from "@/theme/SEO";
 
 export async function getServerSideProps(ctx) {
     let url = `${process.env.NEXT_PUBLIC_API}/client/course-ads/${ctx.query._id}`
@@ -11,9 +12,12 @@ export async function getServerSideProps(ctx) {
 }
 export default function CourseAdsView({ data, call = true }) {
     let md = new MarkdownIt()
-if (!data )return <center>Not Found </center>
-else    return (
+    if (!data) return <center>Not Found </center>
+    else{
+  let  part=data.part.sort((a, b) => a.Sort - b. Sort)
+    return (
         <>
+            <SEO title={data.title} description={data.bio} image={data.image} />
             <div className="box col page  m-a">
                 {/* info */}
                 <div className=" ">
@@ -21,14 +25,14 @@ else    return (
                     <img src={data?.image || "/images/image-null.png"} alt="صورة تعريفية عن الدورة التدريبية " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
                     <h1 className="my-20 mx-10">{data.title} </h1>
 
-                    <p className="my-20 mx-10">{data?.duration} </p>
+                    <p className="my-20 mx-10">{data?.duration} </p> 
 
                     <div className="box col w-full m-10">
                         <p className="my-10">{data.teacher?.map(a => "أ. " + a.fullname + " , ")} </p>
-                    </div> 
-                    <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md.render(data?.bio || '') }} />
+                    </div>
+                    <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md.render(data?.bio ) }} />
                     {/* join */}
-                    {data.part?.map(a => <CardPart data={a} key={a._id} />)}
+                    {part?.map(a => <CardPart data={a} key={a._id} />)}
                     <b className="m-10">السعر </b>
                     <div className="box row bord p-10 space mt-20">
 
@@ -54,7 +58,7 @@ else    return (
             </div>
             {call ? <Contact /> : <></>}
         </>
-    )
+    )}
 }
 function CardPart({ data }) {
 
@@ -64,7 +68,7 @@ function CardPart({ data }) {
             <img src={data?.image} alt={`صورة ${data}`} />
             <div className="m-10">
                 <h3 className="my-10" >{data.title}</h3>
-                <p dangerouslySetInnerHTML={{ __html: md.render(data?.about || '') }} />
+                <p dangerouslySetInnerHTML={{ __html: md.render(data?.about ) }} />
             </div>
         </div>
     )

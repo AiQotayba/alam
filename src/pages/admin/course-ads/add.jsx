@@ -4,13 +4,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link"; 
-import { useRouter } from "next/router";
+import { useRouter } from "next/router";1 
 
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, "admin", async ({ NEXT_PUBLIC_API, config }) => {
         return { config };
     });
 }
+
 export default function CreateChild({ config }) {
     let [Data, setData] = useState({});
     const { register, handleSubmit } = useForm();
@@ -21,9 +22,10 @@ export default function CreateChild({ config }) {
         let image = null;
         function send(image) {
             let data = { ...res, image };
+            
             axios.post("/api/admin/course-ads", data, config).then(({ data }) => {
                 message.success(data.msg);
-                push("/admin/course-ads");
+              //  push("/admin/course-ads");
             });
         }
         if (file.length > 0) {

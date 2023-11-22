@@ -2,6 +2,13 @@ import { APIAuth } from "@/lib/app";
 import { CourseAds, User } from "@/lib/models";
 import API from "nextjs-vip";
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '10mb' // Set desired value here
+        }
+    }
+}
 export default async function api_admin_course_ads_one(req, res, next) {
     let app = new API(req, res);
     let Auth = new APIAuth(req, res);

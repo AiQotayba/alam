@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Popconfirm, Table, message } from "antd";
 import { useRouter } from "next/router";
+import { MenuLine } from "@/lib/ui";
 
 export async function getServerSideProps(ctx) {
     return await AuthServerSide(ctx, "admin", async ({ NEXT_PUBLIC_API, config }) => {
@@ -47,6 +48,8 @@ export default function AdminUsers(props) {
     ];
     return (
         <section className="bord p-10 m-10">
+        
+			<MenuLine />
             <div className="m-10 box grid aitem">
                 <h1 className="mx-20">الدورات التدريبية</h1>
                 <Link href={`/admin/course-ads/add`} className="py-10 btn aitem"> اضافة دورة التدريبية  </Link>

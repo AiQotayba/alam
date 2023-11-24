@@ -42,11 +42,11 @@ export default function CreateChild({ config }) {
             <label htmlFor="title"  >عنوان الدورة </label>
             <input type="text" id="title" {...register("title")} />
 
-            <label htmlFor="duration" >المدة</label>
-            <input type="text" id="duration" {...register("duration")} className="h-200" />
+            <label  >المدة</label>
+            <input type="text"  {...register("duration")}  />
 
-            <label htmlFor="register" >فورم التسجيل</label>
-            <input type="text" id="register" {...register("register")} className="h-200" />
+            <label  >فورم التسجيل</label>
+            <input type="text"  {...register("register")} />
 
             <label htmlFor="description" >وصف الدورة  </label>
             <textarea type="text" id="description" {...register("description")} className="h-200" />

@@ -34,15 +34,15 @@ export default async function CoursesOne(req, res, next) {
     // add student
     POST(async () => {
 
-        let { title, time_start, date_start,teacher_id
- } = body
-        let data = {
+        let { title, time_start, date_start,teacher_id } = body
+        let NEW = {
             course_id: query._id,
             title, time_start, date_start ,teacher_id
 
         }
-        let NEW = await Session.create(data)
-        Send({ msg: "تم اضافة الجلسة", NEW })
+        let a = await Session.create(NEW)
+        let data = await Session.findOne({_id:a._id}).populate("teacher_id", "fullname phone ")
+        Send({ msg: "تم اضافة الجلسة", data })
     })
 
     DELETE(async () => {

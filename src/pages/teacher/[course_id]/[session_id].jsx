@@ -84,11 +84,11 @@ export default function SessionAttendance({ data: propsData, url, config }) {
                 <p className="m-20">لقد تم انتهاء تقديم الحضور</p>
                 <div className="p-10 box row">
 
-                    <Link href={"/teacher"} className="btn ml-10" >
+                    <Link href={"/teacher"} className="btn ml-10 box row aitem" >
                         <Image src={"/icons/home.svg"} width={20} height={20} />
                         <p className="mx-10">العودة للرئيسية</p>
                     </Link>
-                    <Link href={`/teacher/${route.query.course_id}/add-session`} className="btn" >
+                    <Link href={`/teacher/${route.query.course_id}/add-session`} className="btn box row aitem" >
                         <Image src={"/icons/add.svg"} width={20} height={20} />
 
                         <p className="mx-10"> اضافة جلسة </p>

@@ -107,15 +107,15 @@ input ,textarea ,select
         padding: 10px
         border: 0.2px solid #0292ab
 button , .btn , [type="submit"]
-    border: 0
-    background-color: #0292ab
-    color: #fff
-    padding: 10px
-    text-align: center
-    min-width: 80px
-    border-radius: 10px
-    display: flex
-    justify-content: center
+        border: 0
+        background-color: #0292ab
+        color: #fff
+        padding: 10px
+        text-align: center
+        min-width: 80px
+        border-radius: 10px
+        display: flex
+        justify-content: center
     & *
         color: #fff
     &.off
@@ -123,11 +123,11 @@ button , .btn , [type="submit"]
         background-color: #fff !important
         color: #0292ab
     &.green
-        background-color: #4CAF50 
+        background-color: #4CAF50
     &:focus , &:active
         background-color: #fff
         color: #0292ab
-        border: 1px solid 
+        border: 1px solid
 .err
     background-color: #E91E63 !important
     color: #fff !important
@@ -259,17 +259,19 @@ h1
         background-color: #fff
         width: 300px
         border-radius: 20px
-        
-        
+
 @media screen and ( max-width: 701px )
-    #__next > section 
-        margin-top: 70px 
-.type-row 
+    #__next > section
+        margin-top: 70px
+.type-row
     flex-direction: row
 
-.type-row-reverse 
+.type-row-reverse
     flex-direction: row-reverse
-  
+.type-col
+    flex-direction: column
+    align-items: flex-start !important
+
 .type
     height: min-content
     align-items: center
@@ -278,17 +280,16 @@ h1
     margin: 20px
     padding: 20px
 @media  screen and  ( max-width:600px )
-    .type-row ,.type-row-reverse 
+    .type-row ,.type-row-reverse
         flex-direction: row
         flex-wrap: wrap
         margin: 0
         padding: 10px
         justify-content: center
 
-.type-row ,.type-row-reverse 
+.type-row ,.type-row-reverse
     img
         width: 150px
-        
+
 .-info, .-part, .-techer
     width: 350px
-

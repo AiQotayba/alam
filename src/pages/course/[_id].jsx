@@ -61,11 +61,11 @@ export default function CourseAdsView({ data, call = true }) {
         )
     }
 }
-function CardPart({ data }) { 
+function CardPart({ data }) {
     let md = new MarkdownIt()
     return (
         <div className={` type type-${data.typeView}`}>
-            {data?.image ? <img src={data?.image} alt={`صورة ${data}`} /> : <></>}
+            {data?.image != null ? <img src={data?.image} alt={`صورة ${data}`} /> : <></>}
             <div className="m-10">
                 <h3 className="my-10" >{data.title}</h3>
                 <p dangerouslySetInnerHTML={{ __html: md.render(data?.about) }} />

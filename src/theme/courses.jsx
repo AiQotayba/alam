@@ -18,7 +18,7 @@ export function ViewSessionOne() {
             axios.get(url, config)
                 .then(({ data }) => setSessionOne(data))
         }
-    }, [SessionOne])
+    }, [SessionOne,url, config])
     const columns = [
         { title: "الاسم", dataIndex: "name", key: "name" },
         { title: "الاهل  ", dataIndex: "fullname", key: "fullname" },
@@ -258,7 +258,7 @@ export function AddStudent() {
                 setLoader(false)
             }).catch(err => setLoader(false))
         }, 1000)
-    }, [data])
+    }, [data,config])
 
     const columns = [
         { title: "الاسم", dataIndex: "name", key: "name" },
@@ -359,7 +359,7 @@ export function AddTeacher() {
                 setLoader(false)
             }).catch(err => setLoader(false))
         }, 1000)
-    }, [q, query])
+    }, [q, query,config])
 
 
     const columns = [

@@ -21,7 +21,7 @@ export default async function CoursesOne(req, res, next) {
                 fullname: user?.fullname,
                 phone: user?.phone,
                 feedback: a?.feedback,
-                rating: a?.rating
+                absence: a?.absence
             }
 
             return data

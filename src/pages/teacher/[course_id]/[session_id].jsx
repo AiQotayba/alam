@@ -21,15 +21,14 @@ export default function SessionAttendance({ data: propsData, url, config }) {
     let [data, setD] = useState(propsData)
     let [Data, setDa] = useState(propsData)
     let [selectStudents, setSS] = useState(data.students[0])
-    let [selectDisplay, setSD] = useState(false)
-    let [rating, setR] = useState(false)
+    let [selectDisplay, setSD] = useState(false) 
 
     const { register, handleSubmit } = useForm();
     const onSubmit = async body => {
         let init = {
             child_id: selectStudents._id,
             feedback: body.feedback,
-            rating: body.rating,
+            absence: body.absence,
         }
         let students = Data?.students?.filter(a => a._id != init.child_id)
 
@@ -47,8 +46,7 @@ export default function SessionAttendance({ data: propsData, url, config }) {
     function SelectOpen(a) {
         setSD(false)
         setSS(a)
-    }
-    let ratingContext = ["غياب", "ضعيف جدا", "ضعيف", "معتدل", "جيد جدا", "ممتاز"]
+    } 
     function FormAtt() {
         if (Data.students.length > 0) return (
             <div className="box col w-300 m-a" >
@@ -68,11 +66,11 @@ export default function SessionAttendance({ data: propsData, url, config }) {
                     : <></>}
                 {/* form */}
                 <form onSubmit={handleSubmit(onSubmit)} className="w-300 bord py-20">
-                    <p className="p-10">التقييم </p>
-                    <div onChange={e => setR(e.target.value)}>
-                        <input  {...register("rating")} className="w-full" max="5" type="range" />
+                    <div className="box row">
+                        <input {...register("absence")} className="mx-10" max="5" type="checkbox" />
+                        <p className="p-10">الغياب </p>
                     </div>
-                    <p>{ratingContext[rating]}</p>
+                    {/* record.absence == true ? "غائب" : <></> */}
                     <p className="p-10">الملاحضات </p>
                     <textarea className="h-200 p-10" {...register("feedback")} ></textarea>
                     <input type="submit" className="mt-20" />

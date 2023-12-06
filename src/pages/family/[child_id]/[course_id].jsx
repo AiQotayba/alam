@@ -27,13 +27,12 @@ export async function getServerSideProps(ctx) {
 
 export default function HomeFamily({ data: propsData }) {
     let [data, set] = useState(propsData)
-    let [avrage, setAv] = useState(() => {
-        let listRating = data?.attendants?.map(a => a?.rating); 
-        const totalMarks = listRating?.reduce((sum, mark) => sum + mark, 0);
-        return Math.round(totalMarks / listRating?.length)
-        return 0
-    })
-    let ratingContext = ["غياب", "ضعيف جدا", "ضعيف", "معتدل", "جيد جدا", "ممتاز"]
+    // let [avrage, setAv] = useState(() => {
+    //     let listRating = data?.attendants?.map(a => a?.rating); 
+    //     const totalMarks = listRating?.reduce((sum, mark) => sum + mark, 0);
+    //     return Math.round(totalMarks / listRating?.length) 
+    // })
+    // let ratingContext = ["غياب", "ضعيف جدا", "ضعيف", "معتدل", "جيد جدا", "ممتاز"]
     let route = useRouter()
     let { course } = data
     return (
@@ -54,8 +53,7 @@ export default function HomeFamily({ data: propsData }) {
                         <span key={a._id}>{a.fullname}</span>
                     ))}
                 </b>
-                <p className="m-10">{course?.description} </p>
-                <p className="m-10">مستوى الطالب<span className="color"> {ratingContext[avrage]}</span></p>
+                <p className="m-10">{course?.description} </p> 
             </div>
             {/* Attendant List */}
             <div className="box grid ">

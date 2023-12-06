@@ -18,13 +18,13 @@ export function ViewSessionOne() {
             axios.get(url, config)
                 .then(({ data }) => setSessionOne(data))
         }
-    }, [SessionOne,url, config])
+    }, [SessionOne, url, config])
     const columns = [
         { title: "الاسم", dataIndex: "name", key: "name" },
         { title: "الاهل  ", dataIndex: "fullname", key: "fullname" },
         { title: "الهاتف", dataIndex: "phone", key: "phone" },
         { title: "الملاحظة", dataIndex: "feedback", key: "feedback", width: 300 },
-        { title: "التقييم", dataIndex: "rating", key: "rating" },
+        { title: "التقييم", dataIndex: "absence", key: "absence", render: (_, record) => <div >{record.absence == true ? "غائب" : <></>}</div> },
     ];
     if (typeof SessionOne == "string") return <div className="box row aitem"><Loader />  </div>
     else return (
@@ -258,7 +258,7 @@ export function AddStudent() {
                 setLoader(false)
             }).catch(err => setLoader(false))
         }, 1000)
-    }, [data,config])
+    }, [data, config])
 
     const columns = [
         { title: "الاسم", dataIndex: "name", key: "name" },
@@ -359,7 +359,7 @@ export function AddTeacher() {
                 setLoader(false)
             }).catch(err => setLoader(false))
         }, 1000)
-    }, [q, query,config])
+    }, [q, query, config])
 
 
     const columns = [

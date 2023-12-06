@@ -22,8 +22,7 @@ export default async function FamilyHomeAPI(req, res, next) {
                         let queryAtt = new Date().getTime() - 864000000
                         let attendants = await Attendance
                                 .find({ create_at: { $gt: queryAtt } })
-                                .sort({ _id: -1 })
-                                // .select("feedback rating create_at child_id session_id")
+                                .sort({ _id: -1 }) 
                                 .populate("session_id")
                                 .populate("child_id")
                         attendants = attendants?.filter(at => at.child_id.user_id.toString() === user_id)

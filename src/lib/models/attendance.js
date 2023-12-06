@@ -5,7 +5,7 @@ let schema = new Schema({
     session_id: { type: mongoose.Schema.Types.ObjectId, ref: 'sessions', },
 
     feedback: String,
-    rating: Number,
+    absence: { type: Boolean, default: false },
     view: Boolean,
     create_at: { type: Number, default: new Date() },
 });

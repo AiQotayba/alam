@@ -7,7 +7,7 @@ export default async function api_admin_course_ads(req, res, next) {
     let Auth = new APIAuth(req, res);
 
     app.get(await Auth.getAdmin("admin"), async () => {
-        let courses = await CourseAds.find({}).select("-part -register -bio ").sort({ _id: -1 });
+        let courses = await CourseAds.find({}).select("title price duration").sort({ _id: -1 });
         app.Send(courses);
     });
 

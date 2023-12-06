@@ -39,8 +39,8 @@ export default function AdminUsers(props) {
             title: "العنوان", dataIndex: "title", key: "title", width: 260,    fixed: 'left',
             render: (_, record) => <Link href={`/admin/course-ads/${record._id}`} >{record.title} </Link>
         },
-        { title: "السعر", dataIndex: "price", key: "price" },
-        { title: "الوقت", dataIndex: "duration", key: "duration" },
+        { title: "السعر", dataIndex: "price", key: "price", width: 50 },
+        { title: "الوقت", dataIndex: "duration", key: "duration" , width: 50},
         {
             title: "حذف", dataIndex: "delete", key: "delete", width: 100,
             render: (_, record) => <DeleteBtn fun={() => Delete(record._id)} />

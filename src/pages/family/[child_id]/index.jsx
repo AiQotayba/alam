@@ -24,8 +24,7 @@ export async function getServerSideProps(ctx) {
 }
 
 export default function HomeFamily({ data: propsData }) {
-    let [data, set] = useState(propsData)
-    let ratingContext = ["غياب", "ضعيف جدا", "ضعيف", "معتدل", "جيد جدا", "ممتاز"]
+    let [data, set] = useState(propsData) 
     let route = useRouter()
     return (
         <div className="m-10">

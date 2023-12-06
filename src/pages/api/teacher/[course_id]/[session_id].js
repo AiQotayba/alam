@@ -57,13 +57,13 @@ export default async function CoursesALL(req, res, next) {
         async () => {
 
             // add  feedback student
-            let { child_id, feedback, rating } = body
+            let { child_id, feedback, absence } = body
 
             let data = {
                 child_id,
                 session_id,
                 feedback,
-                rating
+                absence
             }
             let child = await Child.findOne({ _id: child_id }).populate('user_id')
             await Attendance.create(data)

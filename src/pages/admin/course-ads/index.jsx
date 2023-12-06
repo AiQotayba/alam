@@ -36,8 +36,8 @@ export default function AdminUsers(props) {
     }
     const columns = [
         {
-            title: "العنوان", dataIndex: "title", key: "title", width: 300,
-            render: (_, record) => <Link href={`/admin/course-ads/${record._id}`}>{record.title} </Link>
+            title: "العنوان", dataIndex: "title", key: "title", width: 260,    fixed: 'left',
+            render: (_, record) => <Link href={`/admin/course-ads/${record._id}`} >{record.title} </Link>
         },
         { title: "السعر", dataIndex: "price", key: "price" },
         { title: "الوقت", dataIndex: "duration", key: "duration" },
@@ -54,7 +54,7 @@ export default function AdminUsers(props) {
                 <h1 className="mx-20">الدورات التدريبية</h1>
                 <Link href={`/admin/course-ads/add`} className="py-10 btn aitem"> اضافة دورة التدريبية  </Link>
             </div>
-            <Table dataSource={data} columns={columns} pagination={false} rowKey={(record) => record._id} className="m-10" />
+            <Table dataSource={data} columns={columns} pagination={false} rowKey={(record) => record._id} className="m-10" scroll={{ x: 700 }} />
         </section>
     )
 }

@@ -25,7 +25,8 @@ export default function CardAtt({ data: att }) {
             </div>
             <p className="my-10 p-10 px-20" style={{
                 borderRadius: '20px',
-                backgroundColor: '#eee'
+                backgroundColor: '#eee',
+                wordWrap: 'break-word'
             }}
             >
                 {att?.feedback}

@@ -13,15 +13,9 @@ export default async function api_admin_course_ads(req, res, next) {
 
     app.post(await Auth.getAdmin("admin"), async () => {
 
-        let { date, title, price, bio, register, image, duration } = req?.body;
+        let { date, title, price, bio, register, image, duration, phone } = req?.body;
         let data = await CourseAds.create({
-            date,
-            title,
-            price,
-            bio,
-            register,
-            image,
-            duration
+            date, title, price, bio, register, phone, image, duration
         });
         app.Send(data);
     });

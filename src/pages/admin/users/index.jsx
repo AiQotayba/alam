@@ -22,12 +22,12 @@ export default function AdminUsers(props) {
 		setOne(One === null ? data : null)
 	}
 	const columns = [
-		{ title: "الاسم", dataIndex: "fullname", key: "fullname" },
-		{ title: "الايميل", dataIndex: "email", key: "email" },
-		{ title: "الهاتف", dataIndex: "phone", key: "phone" },
-		{ title: "النقاط", dataIndex: "coins", key: "coins" },
+		{ title: "الاسم", dataIndex: "fullname", key: "fullname" , width: 250},
+		{ title: "الايميل", dataIndex: "email", key: "email" ,width: 250 },
+		{ title: "الهاتف", dataIndex: "phone", key: "phone", width: 150 },
+		{ title: "النقاط", dataIndex: "coins", key: "coins", width: 100 },
 		{
-			title: "نوع الحساب", dataIndex: "typeUser", key: "typeUser",
+			title: "نوع الحساب", dataIndex: "typeUser", key: "typeUser",width: 100 ,
 			render: (_, record) => (
 				<>
 					{record.typeUser?.filter(a => a == "teacher").length > 0 ? <p> معلمة</p> : <></>}
@@ -49,7 +49,7 @@ export default function AdminUsers(props) {
 			<Menu data={One} set={setOne} config={props.config} />
 
 			<div className="m-10">
-				{props.data.length > 0 ? <Table dataSource={data} columns={columns} pagination={false} /> : ""}
+			  <Table dataSource={data} columns={columns} pagination={false} scroll={{ x: 700 }}/>  
 			</div>
 		</section>
 	)
@@ -72,11 +72,11 @@ function Menu({ data, set, config }) {
 	}
 	if (data?.fullname) {
 		return (
-			<div className="bord box col m-a pup w-300" style={{ left: '50px', right: '50px', zIndex: '1' }}>
-				<Link href={`/admin/users/${data._id}/childs`} className="p-10 m-10">الاطفال</Link>
-				<Link href={`/admin/users/${data._id}/edit-profile`} className="p-10 m-10">تعديل المستخدم</Link>
-				<Link href={`/admin/users/${data._id}/new-password`} className="p-10 m-10">تغيير كلمة السر</Link>
-				<Link href={`/admin/users/${data._id}/upgrade`} className="p-10 m-10">تغيير الصلاحيات  </Link>
+			<div className="bord box col m-a pup w-300" style={{ left: '50px', right: '50px', zIndex: '1', top:70 }}>
+				<Link href={`/admin/users/${data._id}/childs`} className=" p-10 mx-10">الاطفال</Link>
+				<Link href={`/admin/users/${data._id}/edit-profile`} className="p-10  mx-10">تعديل المستخدم</Link>
+				<Link href={`/admin/users/${data._id}/new-password`} className="p-10 mx-10">تغيير كلمة السر</Link>
+				<Link href={`/admin/users/${data._id}/upgrade`} className="p-10 mx-10">تغيير الصلاحيات  </Link>
 				<Popconfirm
 					title="هل أنت متأكدة من تصفير النقاط  "
 					onConfirm={reset}

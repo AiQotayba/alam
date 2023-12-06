@@ -33,16 +33,18 @@ export default function CourseAdsView({ data, call = true }) {
                         <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md.render(data?.bio) }} />
                         {/* join */}
                         {part?.map(a => <CardPart data={a} key={a._id} />)}
-                        <b className="m-10">السعر </b>
-                        <div className="box row bord p-10 space mt-20">
+                        {data?.price && data?.price != "" ? <>
+                            <b className="m-10">السعر </b>
+                            <div className="box row bord p-10 space mt-20">
 
-                            <p style={{ padding: '15px', fontSize: 'larger', fontFamily: 'system-ui', fontWeight: 'bold', color: '#0292ab' }}>   {data.price}$</p>
-                            <a href={`https://api.whatsapp.com/send?phone=905380594084&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
-                                <b className="mr-10">تواصل معنا</b>
-                            </a>
+                                <p style={{ padding: '15px', fontSize: 'larger', fontFamily: 'system-ui', fontWeight: 'bold', color: '#0292ab' }}>   {data.price}$</p>
+                                <a href={`https://api.whatsapp.com/send?phone=${data?.phone || 905380594084}&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                    <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
+                                    <b className="mr-10">تواصل معنا</b>
+                                </a>
 
-                        </div>
+                            </div>
+                        </> : <></>}
                         <br />
                         {/* register */}
                         {data?.register ?

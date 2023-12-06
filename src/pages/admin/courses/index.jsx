@@ -18,15 +18,15 @@ export default function AdminUsers(props) {
 
 	const columns = [
 		{
-			title: "الاسم", dataIndex: "title", key: "title", fixed: "left",
-			render: (_, record) => <Link href={`/admin/courses/${record._id}`}  > {record.title}</Link>
+			title: "الاسم", dataIndex: "title", key: "title", fixed: "left", width: 200,
+			render: (_, record) => <Link href={`/admin/courses/${record._id}`} > {record.title}</Link>
 		},
 		{
-			title: "المدربة /ات", dataIndex: "teacher", key: "teacher",
+			title: "المدربة /ات", dataIndex: "teacher", key: "teacher", width: 200,
 			render: (_, record) => <div>{record.teacher.map(a => <p key={a._id} >{a.fullname}</p>)}</div>
 		},
 		{
-			title: "عدد الطلاب", dataIndex: "student", key: "student",
+			title: "عدد الطلاب", dataIndex: "student", key: "student",width: 100,
 			render: (_, record) => <div>{record.students.length}</div>
 		},
 		{
@@ -43,7 +43,7 @@ export default function AdminUsers(props) {
 			</div>
 
 			<div className="m-10">
-				<Table dataSource={data} columns={columns} pagination={false} />
+				<Table dataSource={data} columns={columns} pagination={false} scroll={{ x: 700 }} />
 			</div>
 		</section>
 	)

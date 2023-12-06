@@ -64,7 +64,7 @@ export default function EditChild({ data: propsData, config }) {
                         <button name="techer" onClick={btns}> المعلمة</button>
                     </div>
                     <View name={"info"}>
-                        <form className="bord box col p-20 center " style={{width: '350px'}} onChange={putView} onSubmit={handleSubmit(onSubmit)}>
+                        <form className="bord box col p-20 center " style={{ width: '350px' }} onChange={putView} onSubmit={handleSubmit(onSubmit)}>
                             <h1 className="center box my-20"> تعديل اعلان دورة </h1>
 
                             <label>عنوان الاعلان </label>
@@ -78,6 +78,13 @@ export default function EditChild({ data: propsData, config }) {
 
                             <label>فورم التسجيل</label>
                             <input type="text" {...register("register")} />
+
+                            <label >رقم التواصل </label>
+                            <select {...register("phone")} >
+                                <option value={"905380594084"}  >الرقم التركي</option>
+                                <option value={"96181324565"}  >الرقم اللبناني</option>
+                            </select>
+
                             <label>وصف الدورة</label>
                             <textarea type="text" {...register("bio")} className="h-200" />
                             <label>الصورة التعريفية</label>
@@ -90,13 +97,13 @@ export default function EditChild({ data: propsData, config }) {
                         </form>
                     </View>
                     <View name={"part"}>
-                        <div className="box col " style={{width: '350px'}}  >
+                        <div className="box col " style={{ width: '350px' }}  >
                             <ListParts />
                             <div className="w-full btn my-20" onClick={() => set_form_port(true)}>add part</div>
                         </div>
                     </View>
                     <View name={"techer"}>
-                        <div className="box col " style={{width: '350px'}}>
+                        <div className="box col " style={{ width: '350px' }}>
                             <AddTeacher />
                         </div>
                     </View>

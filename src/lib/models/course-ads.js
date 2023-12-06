@@ -11,6 +11,7 @@ let schema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     }],
+    phone: Number,
     part: [{
         title: String,
         about: String,

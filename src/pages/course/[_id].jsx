@@ -48,7 +48,7 @@ export default function CourseAdsView({ data, call = true }) {
                                 <p style={style.price}> {data.price}$</p>
                                 {contact}
                             </div>
-                        </> : <div className="box row bord p-10 space mt-20"> {contact} </div>}
+                        </> : <div className="box row bord p-10 space mt-20 aitem">. {contact} </div>}
                         <br />
                         {/* register */}
                         {data?.register ? <>

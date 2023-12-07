@@ -15,6 +15,15 @@ export default function CourseAdsView({ data, call = true }) {
     if (!data) return <center>Not Found </center>
     else {
         let part = data.part.sort((a, b) => a.Sort - b.Sort)
+        let contact = <a href={`https://api.whatsapp.com/send?phone=${data?.phone || 905380594084}&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
+            <b className="mr-10">تواصل معنا</b>
+        </a>
+        let style = {
+            image: { width: '-webkit-fill-available', borderRadius: "20px" },
+            price: { padding: '15px', fontSize: 'larger', fontFamily: 'system-ui', fontWeight: 'bold', color: '#0292ab' },
+            iframe: { width: '-webkit-fill-available', height: '-webkit-fill-available', minHeight: '600px', marginWidth: 0, marginHeight: 0 }
+        }
         return (
             <>
                 <SEO title={data.title} description={data.bio} image={data.image} />
@@ -22,7 +31,7 @@ export default function CourseAdsView({ data, call = true }) {
                     {/* info */}
                     <div className=" ">
 
-                        <img src={data?.image || "/images/image-null.png"} alt="صورة تعريفية عن الدورة التدريبية " className="  p-0" style={{ width: '-webkit-fill-available', borderRadius: "20px" }} />
+                        <img src={data?.image || "/images/image-null.png"} alt="صورة تعريفية عن الدورة التدريبية " className="  p-0" style={style.image} />
                         <h1 className="my-20 mx-10">{data.title} </h1>
 
                         <p className="my-20 mx-10">{data?.duration} </p>
@@ -36,27 +45,17 @@ export default function CourseAdsView({ data, call = true }) {
                         {data?.price && data?.price != "" ? <>
                             <b className="m-10">السعر </b>
                             <div className="box row bord p-10 space mt-20">
-
-                                <p style={{ padding: '15px', fontSize: 'larger', fontFamily: 'system-ui', fontWeight: 'bold', color: '#0292ab' }}>   {data.price}$</p>
-                                <a href={`https://api.whatsapp.com/send?phone=${data?.phone || 905380594084}&text=${data.title}`} className="w-200 btn aitem p-5 " style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                    <Image src={`/icons/whatsapp2.svg`} width={30} height={30} alt="icon social media" />
-                                    <b className="mr-10">تواصل معنا</b>
-                                </a>
-
+                                <p style={style.price}> {data.price}$</p>
+                                {contact}
                             </div>
-                        </> : <></>}
+                        </> : <div className="box row bord p-10 space mt-20"> {contact} </div>}
                         <br />
                         {/* register */}
-                        {data?.register ?
-                            <>
-                                <h3 className="m-20 ">فورم التسجيل</h3>
-                                <iframe src={data?.register?.split(`src="`)[1].split(`"`)[0]} frameborder="0" marginheight="0" style={{
-                                    width: '-webkit-fill-available',
-                                    height: '-webkit-fill-available',
-                                    minHeight: '600px'
-                                }} marginwidth="0" loading="lazy" /></> : <></>}
+                        {data?.register ? <>
+                            <h3 className="m-20 ">فورم التسجيل</h3>
+                            <iframe src={data?.register?.split(`src="`)[1].split(`"`)[0]} frameborder="0" style={style.iframe} loading="lazy" />
+                        </> : <></>}
                     </div>
-                    {/* Follow links ar Contact */}
                 </div>
                 {call ? <Contact /> : <></>}
             </>

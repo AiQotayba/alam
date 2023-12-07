@@ -73,14 +73,13 @@ function Menu({ data, set, config }) {
 				location.reload()
 			})
 	}
-async	function Rival(e) {
+	async function Rival(e) {
 		if (e.target.name == "x") setR(false)
 		else {
-		 console.log(config)
+			console.log(config)
 			setR(false)
-			// axios
 			// send to api
-			 await axios.put(`/api/users/${data?._id}/rival` ,{coin} , config)
+			await axios.put(`/api/users/${data?._id}/rival`, { coin }, config)
 				.then(res => message.success(res.data.msg))
 		}
 
@@ -100,9 +99,11 @@ async	function Rival(e) {
 						<button className="mr-10" onClick={Rival}>خصم </button>
 					</div>
 				}
+
 				<Popconfirm title="هل أنت متأكدة من تصفير النقاط  " onConfirm={reset} okText="نعم" cancelText="لا" >
 					<button className="p-10 m-10 off" style={{ color: "#0292ab" }}  >تصفير النقاط</button>
 				</Popconfirm>
+				
 				<Popconfirm title="هل أنت متأكدة من حذف المستخدمين" onConfirm={Delete} okText="نعم" cancelText="لا" >
 					<button className="p-10 m-10 off" style={{ color: "#0292ab" }} >حذف</button>
 				</Popconfirm>

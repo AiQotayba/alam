@@ -67,7 +67,7 @@ function CardPart({ data }) {
     return (
         <div className={` type type-${data.typeView}`}>
             {data?.image != null ? <img src={data?.image} alt={`صورة ${data}`} /> : <></>}
-            <div className="m-10">
+            <div className="m-10 p-20">
                 <h3 className="my-10" >{data.title}</h3>
                 <p dangerouslySetInnerHTML={{ __html: md.render(data?.about) }} />
             </div>

@@ -45,7 +45,7 @@ export default function EditChild({ data: propsData, config }) {
         else <></>
     }
     function putView(e) {
-        setData({ ...data, [e.target.name]: e.target.value });
+        // setData({ ...data, [e.target.name]: e.target.value });
     }
     let btns = e => setView(e.target.name)
 

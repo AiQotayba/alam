@@ -6,8 +6,7 @@ const withPWA = require('next-pwa')({
     register: true,
     skipWaiting: true,
     // sassOptions: { includePaths: [path.join(__dirname, 'styles')], },
-    disable: process.env.NODE_ENV === "development",
-    output: 'standalone'
+    disable: process.env.NODE_ENV === "development"
 });
 
 module.exports = withPWA({

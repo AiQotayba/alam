@@ -10,6 +10,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 import '../styles/style.sass'
 import '../styles/beta.sass'
 import Layout from '@/theme/layout';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }) {
       <Layout >
 
         <Component {...pageProps} />
+        <Analytics />
 
       </Layout>
     </>

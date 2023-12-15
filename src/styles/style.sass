@@ -74,8 +74,10 @@ nav
     color: #0292ab
     &-err
         color: #E91E63
-section img
-    &:hover
+section
+    .type img
+        filter: drop-shadow(0 0 0 #ddd) !important
+    img:hover
         filter: drop-shadow(2px 4px 6px #ddd)
         transition: filter 0.5s
 .w-full
@@ -107,15 +109,15 @@ input ,textarea ,select
         padding: 10px
         border: 0.2px solid #0292ab
 button , .btn , [type="submit"]
-    border: 0
-    background-color: #0292ab
-    color: #fff
-    padding: 10px
-    text-align: center
-    min-width: 80px
-    border-radius: 10px
-    display: flex
-    justify-content: center
+        border: 0
+        background-color: #0292ab
+        color: #fff
+        padding: 10px
+        text-align: center
+        min-width: 80px
+        border-radius: 10px
+        display: flex
+        justify-content: center
     & *
         color: #fff
     &.off

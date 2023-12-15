@@ -7,7 +7,7 @@ export default async function CoursesOne(req, res, next) {
     let { GET, id, PATCH, POST, ALL, DELETE, PUT, Send } = new API(req, res) 
     GET(async () => {
         let { session_id } = query
-        let session = await Session.findOne({ _id: session_id })
+        let session = await Session.findOne({ _id: session_id }).populate("teacher_id")
         let atten = await Attendance.find().populate("child_id")
         let attendance = atten.filter(a => a.session_id.toString() == session_id)
 

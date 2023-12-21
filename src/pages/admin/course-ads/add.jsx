@@ -50,17 +50,25 @@ export default function CreateChild({ config }) {
             <label >فورم التسجيل </label>
             <input type="text" {...register("register")} />
 
+            <label>الترتيب</label>
+            <input type="number" {...register("sort")} />
+
             <label >رقم التواصل </label>
             <select {...register("phone")} >
                 <option value={"905380594084"}  >+90 538 059 40 84</option>
-                <option value={"96181324565"}  >+961 81 324 565</option> 
+                <option value={"96181324565"}  >+961 81 324 565</option>
             </select>
-            
+
             <label >وصف الدورة </label>
             <textarea {...register("bio")} className="h-200" ></textarea>
 
             <label >الصورة التعريفية </label>
             <input type="file" {...register("image")} />
+
+            <div className="box row m-10">
+                <input type="checkbox"{...register("display")} />
+                <label className="px-10">نشر</label>
+            </div>
 
             <div className="mt-20 w-full box row">
                 <Link href="/admin/course-ads" className="p-10 m-0 w-full btn off"> الغاء </Link>

@@ -19,6 +19,9 @@ let schema = new Schema({
         typeView: String,
         image: String,
     }],
+    sort: Number,
+    display:Boolean,
+
     create_at: { type: Number, default: new Date() },
 });
 

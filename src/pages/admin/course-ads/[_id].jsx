@@ -16,7 +16,7 @@ export async function getServerSideProps(ctx) {
         return { data, config };
     });
 }
-export default function EditChild({ data: propsData, config }) {
+export default function EditADS({ data: propsData, config }) {
     let [data, setData] = useState(propsData.course);
     let [form_port, set_form_port] = useState(false);
     const { register, handleSubmit } = useForm({ defaultValues: data });
@@ -84,11 +84,21 @@ export default function EditChild({ data: propsData, config }) {
                                 <option value={"905380594084"}  >الرقم التركي</option>
                                 <option value={"96181324565"}  >الرقم اللبناني</option>
                             </select>
+ 
 
-                            <label>وصف الدورة</label>
-                            <textarea type="text" {...register("bio")} className="h-200" />
-                            <label>الصورة التعريفية</label>
-                            <input type="file"{...register("image")} />
+                            <label>الترتيب</label>
+                            <input type="number" {...register("sort")} /> 
+
+                            <label >وصف الدورة </label>
+                            <textarea {...register("bio")} className="h-200" ></textarea>
+
+                            <label >الصورة التعريفية </label>
+                            <input type="file" {...register("image")} />
+
+                            <div className="box row m-10">
+                                <input type="checkbox"{...register("display")} />
+                                <label className="px-10">نشر</label>
+                            </div>
 
                             <div className="mt-20 w-full box row">
                                 <Link href="/admin/course-ads" className="p-10 m-0 w-full btn off"> الغاء </Link>

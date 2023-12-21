@@ -33,7 +33,7 @@ export function ViewSessionOne() {
                 <div className="  box grid aitem">
                     <button onClick={() => setView("Session")}>رجوع</button>
                     <h2 className="px-10">جلسة : {SessionOne?.session?.title} </h2> 
-                    <p>{SessionOne?.session?.teacher_id.fullname}</p>
+                    <p>- أ.{SessionOne?.session?.teacher_id.fullname}</p>
                 </div>
                 <p className="px-10">  {SessionOne?.session?.time_start + " - " + SessionOne?.session?.date_start}</p>
             </div>

@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <meta name="theme-color" content="#fff" />
         {/* <link rel="manifest" href="/manifest.json" /> */}
-        <link rel="shortcut icon" href="/images/logo.png" />
+        <link rel="shortcut icon" href="/assets/android-launchericon-144-144.png" />
       </Head>
       <Layout >
 

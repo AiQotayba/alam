@@ -20,8 +20,6 @@ export default function SEO(props) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta name="theme-color" content="#ffffff" />
             {/* ---------------  icons  --------------- */}
-
-            <link rel="apple-touch-icon" href="/images/logo.png" />
             <link rel="icon" href="/favicon.ico" type="image/x-icon" />
             <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
             <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -54,7 +52,7 @@ export default function SEO(props) {
             {/* ---------------  SEO Bots  --------------- */}
             <link rel="canonical" href={canonical} />
             <meta name="robots" content="index, follow" />
-          
+
         </Head>
     );
 }

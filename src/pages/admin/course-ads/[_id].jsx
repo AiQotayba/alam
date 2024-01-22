@@ -1,11 +1,13 @@
 import { AuthServerSide } from "@/lib/app2";
 import CourseAdsView from "@/pages/course/[_id]";
-import { Table, message } from "antd";
+import { Popconfirm, Table, message } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { createContext, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { IconEdit } from "@/theme/icons";
+import { EditPart } from "@/theme/ads";
 
 export const CourseAdsContext = createContext({});
 
@@ -19,6 +21,7 @@ export async function getServerSideProps(ctx) {
 export default function EditADS({ data: propsData, config }) {
     let [data, setData] = useState(propsData.course);
     let [form_port, set_form_port] = useState(false);
+    let [OnePart, set_OnePart] = useState(null);
     const { register, handleSubmit } = useForm({ defaultValues: data });
     let { query, push } = useRouter();
     let [view, setView] = useState("info")
@@ -53,6 +56,7 @@ export default function EditADS({ data: propsData, config }) {
         <div className="box grid">
             <CourseAdsContext.Provider value={{
                 data, setData, teacher: propsData.teacher,
+                OnePart, set_OnePart,
                 useView: { Set: set_form_port, view: form_port }, config
             }}>
                 <div className="box col m-20" style={{ maxWidth: "350px" }}>
@@ -84,10 +88,9 @@ export default function EditADS({ data: propsData, config }) {
                                 <option value={"905380594084"}  >الرقم التركي</option>
                                 <option value={"96181324565"}  >الرقم اللبناني</option>
                             </select>
- 
 
                             <label>الترتيب</label>
-                            <input type="number" {...register("sort")} /> 
+                            <input type="number" {...register("sort")} />
 
                             <label >وصف الدورة </label>
                             <textarea {...register("bio")} className="h-200" ></textarea>
@@ -117,7 +120,11 @@ export default function EditADS({ data: propsData, config }) {
                             <AddTeacher />
                         </div>
                     </View>
-                    <FormPart />
+
+                    <View name={"part"}>
+                        <FormPart />
+                        <EditPart One={OnePart} />
+                    </View>
                 </div>
                 <CourseAdsView data={data} call={false} />
             </CourseAdsContext.Provider>
@@ -180,10 +187,13 @@ function Add({ one }) {
     else return <button onClick={send} className={"err"}>حذف </button>
 }
 // ---------------------------------------------
+
 function FormPart() {
-    const { register, handleSubmit, reset } = useForm();
     let { query } = useRouter();
-    const { data, setData, teacher, useView, config } = useContext(CourseAdsContext);
+    const { data, setData, teacher, OnePart, set_OnePart, useView, config } = useContext(CourseAdsContext);
+
+    console.log(OnePart)
+    const { register, handleSubmit, reset } = useForm()
 
     let { view, Set: setView } = useView;
     const Send = (res) => {
@@ -192,12 +202,12 @@ function FormPart() {
         let image = null;
         function send(image) {
             let part = { ...res, image };
-
             setData({ ...data, part: [...data.part, part] });
-            axios.post(`/api/admin/course-ads/${query._id}`, part, config).then(({ data: d }) => {
+            let url = `/api/admin/course-ads/${query._id}`
+            axios.post(url, part, config).then(({ data: d }) => {
                 message.success(d.msg);
                 reset();
-                setView(false);
+                setView(false)
             });
         }
         if (file.length > 0) {
@@ -206,6 +216,7 @@ function FormPart() {
             reader.readAsDataURL(file[0]);
         } else send(image);
     };
+    console.log(OnePart)
     if (!view) return <></>
     else return (
         <form
@@ -235,22 +246,29 @@ function FormPart() {
             <input type="file" {...register("image")} />
 
             <div className="mt-20 w-full box row">
-                <Link href="/admin/course-ads" className="p-10 m-0 w-full btn off"> الغاء </Link>
+                <div className="p-10 m-0 w-full btn off" onClick={() => {
+                    set_OnePart(null)
+                    setView(false)
+                }} > الغاء </div>
                 <input type="submit" className="mr-10 w-full" />
             </div>
 
         </form>
     )
 }
+
 function ListParts() {
-    const { data, setData, config } = useContext(CourseAdsContext);
+    const { data, setData, OnePart, set_OnePart, useView, config } = useContext(CourseAdsContext);
+
+    let { view, Set: setView } = useView;
     let { query } = useRouter();
-    function DELETE(id) {
+    function DELETE(_id) {
         let url = `/api/admin/course-ads/${query._id}`;
-        let part = data.part?.filter((a) => a._id !== id);
+        let part = data.part?.filter((a) => a._id !== _id);
         setData({ ...data, part });
-        let O = data.part?.filter((a) => a._id == id)[0];
-        axios.patch(url, part, config);
+
+        let O = data.part?.filter((a) => a._id == _id)[0];
+        axios.patch(url, { _id, type: "delete" }, config);
         message.success(`تم حذف الفقرة ${O?.title}`);
     }
     return (
@@ -259,7 +277,14 @@ function ListParts() {
             {data.part.map((a) => (
                 <div className="box row space aitem p-10 bord px-20 my-20" key={a._id}>
                     <p>{a.title}</p>
-                    <b onClick={() => DELETE(a._id)}>X</b>
+                    <div className="box row aitem">
+                        <div onClick={() => { set_OnePart(a) }} >
+                            <IconEdit size={30} />
+                        </div>
+                        <Popconfirm title="هل أنت متأكدة من حذف الفقرة" onConfirm={() => DELETE(a._id)} okText="نعم" cancelText="لا" >
+                            <b className="px-20" >X</b>
+                        </Popconfirm>
+                    </div>
                 </div>
             ))}
         </div>

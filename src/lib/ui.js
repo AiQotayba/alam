@@ -1,3 +1,4 @@
+import { IconDate } from "@/theme/icons";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,6 +23,16 @@ export function CardCourse({ data, slug }) {
         <Link href={`${slug}${data._id}`} className="card" key={data._id}>
             <img src={data?.image || "/images/image-null.png"} alt="" />
             <b>{data.title}</b>
+            <div className="aitem box pb-15 pt-0 px-15 row space">
+                <div className="box row ">
+                    {data?.duration ? <>
+                        <IconDate size={20} />
+                        <b style={{color: '#009688',paddingTop: '0px !important'}} className="px-20"> {data?.duration }</b>
+                    </> : <></>
+                    }
+                </div>
+                <p>{data?.price ? `$${data?.price}` : ""}</p>
+            </div>
         </Link>
     )
 }

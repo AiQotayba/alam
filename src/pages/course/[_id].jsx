@@ -39,7 +39,7 @@ export default function CourseAdsView({ data, call = true }) {
                         <div className="box col w-full m-10">
                             <p className="my-10">{data.teacher?.map(a => "أ. " + a.fullname + " , ")} </p>
                         </div>
-                        <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md.render(data?.bio) }} />
+                        <div className="m-10 mb-20 p-10" dangerouslySetInnerHTML={{ __html: md?.render(data?.bio) }} />
                         {/* join */}
                         {part?.map(a => <CardPart data={a} key={a._id} />)}
                         {data?.price && data?.price != "" ? <>
@@ -69,7 +69,7 @@ function CardPart({ data }) {
             {data?.image != null ? <img src={data?.image} alt={`صورة ${data}`} /> : <></>}
             <div className="m-10 p-20">
                 <h3 className="my-10" >{data.title}</h3>
-                <p dangerouslySetInnerHTML={{ __html: md.render(data?.about) }} />
+                <p dangerouslySetInnerHTML={{ __html: md?.render(data?.about || " ") }} />
             </div>
         </div>
     )

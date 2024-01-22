@@ -1,0 +1,47 @@
+{
+  "packageId": "com.alamalmoubdien.app.lite",
+  "host": "app.alamalmoubdien.com",
+  "name": "عالم المبدعين",
+  "launcherName": "عالم المبدعين",
+  "display": "standalone",
+  "themeColor": "#FFFFFF",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#FFFFFF",
+  "enableNotifications": true,
+  "startUrl": "/?source=pwa",
+  "iconUrl": "https://app.alamalmoubdien.com/assets/android-launchericon-144-144.png",
+  "maskableIconUrl": "https://app.alamalmoubdien.com/assets/android-launchericon-144-144.png",
+  "monochromeIconUrl": "https://app.alamalmoubdien.com/assets/android-launchericon-144-144.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/home/ktsyr1/المستندات/projects/alam/android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://app.alamalmoubdien.com/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "playBilling": {
+      "enabled": true
+    }
+  },
+  "alphaDependencies": {
+    "enabled": true
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://app.alamalmoubdien.com/",
+  "minSdkVersion": 19,
+  "orientation": "default",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "appVersion": "1"
+}

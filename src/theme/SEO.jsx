@@ -52,7 +52,7 @@ export default function SEO(props) {
             {/* ---------------  SEO Bots  --------------- */}
             <link rel="canonical" href={canonical} />
             <meta name="robots" content="index, follow" />
-
+<meta name="google-site-verification" content="We08CdJvskR_O3unb5AeMzADlBjgoDL3OzU98jGlzCk" />
         </Head>
     );
 }

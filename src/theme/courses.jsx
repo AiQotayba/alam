@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { CourseContext } from "../pages/admin/courses/[_id]"; 
+import { CourseContext } from "../pages/admin/courses/[_id]";
 
 let API = `${process.env.NEXT_PUBLIC_API}/courses`
 
@@ -349,8 +349,6 @@ export function AddTeacher() {
     let [teacher, setTeacher] = useState()
     let [loader, setLoader] = useState(false)
     let { query } = useRouter()
-
-    const { register, handleSubmit, reset } = useForm()
 
     useEffect(() => {
         setTimeout(() => {

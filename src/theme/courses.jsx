@@ -240,15 +240,12 @@ export function AddStudent() {
     const { config, setView, data: AllData, setData: SetAllData } = useContext(CourseContext);
 
     const { register, handleSubmit, reset } = useForm()
-    let [data, setData] = useState({ phone: "", name: "" })
+    let [data, setData] = useState({ phone: "", fullname: "" })
     let [student, setStudent] = useState()
     let [studentOne, setSO] = useState()
     let [loader, setLoader] = useState(false)
     let { query } = useRouter()
     let [url, setUrl] = useState(`${API}/${query._id}`)
-    let set = e => {
-        setData({...data, [e.target.name]: e.target.value })
-    }
 
     useEffect(() => {
 
@@ -326,11 +323,11 @@ export function AddStudent() {
     return (
         <div className='bord m-10 p-20 center ' >
             <h1 className="mb-20">اضافة طلاب </h1>
-            <div className="box row aitem" onChange={set} >
+            <div className="box row aitem" onChange={e => setData({ ...data, [e.target.name]: e.target.value })} >
                 <label >  الهاتف </label>
-                <input type="text"  name="phone" />
+                <input type="text" name="phone" />
                 <label >  الاسم </label>
-                <input type="text"  name="fullname" />
+                <input type="text" name="fullname" />
                 {loader ? <Loader /> : <></>}
 
             </div>
@@ -348,24 +345,25 @@ export function AddStudent() {
 export function AddTeacher() {
     const { config, setView, data: AllData, setData: SetAllData } = useContext(CourseContext);
 
-    let [q, set] = useState("")
+    let [data, setData] = useState({ phone: "", fullname: "" })
+
     let [teacher, setTeacher] = useState()
     let [loader, setLoader] = useState(false)
     let { query } = useRouter()
-    let sets = e => setChange(e, data, setData)
+
     const { register, handleSubmit, reset } = useForm()
 
     useEffect(() => {
         setTimeout(() => {
             setLoader(true)
-            let URL = `${API}/${query._id}/teacher`
+            let URL = `${API}/${query._id}/teacher?phone=${data?.phone}&fullname=${data?.fullname}`
 
-            axios.get(`${URL}?src=${q}`, config).then(({ data }) => {
+            axios.get(URL, config).then(({ data }) => {
                 setTeacher(data)
                 setLoader(false)
             }).catch(err => setLoader(false))
         }, 1000)
-    }, [q, query, config])
+    }, [data, query, config])
 
 
     const columns = [
@@ -399,18 +397,11 @@ export function AddTeacher() {
     return (
         <div className='bord m-10 p-20 center ' >
             <h1 className="mb-20">اضافة معلمة </h1>
-            <div className="box row aitem" onChange={sets} >
-                <label >  الهاتف </label>
-                <input type="text"  {...register("phone")} />
-                <label >  الاسم </label>
-                <input type="text"  {...register("name")} />
-                {loader ? <Loader /> : <></>}
-
-            </div>
-            <div className="box row aitem my-10" >
-                <label >  الهاتف </label>
-                <input type="text" onChange={e => set(e.target.value)} name="phone" className="pb-20" style={{ width: "250px", margin: 'auto 20px' }} />
-                {/* <Loader /> */}
+            <div className="box row aitem my-20"   >
+                <label className="mx-10">  الهاتف </label>
+                <input type="text" onChange={e => setData({ ...data, phone: e.target.value })} />
+                <label className="mx-10" >  الاسم </label>
+                <input type="text" onChange={e => setData({ ...data, fullname: e.target.value })} />
                 {loader ? <Loader /> : <></>}
 
             </div>

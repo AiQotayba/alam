@@ -10,14 +10,24 @@ export default async function CoursesOne(req, res, next) {
     GET(
         await Auth.getAdmin("admin"),
         async () => {
-            let src = query.src.toLowerCase()
-            let users = await User.find({
-                typeUser: { $in: ["teacher"] },
-                $or: [
-                    { fullname: { $regex: src || "" } },
-                    { phone: { $regex: src || "" } },
-                ]
-            }).select("fullname phone email")
+            const filter = { typeUser: "teacher" }; // Filter by teacher type
+
+            if (query.fullname) {
+                filter.$or = [
+                    { fullname: { $regex: new RegExp(query.fullname, "i") } },
+                    { phone: { $regex: new RegExp(query.phone.toLowerCase(), "i") } },
+                ];
+            }
+
+            const users = await User.find(filter).select("fullname phone email");
+
+            // let users = await User.find({
+            //     typeUser: { $in: ["teacher"] },
+            //     $or: [
+            //         { fullname: { $regex: query.fullname || "" } },
+            //         { phone: { $regex: query.phone.toLowerCase() || "" } },
+            //     ]
+            // }).select("fullname phone email")
             let co = await Courses.findById(query._id).select("teacher")
 
             let data = []

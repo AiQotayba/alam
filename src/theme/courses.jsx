@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { CourseContext } from "../pages/admin/courses/[_id]";
+import { setChange } from "@/lib/app";
 
 let API = `${process.env.NEXT_PUBLIC_API}/courses`
 
@@ -32,7 +33,7 @@ export function ViewSessionOne() {
             <div className="m-10 box col  ">
                 <div className="  box grid aitem">
                     <button onClick={() => setView("Session")}>رجوع</button>
-                    <h2 className="px-10">جلسة : {SessionOne?.session?.title} </h2> 
+                    <h2 className="px-10">جلسة : {SessionOne?.session?.title} </h2>
                     <p>- أ.{SessionOne?.session?.teacher_id.fullname}</p>
                 </div>
                 <p className="px-10">  {SessionOne?.session?.time_start + " - " + SessionOne?.session?.date_start}</p>
@@ -394,9 +395,9 @@ export function AddTeacher() {
     return (
         <div className='bord m-10 p-20 center ' >
             <h1 className="mb-20">اضافة معلمة </h1>
-            <div className="box row aitem" >
-                <label >  الهاتف او الايميل </label>
-                <input type="text" onChange={e => set(e.target.value)} name="phone" className="pb-20" style={{ width: "250px" }} />
+            <div className="box row aitem my-10" >
+                <label >  الهاتف </label>
+                <input type="text" onChange={e => set(e.target.value)} name="phone" className="pb-20" style={{ width: "250px", margin: 'auto 20px' }} />
                 {/* <Loader /> */}
                 {loader ? <Loader /> : <></>}
 

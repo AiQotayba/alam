@@ -246,14 +246,16 @@ export function AddStudent() {
     let [loader, setLoader] = useState(false)
     let { query } = useRouter()
     let [url, setUrl] = useState(`${API}/${query._id}`)
-    let set = e => setChange(e, data, setData)
+    let set = e => {
+        setData({...data, [e.target.name]: e.target.value })
+    }
 
     useEffect(() => {
 
         setTimeout(() => {
             setLoader(true)
 
-            let URL = `${url}/student?phone=${data?.phone}&name=${data?.name}`
+            let URL = `${url}/student?phone=${data?.phone}&name=${data?.fullname}`
             axios.get(URL, config).then(async (res) => {
                 let dataAll = await Promise.all(res.data.map(a => { return { ...a, add: false } }))
                 setStudent(dataAll)
@@ -326,9 +328,9 @@ export function AddStudent() {
             <h1 className="mb-20">اضافة طلاب </h1>
             <div className="box row aitem" onChange={set} >
                 <label >  الهاتف </label>
-                <input type="text"  {...register("phone")} />
+                <input type="text"  name="phone" />
                 <label >  الاسم </label>
-                <input type="text"  {...register("name")} />
+                <input type="text"  name="fullname" />
                 {loader ? <Loader /> : <></>}
 
             </div>
@@ -350,6 +352,8 @@ export function AddTeacher() {
     let [teacher, setTeacher] = useState()
     let [loader, setLoader] = useState(false)
     let { query } = useRouter()
+    let sets = e => setChange(e, data, setData)
+    const { register, handleSubmit, reset } = useForm()
 
     useEffect(() => {
         setTimeout(() => {
@@ -395,6 +399,14 @@ export function AddTeacher() {
     return (
         <div className='bord m-10 p-20 center ' >
             <h1 className="mb-20">اضافة معلمة </h1>
+            <div className="box row aitem" onChange={sets} >
+                <label >  الهاتف </label>
+                <input type="text"  {...register("phone")} />
+                <label >  الاسم </label>
+                <input type="text"  {...register("name")} />
+                {loader ? <Loader /> : <></>}
+
+            </div>
             <div className="box row aitem my-10" >
                 <label >  الهاتف </label>
                 <input type="text" onChange={e => set(e.target.value)} name="phone" className="pb-20" style={{ width: "250px", margin: 'auto 20px' }} />

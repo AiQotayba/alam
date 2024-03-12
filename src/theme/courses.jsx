@@ -3,8 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { CourseContext } from "../pages/admin/courses/[_id]";
-import { setChange } from "@/lib/app";
+import { CourseContext } from "../pages/admin/courses/[_id]"; 
 
 let API = `${process.env.NEXT_PUBLIC_API}/courses`
 

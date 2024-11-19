@@ -41,7 +41,7 @@ export default async function CoursesOne(req, res) {
         async () => {
             try {
                 const { teacher_id } = body;
-                const course = await Courses.findById(id).select("teacher");
+                const course = await Courses.findById(query._id).select("teacher");
 
                 if (!course.teacher.includes(teacher_id)) {
                     course.teacher.push(teacher_id);

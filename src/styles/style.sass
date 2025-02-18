@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300700&display=swap')
+body
+    direction: rtl
+    font-family: 'Tajawal', sans-serif
+nav
+    height: 60px
+    text-align: center
+    display: flex
+    background-color: #fff
+    align-items: center
+    color: #46AADD
+    box-shadow: 0 0 10px #ddd
+    justify-content: space-between
+    padding: 0 20px
+    position: fixed
+    width: -webkit-fill-available
+    top: 0
+    z-index: 10
+.menu
+    display: flex
+    a
+        padding: 10px
+        margin: 0
+        display: flex
+        flex-direction: row
+        align-items: center
+        padding-left: 10px
+        padding-right: 10px
+        &:hover
+            box-shadow: 6px 2px 10px #eee
+            border-radius: 10px
+            background-color: #Eef
+            transition: box-shadow .2s
+#__next > section
+    margin-top: 20px
+    margin-bottom: 70px
+
+@media screen and ( min-width: 701px )
+    .menu-btn
+        display: none !important
+
+@media (max-width: 700px)
+    section
+        margin: 10px 0
+
+    nav
+        padding: 0
+        .menu
+            display: none
+    .menu
+        position: fixed
+        z-index: 20
+        background-color: #fff
+        min-height: max-content
+        bottom: 0
+        width: -webkit-fill-available
+        flex-direction: row
+        justify-content: space-around
+        clear: both
+        a
+            padding: 10px
+            display: flex
+            flex-direction: column
+
+    a
+        // padding: 10px 
+        margin: 10px
+    .logo
+        display: flex
+        color: #fff
+        img
+            margin: 0 10px
+.color
+    color: #0292ab
+    &-err
+        color: #E91E63
+section
+    .type img
+        filter: drop-shadow(0 0 0 #ddd) !important
+    img:hover
+        filter: drop-shadow(2px 4px 6px #ddd)
+        transition: filter 0.5s
+.w-full
+    width: -webkit-fill-available
+
+a
+    color: #0292ab
+aside a
+    padding: 10px 20px
+    &:hover
+        background-color: #f9f9f9
+        border-right: 3px solid
+.m-a
+    margin: 10px auto
+
+form
+    flex-direction: column !important
+    max-width: 350px
+    margin: 10px auto
+    display: flex
+    box-shadow: 0 0 10px #ddd
+    padding: 20px
+    & > label ,p
+        padding: 10px
+    h1 ,h2
+        text-align: center
+        padding: 20px
+input ,textarea ,select
+        padding: 10px
+        border: 0.2px solid #0292ab
+button , .btn , [type="submit"]
+    border: 0
+    background-color: #0292ab
+    color: #fff
+    padding: 10px     
+    text-align: center
+    min-width: 80px
+    border-radius: 10px
+    display: flex
+    justify-content: center
+    & *
+        color: #fff
+    &.off
+        border: 1px solid #0292ab
+        background-color: #fff !important
+        color: #0292ab
+    &.green
+        background-color: #4CAF50
+    &:focus , &:active
+        background-color: #fff
+        color: #0292ab
+        border: 1px solid
+.err
+    background-color: #E91E63 !important
+    color: #fff !important
+
+.title
+    margin: 10px
+    box-shadow: 0 0 10px #ddd
+    background-color: #fff
+    padding: 10px
+    color: #0292ab
+.ant-table-wrapper
+    overflow: auto
+
+.card
+    display: flex
+    flex-direction: column !important
+    margin: 10px
+    max-width: 300px
+    box-shadow: 0 0 10px #ddd
+    background-color: #fff
+    text-align: center
+    border-radius: 20px
+    height: max-content
+    .footer
+        display: flex
+        flex-direction: row
+        padding: 10px 0
+        justify-content: space-between
+        .coin
+            display: flex
+            align-items: center
+            padding: 5px 10px
+            margin: 0 10px
+            border-radius: 10px
+            img
+                padding-left: 10px
+    img
+        border-radius: 20px 20px 0 0
+    b
+        margin-bottom: 0
+        padding: 20px
+        padding-bottom: 0
+
+h1
+    margin-right: 15px
+
+.center
+    left: 0
+    right: 0
+    margin: 10px auto
+.lds-ring
+    display: inline-block
+    position: relative
+    width: 40px
+    height: 40px
+
+    & div
+        box-sizing: border-box
+        display: block
+        position: absolute
+        width: 35px
+        height: 35px
+        margin: 5px
+        border: 3px solid #0292ab
+        border-radius: 50%
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
+        border-color: #0292ab transparent transparent transparent
+
+    & div:nth-child(1)
+        animation-delay: -0.45s
+
+    & div:nth-child(2)
+        animation-delay: -0.3s
+
+    & div:nth-child(3)
+        animation-delay: -0.15s
+
+@keyframes lds-ring
+    0%
+        transform: rotate(0deg)
+
+    100%
+        transform: rotate(360deg)
+.page
+    max-width: 700px
+
+.select
+    max-height: 250px
+    overflow-y: scroll
+    &::-webkit-scrollbar
+        margin: 10px
+        width: 1em
+    &::-webkit-scrollbar-track
+        border-radius: 20px
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+    &::-webkit-scrollbar-thumb
+        border-radius: 20px
+        background-color: #46AADD
+        outline: 0px
+.landing
+    transition: box-shadow .5s
+    margin: 10px auto
+    max-width: 700px
+    padding: 10px
+    display: flex
+    flex-direction: row-reverse
+    flex-wrap: wrap
+    align-items: center
+    justify-content: center
+    border-radius: 20px
+    background-color: #e5e5e5
+    .info
+        padding: 10px
+        width: 300px
+        display: flex
+        flex-direction: column
+        justify-content: center
+    img
+        width: 300px
+        border-radius: 20px
+.full
+    position: absolute
+    z-index: 100
+    width: -webkit-fill-available
+    height: -webkit-fill-available
+    top: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    & form
+        background-color: #fff
+        width: 300px
+        border-radius: 20px
+
+@media screen and ( max-width: 701px )
+    #__next > section
+        margin-top: 70px
+.type-row
+    flex-direction: row
+
+.type-row-reverse
+    flex-direction: row-reverse
+.type-col
+    flex-direction: column
+    align-items: flex-start !important
+
+.type
+    height: min-content
+    align-items: center
+    display: flex
+    justify-content: space-between
+    margin: 20px
+    padding: 20px
+@media  screen and  ( max-width:600px )
+    .type-row ,.type-row-reverse
+        flex-direction: row
+        flex-wrap: wrap
+        margin: 0
+        padding: 10px
+        justify-content: center
+
+.type-row ,.type-row-reverse
+    img
+        width: 150px
+
+.-info, .-part, .-techer
+    width: 350px

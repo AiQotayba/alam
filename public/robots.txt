@@ -1,0 +1,2 @@
+User-agent: *  // Applies to all robots
+User-agent: Googlebot  // Applies to Googlebot only

@@ -1,0 +1,92 @@
+@api = http://localhost:3000/api
+POST  {{api}}/child
+content-type: application/json
+
+{ 
+    "user_id": "64996c99ec9e55b4ba0a4ac1",
+    "name": "محمد",
+    "age": 10
+}
+###
+PATCH http://localhost:3000/api?domain=http://localhost:3000
+###
+PATCH  http://localhost:3000/api/child?_id=64996c99ec9e55b4ba0a4ac1
+###
+GET   http://localhost:3000/api/child/649e2e08b32d5a42df1d5d7e
+###
+DELETE   http://localhost:3000/api/child/649e2e08b32d5a42df1d5d7e
+###
+PATCH   http://localhost:3000/api/users/649aa49a7384ff34bbb7d8e8
+content-type: application/json
+
+{
+    "password": "0000"
+}
+###
+POST    http://localhost:3000/api/courses
+content-type: application/json
+
+{
+    "teacher": "ktsyr1@gmail.com,",
+    "title": "دورة تدريبية في تصنيع فكط",
+    "description": "بس هيك",
+    "url": "a-10",
+    "image": "#",
+    "count": {
+            "coin": 50,
+            "session": 16
+    }
+}
+###
+
+GET    http://localhost:3000/api/courses
+content-type: application/json
+###
+PATCH    http://localhost:3000/api/users
+    ?phone=77
+    &name=س
+content-type: application/json
+###
+POST     http://localhost:3000/api/courses/64a1abab923f2f3e96302420
+content-type: application/json
+{
+    "child": "649e2d9eb32d5a42df1d5d7a"
+}
+###
+GET     http://localhost:3000/api/courses/64a1abab923f2f3e96302420
+###
+DELETE       http://localhost:3000/api/courses/64a1abab923f2f3e96302420/teacher
+?teacher_id=64996c99ec9e55b4ba0a4ac1
+content-type: application/json
+###
+GET     http://localhost:3000/api/courses/all?_id=64a1abab923f2f3e96302420
+###
+POST    http://localhost:3000/api/courses/64a1abab923f2f3e96302420/teacher
+    ?teacher_id=64996c99ec9e55b4ba0a4ac1
+content-type: application/json
+###
+DELETE     http://localhost:3000/api/courses/64a1abab923f2f3e96302420/student
+    ?students_id=649e2940b32d5a42df1d5d72
+###
+DELETE     http://localhost:3000/api/courses/64a1abab923f2f3e96302420/student
+    ?students_id=64a3f2527a5f0370bb05a030
+###
+POST      http://localhost:3000/api/courses/64a1abab923f2f3e96302420/student
+    ?students_id=649e1d58b32d5a42df1d5d6d
+###
+GET     http://localhost:3000/api/courses/64ca1ec3474ef93ba181a754/session?session_id=64ca280b474ef93ba181a817
+###
+GET    http://localhost:3000/api/family
+
+HTTP/1.1 200  - OK
+content-type: application/json; charset=utf-8
+access-control-allow-origin: *
+access-control-allow-credentials: true
+x-requested-with: NEXTJS
+access-control-allow-headers: Origin, Content-Type, Accept
+etag: "16fxsiddkjws"
+vary: Accept-Encoding
+date: Tue, 07 Nov 2023 16:47:50 GMT
+content-encoding: gzip
+connection: close
+transfer-encoding: chunked

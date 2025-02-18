@@ -7,9 +7,7 @@ export default async function api_admin_planet(req, res, next) {
 
     // API: GET / (للعامة)
     app.get(async () => {
-        let planets = await Planet.find({})
-
-        //.sort({ _id: -1 });
+        let planets = await Planet.find({}).sort({ _id: -1 });
         app.Send(planets);
     });
     if (req.method === "POST") {

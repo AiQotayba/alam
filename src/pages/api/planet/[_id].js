@@ -1,26 +1,28 @@
 import { APIAuth } from "@/lib/app";
-import { Planet } from "@/lib/models";
+import { Planet, Course } from "@/lib/models";
 import API from "nextjs-vip";
 
 export default async function api_admin_planet(req, res, next) {
     let app = new API(req, res);
-
+    const { _id } = req.query;
 
     // API: GET /[_id] (للعامة)
-    app.get(async () => {
+
+    if (req.method === "GET") app.get(async () => {
         const { _id } = req.query;
         if (!_id) {
             return app.SendError(400, "Missing planet ID.");
         }
         let planet = await Planet.findById(_id);
+        let courses = await Course.find({ planet: _id })//.select("title teacher")
         if (!planet) {
             return app.SendError(404, "Planet not found.");
         }
-        app.Send(planet);
+        app.Send({ ...planet, courses });
     });
-    if (req.method === "put") {
-        let Auth = new APIAuth(req, res);
+    if (req.method === "PUT") {
         // API: PUT /[_id] (للمسؤول فقط)
+        let Auth = new APIAuth(req, res);
         app.put(await Auth.getAdmin("admin"), async () => {
             const { _id } = req.query;
             if (!_id) {
@@ -42,7 +44,7 @@ export default async function api_admin_planet(req, res, next) {
         let Auth = new APIAuth(req, res);
         // API: DELETE /[_id] (للمسؤول فقط)
         app.delete(await Auth.getAdmin("admin"), async () => {
-            const { _id } = req.query;
+
             if (!_id) {
                 return app.SendError(400, "Missing planet ID.");
             }
